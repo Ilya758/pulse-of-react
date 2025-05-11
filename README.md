@@ -9,10 +9,10 @@ This repository includes **React Design Patterns**, structured in **folders**, w
 4. **Import** the module from the article's folder as:
 
 ```tsx
-import { Counter } from '@/1-state-management';
+import { Table } from '@/1-state-management';
 
 export const App = () => {
-  return <Counter />;
+  return <Table />;
 };
 ```
 
