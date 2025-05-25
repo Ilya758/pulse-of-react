@@ -23,12 +23,13 @@ const HooksPage = lazy(() =>
 
 export const App = () => {
   const { appReady } = useAppInitializer();
+  const basename = import.meta.env.PROD ? '/react-design-patterns/' : '/';
 
   return (
     <ThemeProvider>
       <Choose>
         <If condition={appReady}>
-          <BrowserRouter>
+          <BrowserRouter basename={basename}>
             <ScrollToTop />
             <Layout>
               <Routes>
