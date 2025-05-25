@@ -1,7 +1,28 @@
-import { Action, State } from './types';
+import { State, Action } from './types';
 
 export const INITIAL_STATE: State = {
-  rows: [],
+  rows: [
+    {
+      id: 1,
+      value: 'Hello',
+    },
+    {
+      id: 2,
+      value: 'World',
+    },
+    {
+      id: 3,
+      value: 'React',
+    },
+    {
+      id: 4,
+      value: 'Design',
+    },
+    {
+      id: 5,
+      value: 'Patterns',
+    },
+  ],
   value: '',
   selectedRow: null,
 };
