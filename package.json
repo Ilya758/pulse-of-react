@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite --open",
     "build": "tsc -b && vite build",
-    "preview": "vite preview",
-    "build-preview": "vite build && vite preview",
+    "preview": "vite preview --base /react-design-patterns/",
+    "build-preview": "vite build && vite preview --base /react-design-patterns/",
     "version:major": "yarn version --major",
     "version:minor": "yarn version --minor",
     "version:patch": "yarn version --patch"
