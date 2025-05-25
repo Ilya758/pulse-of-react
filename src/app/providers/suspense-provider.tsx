@@ -1,7 +1,7 @@
 import { Center, Loader } from '@mantine/core';
-import { JSX, Suspense } from 'react';
+import { Suspense } from 'react';
 
-export const SuspenseProvider = ({ children }: { children: JSX.Element }) => {
+export const SuspenseProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <Suspense
       fallback={
