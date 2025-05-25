@@ -21,7 +21,9 @@ export const Layout = ({ children }: Props) => {
   );
 
   useEffect(() => {
-    setIsContentLoaded(false);
+    return () => {
+      setIsContentLoaded(false);
+    };
   }, [pathname]);
 
   return (
