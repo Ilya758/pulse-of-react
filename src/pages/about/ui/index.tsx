@@ -1,14 +1,21 @@
-import { Container, Title, Text, Paper, Avatar, Group, Anchor } from '@mantine/core';
+import { Container, Title, Text, Paper, Avatar, Group, Anchor, Skeleton } from '@mantine/core';
 import { IconBrandGithub, IconBrandLinkedin } from '@tabler/icons-react';
+import { useImageLoader } from '@/shared';
 
 import authorPic from '/assets/author.jpg';
 
 export const AboutPage = () => {
+  const { isLoading: imageLoading, hasError: imageError } = useImageLoader(authorPic);
+
   return (
     <Container size="md" py="lg">
       <Paper shadow="xs" p="xl" radius="md" withBorder>
         <Group justify="center" mb="xl">
-          <Avatar src={authorPic} alt="Author's Name" size={150} radius="50%" />
+          {imageLoading && <Skeleton height={150} width={150} radius="50%" />}
+          {!imageLoading && !imageError && (
+            <Avatar src={authorPic} alt="Author's Name" size={150} radius="50%" />
+          )}
+          {!imageLoading && imageError && <Skeleton height={150} width={150} radius="50%" />}
         </Group>
         <Title order={1} ta="center" mb="sm">
           About the Author
