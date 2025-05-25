@@ -29,8 +29,13 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build project
-        run: yarn build
+      - name: Clean and Build project
+        run: |
+          rm -rf ./dist
+          yarn build
+
+      - name: List dist contents for debugging
+        run: ls -lR ./dist | cat
 
       # - name: Lint
       #   run: yarn run lint
