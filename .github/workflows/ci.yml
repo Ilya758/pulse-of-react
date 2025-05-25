@@ -37,6 +37,9 @@ jobs:
       - name: List dist contents for debugging
         run: ls -lR ./dist | cat
 
+      - name: Ensure correct file permissions for artifact
+        run: chmod -R a+rX ./dist
+
       # - name: Lint
       #   run: yarn run lint
 
