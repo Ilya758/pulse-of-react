@@ -7,4 +7,9 @@ export const ROUTES = [
     name: 'Hooks',
     href: '/hooks',
   },
+  {
+    name: 'Render Props',
+    href: '/render-props',
+  },
 ];
+

@@ -25,6 +25,10 @@ const AboutPage = lazy(() =>
   import('@/pages/about').then(({ AboutPage }) => ({ default: AboutPage })),
 );
 
+const RenderPropsPage = lazy(() =>
+  import('@/pages/render-props').then(({ RenderPropsPage }) => ({ default: RenderPropsPage })),
+);
+
 export const App = () => {
   const { appReady } = useAppInitializer();
   const basename = import.meta.env.PROD ? '/react-design-patterns/' : '/';
@@ -41,6 +45,7 @@ export const App = () => {
                   <Route path="/" element={<HomePage />} />
                   <Route path="/state-management" element={<UseReducerStateManagement />} />
                   <Route path="hooks" element={<HooksPage />}></Route>
+                  <Route path="/render-props" element={<RenderPropsPage />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="*" element={'not found'} />
                 </Routes>

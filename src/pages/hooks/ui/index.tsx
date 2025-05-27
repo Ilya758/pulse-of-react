@@ -20,6 +20,16 @@ export const HooksPage = () => {
         React Hooks
       </Title>
 
+      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+        <Text>
+          Hooks are functions that let you use state and other React features in functional
+          components. They allow you to write cleaner, more reusable, and easier-to-understand React
+          code by encapsulating stateful logic and side effects. Key built-in hooks include{' '}
+          <code>useState</code> for managing local state and <code>useEffect</code> for handling
+          side effects. Developers can also create custom Hooks to share logic between components.
+        </Text>
+      </SectionBlock>
+
       <SectionBlock title="Understanding React Hooks" initialSpaceAfterDivider="xs">
         <Text>
           Hooks are functions that let you "hook into" React state and lifecycle features from
@@ -77,6 +87,33 @@ export const HooksPage = () => {
         </Text>
       </SectionBlock>
 
+      <SectionBlock title="When to Use Hooks" initialSpaceAfterDivider="xs">
+        <Text>
+          Hooks should be your go-to for managing state and side effects in all new functional
+          components. Consider using Hooks when:
+        </Text>
+        <List mt="sm" spacing="xs" withPadding>
+          <List.Item>
+            You need to add local state to a functional component (use <code>useState</code>).
+          </List.Item>
+          <List.Item>
+            You need to perform side effects, such as data fetching, subscriptions, or manually
+            changing the DOM (use <code>useEffect</code>).
+          </List.Item>
+          <List.Item>
+            You want to share stateful logic between multiple components (create a custom Hook).
+          </List.Item>
+          <List.Item>
+            You need to access context (use <code>useContext</code>).
+          </List.Item>
+          <List.Item>
+            You need to optimize performance by memoizing values or functions (use{' '}
+            <code>useMemo</code> and <code>useCallback</code>).
+          </List.Item>
+          <List.Item>You are migrating class components to functional components.</List.Item>
+        </List>
+      </SectionBlock>
+
       <SectionBlock title="Rules of Hooks" initialSpaceAfterDivider="xs">
         <Text>
           Hooks have a few simple rules you need to follow to ensure they work correctly and to
@@ -112,6 +149,63 @@ export const HooksPage = () => {
         </List>
       </SectionBlock>
 
+      <SectionBlock title="Pros of Using Hooks" initialSpaceAfterDivider="xs">
+        <List spacing="xs" withPadding>
+          <List.Item>
+            <strong>Improved Readability & Simplicity:</strong> Hooks make components easier to read
+            and understand by co-locating related logic, rather than scattering it across lifecycle
+            methods in class components.
+          </List.Item>
+          <List.Item>
+            <strong>Reusable Stateful Logic:</strong> Custom Hooks allow you to extract and reuse
+            stateful logic across different components without changing your component hierarchy
+            (avoiding issues like "wrapper hell").
+          </List.Item>
+          <List.Item>
+            <strong>No `this` Keyword:</strong> Functional components with Hooks don't use the{' '}
+            <code>this</code> keyword, which can be a source of confusion in JavaScript.
+          </List.Item>
+          <List.Item>
+            <strong>Easier Testing:</strong> Logic within custom Hooks can be tested independently,
+            making unit testing more straightforward.
+          </List.Item>
+          <List.Item>
+            <strong>Better Composition:</strong> Hooks provide a more flexible way to compose
+            behavior into components compared to patterns like higher-order components or render
+            props in many scenarios.
+          </List.Item>
+          <List.Item>
+            <strong>Smooth Transition from Classes:</strong> Hooks offer a way to use React features
+            without classes, aligning with the functional programming paradigm.
+          </List.Item>
+        </List>
+      </SectionBlock>
+
+      <SectionBlock title="Cons of Using Hooks" initialSpaceAfterDivider="xs">
+        <List spacing="xs" withPadding>
+          <List.Item>
+            <strong>Learning Curve:</strong> Understanding the rules of Hooks and concepts like
+            closures, dependency arrays for <code>useEffect</code>, <code>useCallback</code>, and{' '}
+            <code>useMemo</code> can take time.
+          </List.Item>
+          <List.Item>
+            <strong>Rules Must Be Followed:</strong> The "Rules of Hooks" (e.g., only call Hooks at
+            the top level) are essential for them to work correctly and require discipline or
+            linting tools.
+          </List.Item>
+          <List.Item>
+            <strong>Dependency Array Pitfalls:</strong> Incorrectly managing the dependency array of{' '}
+            <code>useEffect</code>, <code>useMemo</code>, and <code>useCallback</code> can lead to
+            stale closures, infinite loops, or missed updates.
+          </List.Item>
+          <List.Item>
+            <strong>Can Be Verbose for Simple Cases:</strong> While powerful, for very simple
+            components, Hooks might introduce a bit more boilerplate compared to a plain functional
+            component without state or side effects.
+          </List.Item>
+        </List>
+      </SectionBlock>
+
       <SectionBlock title="Example: Custom useFetch hook" initialSpaceAfterDivider="xs">
         <Text mb="md">
           This example demonstrates fetching data using a custom <code>useFetch</code> hook. The
@@ -128,7 +222,7 @@ export const HooksPage = () => {
               fileName: 'useFetch.ts',
               language: 'ts',
               code: USE_FETCH_HOOK_CODE,
-              icon: <IconFileTypeTs size={14} color="#2596be" />,
+              icon: <IconFileTypeTs size={14} />,
             },
           ]}
         />

@@ -1,0 +1,2 @@
+export { RenderPropsPage } from './ui';
+
