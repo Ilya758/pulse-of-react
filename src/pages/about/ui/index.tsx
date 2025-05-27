@@ -22,7 +22,7 @@ export const AboutPage = () => {
         </Title>
 
         <Text fz="lg" mb="md">
-          Hello! I'm Illia, the creator of "React Design Patterns".
+          Hello! I'm Illia, the creator of "Pulse-Of-React".
         </Text>
         <Text mb="md">
           I'm deeply passionate about web development — from crafting algorithmic solutions and

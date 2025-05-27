@@ -5,8 +5,8 @@ export const SuspenseProvider = ({ children }: { children: React.ReactNode }) =>
   return (
     <Suspense
       fallback={
-        <Center style={{ height: 'calc(100vh - 60px - 2 * var(--mantine-spacing-md))' }}>
-          <Loader color="indigo" type="dots" />
+        <Center style={{ height: '100vh', width: '100%' }}>
+          <Loader color="indigo" type="dots" size="xl" />
         </Center>
       }
     >

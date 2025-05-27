@@ -1,10 +1,14 @@
-import { TableOfContents, TableOfContentsProps } from '@mantine/core';
+import { TableOfContents, TableOfContentsProps, Loader, Center } from '@mantine/core';
+import { useTocContent } from '../model/hooks';
+import { Choose, If, Otherwise } from '@/shared';
 
 type Props = {
   pathname: string;
 };
 
 export const AsideTOC = ({ pathname }: Props) => {
+  const { isContentLoaded } = useTocContent();
+
   const getControlProps: TableOfContentsProps['getControlProps'] = ({ data }) => {
     return {
       onClick: () => {
@@ -26,17 +30,26 @@ export const AsideTOC = ({ pathname }: Props) => {
   };
 
   return (
-    <TableOfContents
-      key={pathname}
-      variant="filled"
-      color="indigo"
-      size="sm"
-      radius="sm"
-      scrollSpyOptions={{
-        selector: 'h2',
-      }}
-      getControlProps={getControlProps}
-    />
+    <Choose>
+      <If condition={!isContentLoaded}>
+        <Center style={{ height: '100%' }}>
+          <Loader color="indigo" type="bars" size="lg" />
+        </Center>
+      </If>
+      <Otherwise>
+        <TableOfContents
+          key={pathname}
+          variant="filled"
+          color="indigo"
+          size="sm"
+          radius="sm"
+          scrollSpyOptions={{
+            selector: 'h2',
+          }}
+          getControlProps={getControlProps}
+        />
+      </Otherwise>
+    </Choose>
   );
 };
 

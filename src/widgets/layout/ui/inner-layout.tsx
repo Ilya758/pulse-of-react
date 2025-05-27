@@ -3,9 +3,9 @@ import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { useLocation } from 'react-router';
 import { Header } from './header';
 import { JSX } from 'react';
-import { useTocContent } from '../model';
 import { AppMenu } from './app-menu';
 import { AsideTOC } from './aside-toc';
+import { allowTOC } from '../lib';
 
 type Props = {
   children: JSX.Element;
@@ -14,7 +14,7 @@ type Props = {
 export const InnerLayout = ({ children }: Props) => {
   const [opened, { toggle }] = useDisclosure();
   const { pathname } = useLocation();
-  const showAside = useTocContent().isContentLoaded;
+  const showAside = allowTOC(pathname);
   const isTablet = useMediaQuery('(min-width: 768px)', false);
   const isMobile = useMediaQuery('(max-width: 420px)', false);
   const isSDesktop = useMediaQuery('(min-width: 992px)');
