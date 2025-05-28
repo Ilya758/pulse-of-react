@@ -16,6 +16,8 @@ export const AppMenu = ({ isTablet, pathname, toggle }: Props) => {
   const links = useMemo(() => {
     return ROUTES.map(({ href, name }) => (
       <Menu.Item
+        component="a"
+        href={href}
         className={styles.link}
         data-active={pathname === href || undefined}
         onClick={(event) => {
