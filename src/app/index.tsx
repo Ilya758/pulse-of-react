@@ -31,13 +31,12 @@ const RenderPropsPage = lazy(() =>
 
 export const App = () => {
   const { appReady } = useAppInitializer();
-  const basename = import.meta.env.PROD ? '/react-design-patterns/' : '/';
 
   return (
     <ThemeProvider>
       <Choose>
         <If condition={appReady}>
-          <BrowserRouter basename={basename}>
+          <BrowserRouter>
             <ScrollToTop />
             <Layout>
               <SuspenseProvider>

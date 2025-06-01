@@ -5,8 +5,8 @@ import path from 'path';
 import svgr from 'vite-plugin-svgr';
 import { visualizer } from 'rollup-plugin-visualizer';
 
-export default defineConfig(({ command }) => ({
-  base: command === 'build' ? '/react-design-patterns/' : '/',
+export default defineConfig(() => ({
+  base: '/',
   build: {
     outDir: 'dist',
   },
