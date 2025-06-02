@@ -29,6 +29,12 @@ const RenderPropsPage = lazy(() =>
   import('@/pages/render-props').then(({ RenderPropsPage }) => ({ default: RenderPropsPage })),
 );
 
+const ContextProvidersPage = lazy(() =>
+  import('@/pages/context-providers').then(({ ContextProvidersPage }) => ({
+    default: ContextProvidersPage,
+  })),
+);
+
 export const App = () => {
   const { appReady } = useAppInitializer();
 
@@ -45,6 +51,7 @@ export const App = () => {
                   <Route path="/state-management" element={<UseReducerStateManagement />} />
                   <Route path="hooks" element={<HooksPage />}></Route>
                   <Route path="/render-props" element={<RenderPropsPage />} />
+                  <Route path="/context-providers" element={<ContextProvidersPage />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="*" element={'not found'} />
                 </Routes>

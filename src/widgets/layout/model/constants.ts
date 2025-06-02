@@ -11,5 +11,9 @@ export const ROUTES = [
     name: 'Render Props',
     href: '/render-props',
   },
+  {
+    name: 'Context Providers',
+    href: '/context-providers',
+  },
 ];
 
