@@ -2,7 +2,7 @@ import { Code, List, Space, Text, Title } from '@mantine/core';
 import { Example } from './example';
 import { useEffect } from 'react';
 import { CodeHighlight, CodeHighlightTabs } from '@mantine/code-highlight';
-import { IconInfoCircle, IconFileTypeTsx } from '@tabler/icons-react';
+import { IconFileTypeTsx, IconInfoCircle } from '@tabler/icons-react';
 import { SectionBlock } from '@/shared';
 import { EXAMPLE_CODE, DATA_PROVIDER_CODE, RENDER_PROPS_CODE } from '../model/constants';
 import { useTocContent } from '@/widgets/layout';
@@ -30,7 +30,7 @@ export const RenderPropsPage: React.FC = () => {
       </SectionBlock>
 
       <SectionBlock title="When to Use Render Props" initialSpaceAfterDivider="md">
-        <List spacing="xs">
+        <List spacing="xs" type="ordered">
           <List.Item>
             <Title order={5} mb="xs">
               Sharing Cross-Cutting Concerns:
@@ -43,7 +43,7 @@ export const RenderPropsPage: React.FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} mt="sm" mb="xs">
+            <Title order={5} mb="xs">
               Exposing Data to Parent Components:
             </Title>
             <Text>
@@ -53,7 +53,7 @@ export const RenderPropsPage: React.FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} mt="sm" mb="xs">
+            <Title order={5} mb="xs">
               Avoiding Wrapper Hell:
             </Title>
             <Text>
@@ -62,7 +62,7 @@ export const RenderPropsPage: React.FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} mt="sm" mb="xs">
+            <Title order={5} mb="xs">
               Better Prop Type Inference:
             </Title>
             <Text>

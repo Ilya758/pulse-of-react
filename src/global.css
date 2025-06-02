@@ -1,0 +1,11 @@
+li {
+  display: flex;
+  align-items: baseline;
+
+  &::before {
+    content: ' ';
+    display: list-item;
+    margin-right: 0.5em;
+  }
+}
+

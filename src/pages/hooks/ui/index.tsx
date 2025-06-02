@@ -92,7 +92,7 @@ export const HooksPage = () => {
           Hooks should be your go-to for managing state and side effects in all new functional
           components. Consider using Hooks when:
         </Text>
-        <List mt="sm" spacing="xs" withPadding>
+        <List mt="sm" spacing="xs" withPadding={false}>
           <List.Item>
             You need to add local state to a functional component (use <code>useState</code>).
           </List.Item>
@@ -133,7 +133,7 @@ export const HooksPage = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} mt="sm" mb={4}>
+            <Title order={5} mb={4}>
               Only Call Hooks from React Functions
             </Title>
             <Text>Don't call Hooks from regular JavaScript functions. Instead, you can:</Text>
@@ -150,7 +150,7 @@ export const HooksPage = () => {
       </SectionBlock>
 
       <SectionBlock title="Pros of Using Hooks" initialSpaceAfterDivider="xs">
-        <List spacing="xs" withPadding>
+        <List spacing="xs" withPadding style={{ listStylePosition: 'inside' }}>
           <List.Item>
             <strong>Improved Readability & Simplicity:</strong> Hooks make components easier to read
             and understand by co-locating related logic, rather than scattering it across lifecycle

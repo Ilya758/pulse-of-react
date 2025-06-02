@@ -22,7 +22,7 @@ export const AboutPage = () => {
         </Title>
 
         <Text fz="lg" mb="md">
-          Hello! I'm Illia, the creator of "Pulse-Of-React".
+          Hello! I'm Illia, the Pulse-Of-React" creator.
         </Text>
         <Text mb="md">
           I'm deeply passionate about web development — from crafting algorithmic solutions and

@@ -21,13 +21,16 @@ export const AppMenu = ({ isTablet, pathname, toggle }: Props) => {
         className={styles.link}
         data-active={pathname === href || undefined}
         onClick={(event) => {
+          event.preventDefault();
+
           if (pathname !== href) {
-            event.preventDefault();
             navigate(href);
 
             if (!isTablet) {
               toggle();
             }
+          } else if (!isTablet) {
+            toggle();
           }
         }}
         key={href}
