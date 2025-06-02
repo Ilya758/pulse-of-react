@@ -8,9 +8,9 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "build-preview": "vite build && vite preview",
-    "version:major": "yarn version --major",
-    "version:minor": "yarn version --minor",
-    "version:patch": "yarn version --patch"
+    "version:major": "npx standard-version --release-as major",
+    "version:minor": "npx standard-version --release-as minor",
+    "version:patch": "npx standard-version --release-as patch"
   },
   "dependencies": {
     "@mantine/code-highlight": "^8.0.0",
