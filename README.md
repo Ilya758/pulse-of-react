@@ -1,19 +1,6 @@
-# What is that?
+# Pulse of React 📊
 
-This repository includes **React Design Patterns**, structured in **folders**, where each module refers to the LinkedIn article.
+Stay updated with the latest and trending React-related repositories on GitHub. Pulse of React is a web application designed to help developers discover new and popular projects within the React ecosystem. It automatically fetches, processes, and displays data about React-related repositories from GitHub, providing a curated feed of relevant information.
 
-## How to start-up?
-1. **Clone** the repository
-2. **Each article's code** is written in **notation** `{part}-{description}` inside `src` folder.
-3. **Also**, there's an `App.tsx` module
-4. **Import** the module from the article's folder as:
+**Live Demo:** [https://pulse-of-react.netlify.app](https://pulse-of-react.netlify.app)
 
-```tsx
-import { Table } from '@/1-state-management';
-
-export const App = () => {
-  return <Table />;
-};
-```
-
-5. **Run** `yarn dev` and observe the nature of patterns!

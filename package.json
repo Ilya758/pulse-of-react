@@ -1,8 +1,9 @@
 {
-  "name": "react-design-patterns",
+  "name": "pulse-of-react",
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "homepage": "https://pulse-of-react.netlify.app",
   "scripts": {
     "dev": "vite --open",
     "build": "tsc -b && vite build",
@@ -44,3 +45,4 @@
     "vite": "^6.3.5"
   }
 }
+
