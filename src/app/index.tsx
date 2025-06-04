@@ -3,11 +3,11 @@ import { Layout } from '@/widgets/layout';
 import { lazy } from 'react';
 import { LoadingOverlay } from '@mantine/core';
 import { ThemeProvider } from './providers/theme-provider';
-
 import { Choose, If, Otherwise } from '@/shared';
 import { ScrollToTop } from './ui';
 import { useAppInitializer } from './model';
 import { SuspenseProvider } from './providers';
+import './index.css';
 
 const HomePage = lazy(() => import('@/pages/home').then(({ HomePage }) => ({ default: HomePage })));
 
