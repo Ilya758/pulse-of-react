@@ -1,7 +1,7 @@
 {
   "name": "pulse-of-react",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "homepage": "https://pulse-of-react.netlify.app",
   "scripts": {
@@ -45,4 +45,3 @@
     "vite": "^6.3.5"
   }
 }
-
