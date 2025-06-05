@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://github.com/Ilya758/react-design-patterns/compare/v1.0.1...v1.0.2) (2025-06-05)
+
+
+### Bug Fixes
+
+* removed nav links from landing ([b7e63eb](https://github.com/Ilya758/react-design-patterns/commit/b7e63eb443425621da7506384002b0981b14bab4))
+
 ### [1.0.1](https://github.com/Ilya758/react-design-patterns/compare/v1.0.0...v1.0.1) (2025-06-04)
 
 ## 1.0.0 (2025-06-04)
