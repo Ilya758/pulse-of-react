@@ -1,25 +1,5 @@
-import {
-  Container,
-  Title,
-  Text,
-  Paper,
-  SimpleGrid,
-  ThemeIcon,
-  Stack,
-  Button,
-  Group,
-} from '@mantine/core';
-import {
-  IconRocket,
-  IconBook,
-  IconPuzzle,
-  IconFolderOpen,
-  IconTools,
-  IconGauge,
-  IconMapSearch,
-  IconShare3,
-} from '@tabler/icons-react';
-import { Link } from 'react-router-dom';
+import { Container, Title, Text, Paper, SimpleGrid, ThemeIcon, Stack, Group } from '@mantine/core';
+import { IconBook, IconFolderOpen, IconTools, IconGauge, IconMapSearch } from '@tabler/icons-react';
 
 export const HomePage = () => {
   return (
@@ -105,44 +85,6 @@ export const HomePage = () => {
             </Text>
           </Stack>
         </SimpleGrid>
-
-        <Title order={2} ta="center" mb="lg" mt="xl">
-          Explore Patterns
-        </Title>
-        <Text ta="center" mb="xl">
-          Dive deep into a curated collection of React design patterns. These practical examples
-          reflect current best practices and will help you build cutting-edge applications.
-        </Text>
-        <Group justify="center">
-          <Button
-            component={Link}
-            to="/state-management"
-            size="lg"
-            leftSection={<IconRocket size="1.2rem" />}
-            color="indigo"
-          >
-            State Management
-          </Button>
-          <Button
-            component={Link}
-            to="/hooks"
-            variant="outline"
-            size="lg"
-            leftSection={<IconPuzzle size="1.2rem" />}
-            color="indigo"
-          >
-            Hooks Examples
-          </Button>
-          <Button
-            component={Link}
-            to="/render-props"
-            size="lg"
-            leftSection={<IconShare3 size="1.2rem" />}
-            color="indigo"
-          >
-            Render Props
-          </Button>
-        </Group>
       </Paper>
     </Container>
   );
