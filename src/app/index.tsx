@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from '@/widgets/layout';
 import { lazy } from 'react';
 import { LoadingOverlay } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
+import '@mantine/notifications/styles.css';
 import { ThemeProvider } from './providers/theme-provider';
 import { Choose, If, Otherwise } from '@/shared';
 import { ScrollToTop } from './ui';
@@ -35,11 +37,18 @@ const ContextProvidersPage = lazy(() =>
   })),
 );
 
+const ContainerAndPresentation = lazy(() =>
+  import('@/pages/container-and-presentation').then(({ ContainerAndPresentation: Page }) => ({
+    default: Page,
+  })),
+);
+
 export const App = () => {
   const { appReady } = useAppInitializer();
 
   return (
     <ThemeProvider>
+      <Notifications />
       <Choose>
         <If condition={appReady}>
           <BrowserRouter>
@@ -52,6 +61,10 @@ export const App = () => {
                   <Route path="hooks" element={<HooksPage />}></Route>
                   <Route path="/render-props" element={<RenderPropsPage />} />
                   <Route path="/context-providers" element={<ContextProvidersPage />} />
+                  <Route
+                    path="/container-and-presentation"
+                    element={<ContainerAndPresentation />}
+                  />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="*" element={'not found'} />
                 </Routes>
