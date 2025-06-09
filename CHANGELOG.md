@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/Ilya758/react-design-patterns/compare/v1.0.2...v1.1.0) (2025-06-09)
+
+
+### Features
+
+* new container and presentation page ([43b28b9](https://github.com/Ilya758/react-design-patterns/commit/43b28b9fec84f1c9da0521729e135b30f0e94e06))
+
+
+### Bug Fixes
+
+* missprint in author page ([d05bfcf](https://github.com/Ilya758/react-design-patterns/commit/d05bfcfd5657cff573b187066fbb6e0f74541f8d))
+
 ### [1.0.2](https://github.com/Ilya758/react-design-patterns/compare/v1.0.1...v1.0.2) (2025-06-05)
 
 
