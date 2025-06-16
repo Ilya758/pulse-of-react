@@ -7,6 +7,8 @@ import {
   WITH_AUTH_HOC_CODE,
   WITH_LOADING_HOC_CODE,
   WITH_ANALYTICS_HOC_CODE,
+  HOC_PATTERN_SIGNATURE,
+  HOC_PATTERN_USAGE,
 } from '../model';
 import { CodeHighlightTabs } from '@mantine/code-highlight';
 import { Example } from './example';
@@ -63,6 +65,27 @@ export const HocsPage = () => {
             components.
           </List.Item>
         </List>
+      </SectionBlock>
+
+      <SectionBlock title="Pattern Signature" initialSpaceAfterDivider="xs">
+        <Text mb="md">
+          At its core, a HOC is a function that takes a component and returns a new component with
+          enhanced functionality. Here's a simple example:
+        </Text>
+        <CodeHighlightTabs
+          code={[
+            {
+              fileName: 'withFeature.tsx',
+              code: HOC_PATTERN_SIGNATURE,
+              language: 'tsx',
+            },
+            {
+              fileName: 'usage.tsx',
+              code: HOC_PATTERN_USAGE,
+              language: 'tsx',
+            },
+          ]}
+        />
       </SectionBlock>
 
       <SectionBlock title="Key Caveats & Best Practices" initialSpaceAfterDivider="xs">

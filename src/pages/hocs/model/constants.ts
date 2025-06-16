@@ -251,3 +251,20 @@ export const DASHBOARD_COMPONENT_CODE = `const Dashboard = ({
 export const USAGE_EXAMPLE_CODE = `// Compose HOCs
 export const Example = withAuth(withLoading(withAnalytics(Dashboard)));`;
 
+export const HOC_PATTERN_SIGNATURE = `// Basic HOC Pattern
+const withFeature = <P extends object>(
+  WrappedComponent: ComponentType<P & WithFeatureProps>
+) => {
+  return (props: P) => {
+    // Add feature logic here
+    const featureProps = {
+      // Feature-specific props
+    };
+
+    return <WrappedComponent {...props} {...featureProps} />;
+  };
+};`;
+
+export const HOC_PATTERN_USAGE = `// Usage
+const EnhancedComponent = withFeature(BaseComponent);`;
+
