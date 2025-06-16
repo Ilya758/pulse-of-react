@@ -43,6 +43,8 @@ const ContainerAndPresentation = lazy(() =>
   })),
 );
 
+const HocsPage = lazy(() => import('@/pages/hocs').then(({ HocsPage }) => ({ default: HocsPage })));
+
 export const App = () => {
   const { appReady } = useAppInitializer();
 
@@ -65,6 +67,7 @@ export const App = () => {
                     path="/container-and-presentation"
                     element={<ContainerAndPresentation />}
                   />
+                  <Route path="/hocs" element={<HocsPage />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="*" element={'not found'} />
                 </Routes>

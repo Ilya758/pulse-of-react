@@ -19,5 +19,9 @@ export const ROUTES = [
     name: 'Container and Presentation',
     href: '/container-and-presentation',
   },
+  {
+    name: 'Higher-Order Components',
+    href: '/hocs',
+  },
 ];
 

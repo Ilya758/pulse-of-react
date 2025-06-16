@@ -1,0 +1,1 @@
+export { HocsPage } from './ui';
