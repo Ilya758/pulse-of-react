@@ -14,7 +14,7 @@ export const AccordionPanel: FC<Props> = ({ id = '', children }) => {
 
   return (
     <Collapse in={!!ctx.openItems[id]} id={`panel-${id}`} transitionDuration={200}>
-      <Box p="md" bg="gray.0" style={{ borderRadius: 8 }}>
+      <Box p="md" style={{ borderRadius: 8 }}>
         {children}
       </Box>
     </Collapse>
