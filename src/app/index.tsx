@@ -45,6 +45,12 @@ const ContainerAndPresentation = lazy(() =>
 
 const HocsPage = lazy(() => import('@/pages/hocs').then(({ HocsPage }) => ({ default: HocsPage })));
 
+const CompoundComponentsPage = lazy(() =>
+  import('@/pages/compound-components').then(({ CompoundComponentsPage }) => ({
+    default: CompoundComponentsPage,
+  })),
+);
+
 export const App = () => {
   const { appReady } = useAppInitializer();
 
@@ -69,6 +75,7 @@ export const App = () => {
                   />
                   <Route path="/hocs" element={<HocsPage />} />
                   <Route path="/about" element={<AboutPage />} />
+                  <Route path="/compound-components" element={<CompoundComponentsPage />} />
                   <Route path="*" element={'not found'} />
                 </Routes>
               </SuspenseProvider>

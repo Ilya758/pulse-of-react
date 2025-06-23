@@ -23,5 +23,9 @@ export const ROUTES = [
     name: 'Higher-Order Components',
     href: '/hocs',
   },
+  {
+    name: 'Compound Components',
+    href: '/compound-components',
+  },
 ];
 

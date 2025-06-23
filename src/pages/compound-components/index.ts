@@ -1,0 +1,1 @@
+export { CompoundComponentsPage } from './ui';
