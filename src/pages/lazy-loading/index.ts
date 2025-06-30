@@ -1,0 +1,2 @@
+export { LazyLoadingPage } from './ui';
+

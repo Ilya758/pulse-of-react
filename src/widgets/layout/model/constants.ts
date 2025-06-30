@@ -27,5 +27,9 @@ export const ROUTES = [
     name: 'Compound Components',
     href: '/compound-components',
   },
+  {
+    name: 'Lazy Loading',
+    href: '/lazy-loading',
+  },
 ];
 

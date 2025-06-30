@@ -51,6 +51,10 @@ const CompoundComponentsPage = lazy(() =>
   })),
 );
 
+const LazyLoadingPage = lazy(() =>
+  import('@/pages/lazy-loading').then(({ LazyLoadingPage }) => ({ default: LazyLoadingPage })),
+);
+
 export const App = () => {
   const { appReady } = useAppInitializer();
 
@@ -76,6 +80,7 @@ export const App = () => {
                   <Route path="/hocs" element={<HocsPage />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/compound-components" element={<CompoundComponentsPage />} />
+                  <Route path="/lazy-loading" element={<LazyLoadingPage />} />
                   <Route path="*" element={'not found'} />
                 </Routes>
               </SuspenseProvider>
@@ -87,7 +92,6 @@ export const App = () => {
             visible
             overlayProps={{ radius: 'sm', blur: 2 }}
             loaderProps={{
-              children: 'Almost there!',
               color: 'indigo',
               type: 'bars',
             }}
