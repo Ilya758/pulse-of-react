@@ -31,5 +31,9 @@ export const ROUTES = [
     name: 'Lazy Loading',
     href: '/lazy-loading',
   },
+  {
+    name: 'State Machine',
+    href: '/state-machine',
+  },
 ];
 
