@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/Ilya758/react-design-patterns/compare/v1.4.0...v1.5.0) (2025-07-08)
+
+
+### Features
+
+* new state machine page ([eb5ed2f](https://github.com/Ilya758/react-design-patterns/commit/eb5ed2f499f004eb7af6887614c9aa6902c43aac))
+
 ## [1.4.0](https://github.com/Ilya758/react-design-patterns/compare/v1.3.1...v1.4.0) (2025-06-30)
 
 
