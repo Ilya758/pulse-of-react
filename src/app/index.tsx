@@ -59,6 +59,10 @@ const StateMachinePage = lazy(() =>
   import('@/pages/state-machine').then(({ StateMachine }) => ({ default: StateMachine })),
 );
 
+const FactoryPage = lazy(() =>
+  import('@/pages/factory').then(({ FactoryPage }) => ({ default: FactoryPage })),
+);
+
 export const App = () => {
   const { appReady } = useAppInitializer();
 
@@ -86,6 +90,7 @@ export const App = () => {
                   <Route path="/compound-components" element={<CompoundComponentsPage />} />
                   <Route path="/lazy-loading" element={<LazyLoadingPage />} />
                   <Route path="/state-machine" element={<StateMachinePage />} />
+                  <Route path="/factory" element={<FactoryPage />} />
                   <Route path="*" element={'not found'} />
                 </Routes>
               </SuspenseProvider>

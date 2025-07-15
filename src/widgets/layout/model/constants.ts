@@ -1,6 +1,6 @@
 export const ROUTES = [
   {
-    name: 'State management',
+    name: 'State Management',
     href: '/state-management',
   },
   {
@@ -34,6 +34,10 @@ export const ROUTES = [
   {
     name: 'State Machine',
     href: '/state-machine',
+  },
+  {
+    name: 'Factory',
+    href: '/factory',
   },
 ];
 
