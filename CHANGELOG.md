@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/Ilya758/react-design-patterns/compare/v1.6.0...v1.7.0) (2025-07-23)
+
+
+### Features
+
+* applied dynamic theme color provider ([5379603](https://github.com/Ilya758/react-design-patterns/commit/5379603eea237f1ca9b7aa024a7606aeac9f99aa))
+* new facade page ([f3b7a8b](https://github.com/Ilya758/react-design-patterns/commit/f3b7a8b4babfb73077d8097a3cb5d4164a875979))
+
+
+### Bug Fixes
+
+* remove unused suppressings ([88d7329](https://github.com/Ilya758/react-design-patterns/commit/88d7329656bb07be419d7a09e5938001ffbcdbad))
+
 ## [1.6.0](https://github.com/Ilya758/react-design-patterns/compare/v1.5.0...v1.6.0) (2025-07-15)
 
 
