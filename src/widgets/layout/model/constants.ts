@@ -39,5 +39,9 @@ export const ROUTES = [
     name: 'Factory',
     href: '/factory',
   },
+  {
+    name: 'Facade',
+    href: '/facade',
+  },
 ];
 

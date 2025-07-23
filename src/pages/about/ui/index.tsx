@@ -3,9 +3,11 @@ import { IconBrandGithub, IconBrandLinkedin } from '@tabler/icons-react';
 import { useImageLoader } from '@/shared';
 
 import authorPic from '/assets/author.jpg';
+import { useThemeColorContext } from '@/shared';
 
 export const AboutPage = () => {
   const { isLoading: imageLoading, hasError: imageError } = useImageLoader(authorPic);
+  const { primaryColor } = useThemeColorContext();
 
   return (
     <Container size="md" py="lg">
@@ -40,21 +42,26 @@ export const AboutPage = () => {
           Connect with Me
         </Title>
         <Group gap="lg">
-          <Anchor c="indigo" href="https://github.com/Ilya758" target="_blank" underline="hover">
+          <Anchor
+            c={primaryColor}
+            href="https://github.com/Ilya758"
+            target="_blank"
+            underline="hover"
+          >
             <Group gap="xs">
               <IconBrandGithub stroke={1.5} />
               <Text>GitHub</Text>
             </Group>
           </Anchor>
           <Anchor
+            c={primaryColor}
             href="https://www.linkedin.com/in/illia-skaryna/"
             target="_blank"
             underline="hover"
-            c="indigo"
           >
             <Group gap="xs">
               <IconBrandLinkedin stroke={1.5} />
-              <Text c="indigo">LinkedIn</Text>
+              <Text c={primaryColor}>LinkedIn</Text>
             </Group>
           </Anchor>
         </Group>

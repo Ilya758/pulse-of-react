@@ -4,11 +4,10 @@ import { lazy } from 'react';
 import { LoadingOverlay } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import '@mantine/notifications/styles.css';
-import { ThemeProvider } from './providers/theme-provider';
-import { Choose, If, Otherwise } from '@/shared';
+import { Choose, If, Otherwise, ThemeColorProvider } from '@/shared';
 import { ScrollToTop } from './ui';
+import { SuspenseProvider, ThemeProvider } from './providers';
 import { useAppInitializer } from './model';
-import { SuspenseProvider } from './providers';
 import './index.css';
 
 const HomePage = lazy(() => import('@/pages/home').then(({ HomePage }) => ({ default: HomePage })));
@@ -63,52 +62,60 @@ const FactoryPage = lazy(() =>
   import('@/pages/factory').then(({ FactoryPage }) => ({ default: FactoryPage })),
 );
 
+const FacadePage = lazy(() =>
+  import('@/pages/facade').then(({ FacadePage }) => ({ default: FacadePage })),
+);
+
 export const App = () => {
   const { appReady } = useAppInitializer();
 
   return (
-    <ThemeProvider>
-      <Notifications />
-      <Choose>
-        <If condition={appReady}>
-          <BrowserRouter>
-            <ScrollToTop />
-            <Layout>
-              <SuspenseProvider>
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/state-management" element={<UseReducerStateManagement />} />
-                  <Route path="hooks" element={<HooksPage />}></Route>
-                  <Route path="/render-props" element={<RenderPropsPage />} />
-                  <Route path="/context-providers" element={<ContextProvidersPage />} />
-                  <Route
-                    path="/container-and-presentation"
-                    element={<ContainerAndPresentation />}
-                  />
-                  <Route path="/hocs" element={<HocsPage />} />
-                  <Route path="/about" element={<AboutPage />} />
-                  <Route path="/compound-components" element={<CompoundComponentsPage />} />
-                  <Route path="/lazy-loading" element={<LazyLoadingPage />} />
-                  <Route path="/state-machine" element={<StateMachinePage />} />
-                  <Route path="/factory" element={<FactoryPage />} />
-                  <Route path="*" element={'not found'} />
-                </Routes>
-              </SuspenseProvider>
-            </Layout>
-          </BrowserRouter>
-        </If>
-        <Otherwise>
-          <LoadingOverlay
-            visible
-            overlayProps={{ radius: 'sm', blur: 2 }}
-            loaderProps={{
-              color: 'indigo',
-              type: 'bars',
-            }}
-          />
-        </Otherwise>
-      </Choose>
-    </ThemeProvider>
+    <ThemeColorProvider>
+      <ThemeProvider>
+        <Notifications />
+        <Choose>
+          <If condition={appReady}>
+            <BrowserRouter>
+              <ScrollToTop />
+              <Layout>
+                <SuspenseProvider>
+                  <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/state-management" element={<UseReducerStateManagement />} />
+                    <Route path="hooks" element={<HooksPage />}></Route>
+                    <Route path="/render-props" element={<RenderPropsPage />} />
+                    <Route path="/context-providers" element={<ContextProvidersPage />} />
+                    <Route
+                      path="/container-and-presentation"
+                      element={<ContainerAndPresentation />}
+                    />
+                    <Route path="/hocs" element={<HocsPage />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/compound-components" element={<CompoundComponentsPage />} />
+                    <Route path="/lazy-loading" element={<LazyLoadingPage />} />
+                    <Route path="/state-machine" element={<StateMachinePage />} />
+                    <Route path="/factory" element={<FactoryPage />} />
+                    <Route path="/facade" element={<FacadePage />} />
+                    <Route path="*" element={'not found'} />
+                  </Routes>
+                </SuspenseProvider>
+              </Layout>
+            </BrowserRouter>
+          </If>
+          <Otherwise>
+            <LoadingOverlay
+              visible
+              overlayProps={{ radius: 'sm', blur: 2 }}
+              loaderProps={{
+                // TODO: use primary color inside consumer
+                color: 'indigo',
+                type: 'bars',
+              }}
+            />
+          </Otherwise>
+        </Choose>
+      </ThemeProvider>
+    </ThemeColorProvider>
   );
 };
 

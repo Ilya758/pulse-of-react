@@ -1,0 +1,2 @@
+export { FacadePage } from './ui';
+

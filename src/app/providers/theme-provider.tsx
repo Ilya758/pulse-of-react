@@ -10,6 +10,7 @@ import scss from 'highlight.js/lib/languages/scss';
 import json from 'highlight.js/lib/languages/json';
 import bash from 'highlight.js/lib/languages/bash';
 import { useHighlightJsStyleManager } from '../model';
+import { useThemeColorContext } from '@/shared';
 
 hljs.registerLanguage('typescript', typescript);
 hljs.registerLanguage('tsx', typescript);
@@ -34,6 +35,8 @@ type Props = {
 };
 
 export const ThemeProvider: FC<Props> = ({ children }) => {
+  const { primaryColor } = useThemeColorContext();
+
   return (
     <>
       <ColorSchemeScript defaultColorScheme="auto" />
@@ -41,6 +44,7 @@ export const ThemeProvider: FC<Props> = ({ children }) => {
         theme={{
           fontFamily: 'Outfit, sans-serif',
           headings: { fontFamily: 'Outfit, sans-serif' },
+          primaryColor,
         }}
       >
         <CodeHighlightAdapterProvider adapter={highlightJsAdapter}>
