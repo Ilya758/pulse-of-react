@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.7.3](https://github.com/Ilya758/react-design-patterns/compare/v1.7.2...v1.7.3) (2025-07-23)
+
+
+### Bug Fixes
+
+* remove hardcoded hex color for default color value ([749693f](https://github.com/Ilya758/react-design-patterns/commit/749693f5d56407fc1411262de1f7f44f218b0584))
+
 ### [1.7.2](https://github.com/Ilya758/react-design-patterns/compare/v1.7.1...v1.7.2) (2025-07-23)
 
 
