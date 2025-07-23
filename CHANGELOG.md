@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/Ilya758/react-design-patterns/compare/v1.7.3...v1.8.0) (2025-07-23)
+
+
+### Features
+
+* added framer-motion package ([56947b4](https://github.com/Ilya758/react-design-patterns/commit/56947b4fd25b89f82bc2841f15d275d80f564f10))
+* implemented motion navigation effect ([a2fc34b](https://github.com/Ilya758/react-design-patterns/commit/a2fc34b04747962b5ce77825a07b8b6d9f765043))
+
 ### [1.7.3](https://github.com/Ilya758/react-design-patterns/compare/v1.7.2...v1.7.3) (2025-07-23)
 
 
