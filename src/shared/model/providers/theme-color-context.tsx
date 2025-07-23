@@ -26,7 +26,7 @@ function getInitialPrimaryColor(): DefaultMantineColor {
     window.matchMedia &&
     window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  return isDark ? '#fd7e14' : '#4c6ef5';
+  return isDark ? 'orange' : 'indigo';
 }
 
 export const ThemeColorProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -49,3 +49,4 @@ export const ThemeColorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 };
 
 export { ThemeColorContext };
+

@@ -45,6 +45,7 @@ export const ThemeProvider: FC<Props> = ({ children }) => {
           fontFamily: 'Outfit, sans-serif',
           headings: { fontFamily: 'Outfit, sans-serif' },
           primaryColor,
+          primaryShade: 6,
         }}
       >
         <CodeHighlightAdapterProvider adapter={highlightJsAdapter}>
