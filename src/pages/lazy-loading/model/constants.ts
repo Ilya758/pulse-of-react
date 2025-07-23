@@ -7,6 +7,7 @@ export const LAZY_LOADING_SIGNATURE_CODE = `const LazyComponent = React.lazy(() 
 
 export const LAZY_ERROR_BOUNDARY_CODE = `import { Suspense, lazy, useState } from 'react';
 import { Loader, Button, Paper, Alert } from '@mantine/core';
+import { useThemeColorContext } from '@/shared';
 
 function FallbackComponent() {
   return (
@@ -26,14 +27,16 @@ const LazyFeature = lazy(() =>
 );
 
 export const LazyWithErrorBoundaryExample = () => {
+  const { primaryColor } = useThemeColorContext();
   const [show, setShow] = useState(false);
+
   return (
     <Paper p="md" mb="md">
       <Button onClick={() => setShow((s) => !s)} mb="md">
         {show ? 'Hide' : 'Show'} Lazy Feature
       </Button>
       {show && (
-        <Suspense fallback={<Loader color="indigo" type="dots" />}>
+        <Suspense fallback={<Loader color={primaryColor} type="dots" />}>
           <LazyFeature />
         </Suspense>
       )}

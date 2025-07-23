@@ -14,8 +14,10 @@ import { useFetch } from '@mantine/hooks';
 import { IconAlertCircle, IconCircleCheck } from '@tabler/icons-react';
 import { Post } from '../model';
 import { Choose, If, Otherwise } from '@/shared';
+import { useThemeColorContext } from '@/shared';
 
 export const Example = () => {
+  const { primaryColor } = useThemeColorContext();
   const {
     data: posts,
     loading,
@@ -36,7 +38,7 @@ export const Example = () => {
           }}
         >
           <Stack align="center" gap="md">
-            <Loader color="indigo" size="xl" type="bars" />
+            <Loader color={primaryColor} size="xl" type="bars" />
             <Text size="lg" c="dimmed">
               Loading posts...
             </Text>

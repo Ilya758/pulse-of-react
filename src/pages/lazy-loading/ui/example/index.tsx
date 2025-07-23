@@ -1,6 +1,7 @@
 import { Suspense, lazy, useState } from 'react';
 import { Loader, Button, Paper, Alert } from '@mantine/core';
 import { If } from '@/shared';
+import { useThemeColorContext } from '@/shared';
 
 function FallbackComponent() {
   return (
@@ -20,6 +21,7 @@ const LazyFeature = lazy(() =>
 );
 
 export const LazyWithErrorBoundaryExample = () => {
+  const { primaryColor } = useThemeColorContext();
   const [show, setShow] = useState(false);
 
   return (
@@ -28,7 +30,7 @@ export const LazyWithErrorBoundaryExample = () => {
         {show ? 'Hide' : 'Show'} Lazy Feature
       </Button>
       <If condition={show}>
-        <Suspense fallback={<Loader color="indigo" type="dots" />}>
+        <Suspense fallback={<Loader color={primaryColor} type="dots" />}>
           <LazyFeature />
         </Suspense>
       </If>

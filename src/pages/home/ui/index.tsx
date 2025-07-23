@@ -1,7 +1,10 @@
+import { useThemeColorContext } from '@/shared';
 import { Container, Title, Text, Paper, SimpleGrid, ThemeIcon, Stack, Group } from '@mantine/core';
 import { IconBook, IconFolderOpen, IconTools, IconGauge, IconMapSearch } from '@tabler/icons-react';
 
 export const HomePage = () => {
+  const { primaryColor } = useThemeColorContext();
+
   return (
     <Container size="lg" py="xl">
       <Paper shadow="md" p="xl" radius="md" withBorder>
@@ -16,7 +19,7 @@ export const HomePage = () => {
         <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="xl" mb="xl">
           <Paper p="lg" shadow="xs" withBorder radius="md">
             <Group>
-              <ThemeIcon variant="light" size="xl" radius="md" color="indigo">
+              <ThemeIcon color={primaryColor} variant="light" size="xl" radius="md">
                 <IconBook size="1.5rem" />
               </ThemeIcon>
               <Title order={3}>React's Vital Signs</Title>
@@ -29,7 +32,7 @@ export const HomePage = () => {
           </Paper>
           <Paper p="lg" shadow="xs" withBorder radius="md">
             <Group>
-              <ThemeIcon variant="light" size="xl" radius="md" color="indigo">
+              <ThemeIcon color={primaryColor} variant="light" size="xl" radius="md">
                 <IconGauge size="1.5rem" />
               </ThemeIcon>
               <Title order={3}>Optimizing React Performance</Title>
@@ -49,7 +52,7 @@ export const HomePage = () => {
         <SimpleGrid cols={{ base: 1, md: 3 }} spacing="lg" mb="xl">
           <Stack>
             <Group>
-              <ThemeIcon variant="light" size="lg" radius="md" color="indigo">
+              <ThemeIcon color={primaryColor} variant="light" size="lg" radius="md">
                 <IconFolderOpen size="1.2rem" />
               </ThemeIcon>
               <Title order={4}>Structure</Title>
@@ -61,7 +64,7 @@ export const HomePage = () => {
           </Stack>
           <Stack>
             <Group>
-              <ThemeIcon variant="light" size="lg" radius="md" color="indigo">
+              <ThemeIcon color={primaryColor} variant="light" size="lg" radius="md">
                 <IconTools size="1.2rem" />
               </ThemeIcon>
               <Title order={4}>Tech Stack</Title>
@@ -74,7 +77,7 @@ export const HomePage = () => {
           </Stack>
           <Stack>
             <Group>
-              <ThemeIcon variant="light" size="lg" radius="md" color="indigo">
+              <ThemeIcon color={primaryColor} variant="light" size="lg" radius="md">
                 <IconMapSearch size="1.2rem" />
               </ThemeIcon>
               <Title order={4}>Navigating This Guide</Title>

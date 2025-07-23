@@ -1,6 +1,13 @@
-import { TableOfContents, TableOfContentsProps, Loader, Center } from '@mantine/core';
+import {
+  TableOfContents,
+  TableOfContentsProps,
+  Loader,
+  Center,
+  useMantineTheme,
+} from '@mantine/core';
 import { useTocContent } from '../model/hooks';
 import { Choose, If, Otherwise } from '@/shared';
+import { useThemeColorContext } from '@/shared';
 
 type Props = {
   pathname: string;
@@ -8,6 +15,9 @@ type Props = {
 
 export const AsideTOC = ({ pathname }: Props) => {
   const { isContentLoaded } = useTocContent();
+  const { primaryColor } = useThemeColorContext();
+  const { colors } = useMantineTheme();
+  const color = colors[primaryColor]?.[6];
 
   const getControlProps: TableOfContentsProps['getControlProps'] = ({ data }) => {
     return {
@@ -33,14 +43,14 @@ export const AsideTOC = ({ pathname }: Props) => {
     <Choose>
       <If condition={!isContentLoaded}>
         <Center style={{ height: '100%' }}>
-          <Loader color="indigo" type="bars" size="lg" />
+          <Loader color={color} type="bars" size="lg" />
         </Center>
       </If>
       <Otherwise>
         <TableOfContents
           key={pathname}
           variant="filled"
-          color="indigo"
+          color={color}
           size="sm"
           radius="sm"
           scrollSpyOptions={{

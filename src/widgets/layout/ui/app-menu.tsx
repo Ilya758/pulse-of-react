@@ -1,8 +1,9 @@
-import { Menu } from '@mantine/core';
+import { Menu, useMantineTheme } from '@mantine/core';
 import { useNavigate } from 'react-router';
 import { ROUTES } from '../model';
 import styles from './styles.module.css';
 import { useMemo } from 'react';
+import { useThemeColorContext } from '@/shared';
 
 type Props = {
   isTablet?: boolean;
@@ -13,32 +14,48 @@ type Props = {
 
 export const AppMenu = ({ isTablet, pathname, toggle }: Props) => {
   const navigate = useNavigate();
+  const { colors, white: textColor } = useMantineTheme();
+  const { primaryColor: colorKey } = useThemeColorContext();
+  const bgColor = colors[colorKey]?.[6];
+
   const links = useMemo(() => {
-    return ROUTES.map(({ href, name }) => (
-      <Menu.Item
-        component="a"
-        href={href}
-        className={styles.link}
-        data-active={pathname === href || undefined}
-        onClick={(event) => {
-          event.preventDefault();
+    return ROUTES.map(({ href, name }) => {
+      const isActive = pathname === href;
 
-          if (pathname !== href) {
-            navigate(href);
+      return (
+        <Menu.Item
+          component="a"
+          className={styles.link}
+          key={href}
+          data-active={isActive || undefined}
+          href={href}
+          onClick={(event) => {
+            event.preventDefault();
 
-            if (!isTablet) {
+            if (pathname !== href) {
+              navigate(href);
+
+              if (!isTablet) {
+                toggle();
+              }
+            } else if (!isTablet) {
               toggle();
             }
-          } else if (!isTablet) {
-            toggle();
+          }}
+          style={
+            isActive
+              ? {
+                  backgroundColor: bgColor,
+                  color: textColor,
+                }
+              : undefined
           }
-        }}
-        key={href}
-      >
-        {name}
-      </Menu.Item>
-    ));
-  }, [isTablet, navigate, pathname, toggle]);
+        >
+          {name}
+        </Menu.Item>
+      );
+    });
+  }, [isTablet, navigate, pathname, toggle, bgColor, textColor]);
 
   return (
     <Menu trigger="hover" loop={false} withinPortal={false} trapFocus={false}>

@@ -1,6 +1,7 @@
 import { FC, ReactNode, useContext } from 'react';
 import { Button, Group } from '@mantine/core';
 import { AccordionContext } from '../../../model';
+import { useThemeColorContext } from '@/shared';
 
 type Props = {
   children: ReactNode;
@@ -9,6 +10,7 @@ type Props = {
 
 export const AccordionHeader: FC<Props> = ({ children, id = '' }) => {
   const ctx = useContext(AccordionContext);
+  const { primaryColor } = useThemeColorContext();
 
   if (!ctx) throw new Error('Accordion.Header must be used within Accordion');
 
@@ -18,7 +20,7 @@ export const AccordionHeader: FC<Props> = ({ children, id = '' }) => {
     <Button
       aria-expanded={isOpen}
       aria-controls={`panel-${id}`}
-      color="indigo"
+      color={primaryColor}
       fullWidth
       onClick={() => ctx.toggleItem(id)}
       variant={isOpen ? 'filled' : 'light'}

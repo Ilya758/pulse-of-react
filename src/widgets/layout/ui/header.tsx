@@ -2,10 +2,12 @@ import { Group, Text, Burger, Menu, ActionIcon, Button } from '@mantine/core';
 import { IconBrandGithub, IconUserCircle, IconDotsVertical } from '@tabler/icons-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ThemeToggle } from '@/features/theme-toggle';
-import logoUrl from '/assets/logo.svg?url';
 import { useMediaQuery } from '@mantine/hooks';
 import { Choose, If, Otherwise } from '@/shared';
 import { useCallback } from 'react';
+import { useThemeColorContext } from '@/shared';
+import { useMantineTheme } from '@mantine/core';
+import { Logo } from './logo';
 
 type Props = {
   isTablet?: boolean;
@@ -17,6 +19,9 @@ type Props = {
 export const Header = ({ opened, toggle, isTablet, isMobile }: Props) => {
   const matchesStoMDesktop = useMediaQuery('(min-width: 992px) and (max-width: 1200px)');
   const navigate = useNavigate();
+  const { primaryColor: colorKey } = useThemeColorContext();
+  const { colors } = useMantineTheme();
+  const color = colors[colorKey]?.[6];
 
   const handleLogoGeneralClick = useCallback(() => {
     navigate('/');
@@ -29,18 +34,11 @@ export const Header = ({ opened, toggle, isTablet, isMobile }: Props) => {
   const LogoGroup = (
     <Group gap={0} align="center" justify={'flex-start'}>
       {!isTablet && <Burger ml={12} opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />}
-      <img
-        src={logoUrl}
-        alt="Pulse-Of-React Logo"
-        width={60}
-        height={60}
-        style={{ cursor: 'pointer' }}
-        onClick={handleLogoGeneralClick}
-      />
+      <Logo color={color} size={60} onClick={handleLogoGeneralClick} />
       <Text
         component={Link}
         to="/"
-        c="indigo"
+        c={color}
         fw={700}
         size={'xl'}
         ml="xs"
