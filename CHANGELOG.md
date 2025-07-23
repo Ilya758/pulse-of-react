@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.7.2](https://github.com/Ilya758/react-design-patterns/compare/v1.7.1...v1.7.2) (2025-07-23)
+
+
+### Bug Fixes
+
+* revert vite suppressing ([8980512](https://github.com/Ilya758/react-design-patterns/commit/8980512f88224c7aef6ac775ac046ca06d81ef1e))
+
 ### [1.7.1](https://github.com/Ilya758/react-design-patterns/compare/v1.6.0...v1.7.1) (2025-07-23)
 
 
