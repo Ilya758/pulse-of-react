@@ -116,9 +116,7 @@ export const Example = () => {
         </Text>
       </div>
 
-      <Button onClick={handleOpen} size="lg">
-        Open Multi-Step Modal
-      </Button>
+      <Button onClick={handleOpen}>Open Multi-Step Modal</Button>
 
       <Modal
         opened={opened}
