@@ -75,7 +75,7 @@ export class NewsPublisher implements Publisher<NewsItem> {
   }
 }`;
 
-export const NEWS_OBSERVER_CODE = `import { Subscriber, NewsItem, User, NotificationData } from '../model/types';
+export const NEWS_SUBSCRIBER_CODE = `import { Subscriber, NewsItem, User, NotificationData } from '../model/types';
 
 export class NewsSubscriber implements Subscriber<NewsItem> {
   constructor(public id: string, private user: User) {}
@@ -112,7 +112,7 @@ export class NewsSubscriber implements Subscriber<NewsItem> {
   }
 }`;
 
-export const NOTIFICATION_OBSERVER_CODE = `import { Subscriber, NotificationData } from '../model/types';
+export const NOTIFICATION_SUBSCRIBER_CODE = `import { Subscriber, NotificationData } from '../model/types';
 
 export class NotificationSubscriber implements Subscriber<NotificationData> {
   constructor(public id: string, private onNotification: (data: NotificationData) => void) {}
@@ -374,3 +374,4 @@ export const USERS: User[] = [
     },
   },
 ];
+

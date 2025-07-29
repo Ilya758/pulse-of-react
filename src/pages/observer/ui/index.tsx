@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { Title, Text, List, Space, Code } from '@mantine/core';
+import { Title, Text, List, Space } from '@mantine/core';
 import { IconFileTypeTs, IconFileTypeTsx, IconInfoCircle } from '@tabler/icons-react';
 import { SectionBlock } from '@/shared';
 import { useTocContent } from '@/widgets/layout';
@@ -7,8 +7,8 @@ import { CodeHighlightTabs } from '@mantine/code-highlight';
 import {
   OBSERVER_PATTERN_SIGNATURE,
   NEWS_PUBLISHER_CODE,
-  NEWS_OBSERVER_CODE,
-  NOTIFICATION_OBSERVER_CODE,
+  NEWS_SUBSCRIBER_CODE,
+  NOTIFICATION_SUBSCRIBER_CODE,
   EXAMPLE_USAGE_CODE,
   EXAMPLE_COMPONENT_CODE,
 } from '../model';
@@ -32,11 +32,6 @@ export const ObserverPage: FC = () => {
           between objects so that when one object (the publisher) changes state, all its dependents
           (subscribers) are notified and updated automatically. In React, this pattern is commonly
           used for event handling, state management, and building reactive systems.
-        </Text>
-        <Text mt="md">
-          The pattern consists of two main components: a <Code>Publisher</Code> that maintains a
-          list of subscribers and notifies them of state changes, and <Code>Subscribers</Code> that
-          subscribe to the publisher and receive updates when the publisher's state changes.
         </Text>
       </SectionBlock>
 
@@ -137,8 +132,8 @@ export const ObserverPage: FC = () => {
 
       <SectionBlock title="Pattern Signature" initialSpaceAfterDivider="xs">
         <Text>
-          The core of the pattern consists of a Publisher that manages subscribers and notifies them
-          of state changes, and Subscribers that subscribe to receive updates.
+          Here's the core structure of the Observer pattern. This TypeScript interface defines the
+          contract that publishers and subscribers must follow:
         </Text>
         <CodeHighlightTabs
           mt="md"
@@ -155,36 +150,36 @@ export const ObserverPage: FC = () => {
           ]}
         />
         <Text mt="lg" mb="md">
-          The pattern consists of four main components:
+          The pattern is built around four core elements:
         </Text>
         <List spacing="xs">
           <List.Item>
             <Text span fw={700}>
               Publisher (Observable):
             </Text>{' '}
-            The object that holds the state and maintains a list of subscribers. It provides methods
-            to subscribe, unsubscribe, and notify subscribers of state changes.
+            The central object that manages state and maintains a collection of subscribers. It
+            provides a clean API for subscription management and state change notifications.
           </List.Item>
           <List.Item>
             <Text span fw={700}>
               Subscriber:
             </Text>{' '}
-            Objects that subscribe to the publisher and implement an update method that gets called
-            when the publisher's state changes.
+            Objects that register with the publisher and implement a standardized update method.
+            They automatically receive notifications whenever the publisher's state changes.
           </List.Item>
           <List.Item>
             <Text span fw={700}>
               Concrete Publisher:
             </Text>{' '}
-            A specific implementation of the publisher that holds the actual state and triggers
-            notifications when the state changes.
+            A real-world implementation of the publisher interface that encapsulates specific
+            business logic and triggers notifications based on state changes.
           </List.Item>
           <List.Item>
             <Text span fw={700}>
               Concrete Subscriber:
             </Text>{' '}
-            Specific implementations of subscribers that define how to react to state changes from
-            the publisher.
+            Specific subscriber implementations that define custom behavior for handling state
+            change notifications from their associated publisher.
           </List.Item>
         </List>
       </SectionBlock>
@@ -196,7 +191,7 @@ export const ObserverPage: FC = () => {
               Memory Management:
             </Title>
             <Text>
-              Always unsubscribe observers when they're no longer needed to prevent memory leaks.
+              Always unsubscribe subscribers when they're no longer needed to prevent memory leaks.
               This is especially important in React components that may unmount.
             </Text>
           </List.Item>
@@ -205,8 +200,8 @@ export const ObserverPage: FC = () => {
               Error Handling:
             </Title>
             <Text>
-              Implement proper error handling in observer update methods to prevent one failing
-              observer from breaking the entire notification system.
+              Implement proper error handling in subscriber update methods to prevent one failing
+              subscriber from breaking the entire notification system.
             </Text>
           </List.Item>
           <List.Item>
@@ -214,7 +209,7 @@ export const ObserverPage: FC = () => {
               Performance Optimization:
             </Title>
             <Text>
-              Be mindful of the number of observers and notification frequency. Consider batching
+              Be mindful of the number of subscribers and notification frequency. Consider batching
               updates or using debouncing for high-frequency events.
             </Text>
           </List.Item>
@@ -223,17 +218,17 @@ export const ObserverPage: FC = () => {
               Type Safety:
             </Title>
             <Text>
-              Use TypeScript to ensure type safety between subjects and observers, especially when
-              passing data through the notification system.
+              Use TypeScript to ensure type safety between publishers and subscribers, especially
+              when passing data through the notification system.
             </Text>
           </List.Item>
           <List.Item>
             <Title order={5} c="orange" mb="xs">
-              Observer Order:
+              Subscriber Order:
             </Title>
             <Text>
-              Don't rely on the order in which observers are notified, as this can change and create
-              unpredictable behavior.
+              Don't rely on the order in which subscribers are notified, as this can change and
+              create unpredictable behavior.
             </Text>
           </List.Item>
           <List.Item>
@@ -241,7 +236,7 @@ export const ObserverPage: FC = () => {
               Avoid Circular Dependencies:
             </Title>
             <Text>
-              Be careful when observers can also act as subjects, as this can create circular
+              Be careful when subscribers can also act as publishers, as this can create circular
               dependencies and infinite notification loops.
             </Text>
           </List.Item>
@@ -292,15 +287,15 @@ export const ObserverPage: FC = () => {
               icon: <IconFileTypeTs size={14} color="#2596be" />,
             },
             {
-              fileName: 'news-observer.ts',
+              fileName: 'news-subscriber.ts',
               language: 'ts',
-              code: NEWS_OBSERVER_CODE,
+              code: NEWS_SUBSCRIBER_CODE,
               icon: <IconFileTypeTs size={14} color="#2596be" />,
             },
             {
-              fileName: 'notification-observer.ts',
+              fileName: 'notification-subscriber.ts',
               language: 'ts',
-              code: NOTIFICATION_OBSERVER_CODE,
+              code: NOTIFICATION_SUBSCRIBER_CODE,
               icon: <IconFileTypeTs size={14} color="#2596be" />,
             },
             {
