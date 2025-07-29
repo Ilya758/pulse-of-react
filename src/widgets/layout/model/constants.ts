@@ -43,5 +43,9 @@ export const ROUTES = [
     name: 'Facade',
     href: '/facade',
   },
+  {
+    name: 'Observer',
+    href: '/observer',
+  },
 ];
 

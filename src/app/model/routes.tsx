@@ -56,6 +56,10 @@ const FacadePage = lazy(() =>
   import('@/pages/facade').then(({ FacadePage }) => ({ default: FacadePage })),
 );
 
+const ObserverPage = lazy(() =>
+  import('@/pages/observer').then(({ ObserverPage }) => ({ default: ObserverPage })),
+);
+
 export const ROUTES = [
   { path: '/', element: <HomePage /> },
   { path: '/state-management', element: <UseReducerStateManagement /> },
@@ -70,5 +74,7 @@ export const ROUTES = [
   { path: '/state-machine', element: <StateMachinePage /> },
   { path: '/factory', element: <FactoryPage /> },
   { path: '/facade', element: <FacadePage /> },
+  { path: '/observer', element: <ObserverPage /> },
   { path: '*', element: <>not found</> },
 ];
+
