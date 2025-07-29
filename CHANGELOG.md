@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.1](https://github.com/Ilya758/react-design-patterns/compare/v1.9.0...v1.9.1) (2025-07-29)
+
+
+### Bug Fixes
+
+* **page:** simplified observer page explanation ([fd45a3a](https://github.com/Ilya758/react-design-patterns/commit/fd45a3a7b75448c0baaa8164904b9ba26f1716ad))
+
 ## [1.9.0](https://github.com/Ilya758/react-design-patterns/compare/v1.8.0...v1.9.0) (2025-07-29)
 
 
