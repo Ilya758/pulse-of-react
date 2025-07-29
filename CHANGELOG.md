@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/Ilya758/react-design-patterns/compare/v1.8.0...v1.9.0) (2025-07-29)
+
+
+### Features
+
+* new observer page ([a4e4150](https://github.com/Ilya758/react-design-patterns/commit/a4e4150ace55bdaf3dfee03cabca3475b0e84a30))
+
+
+### Bug Fixes
+
+* **layout:** simplified route navigation transition, removed navigation freeze ([cee5efb](https://github.com/Ilya758/react-design-patterns/commit/cee5efba0c7e356e4554f9fbe02c61d3fee9bfb3))
+* **page:** aligned button size for state machine page example ([bf25ff7](https://github.com/Ilya758/react-design-patterns/commit/bf25ff7469375706329d59834c1b33e95fc1510e))
+
 ## [1.8.0](https://github.com/Ilya758/react-design-patterns/compare/v1.7.3...v1.8.0) (2025-07-23)
 
 
