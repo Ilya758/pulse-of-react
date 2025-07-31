@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.2](https://github.com/Ilya758/react-design-patterns/compare/v1.9.1...v1.9.2) (2025-07-31)
+
+
+### Bug Fixes
+
+* **page:** common color scheme for text in about page ([add907c](https://github.com/Ilya758/react-design-patterns/commit/add907c4f8d5d0634b978bd3cedbf00248ac51fd))
+
 ### [1.9.1](https://github.com/Ilya758/react-design-patterns/compare/v1.9.0...v1.9.1) (2025-07-29)
 
 
