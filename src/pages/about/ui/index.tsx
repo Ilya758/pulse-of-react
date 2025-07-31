@@ -1,4 +1,14 @@
-import { Container, Title, Text, Paper, Avatar, Group, Anchor, Skeleton } from '@mantine/core';
+import {
+  Container,
+  Title,
+  Text,
+  Paper,
+  Avatar,
+  Group,
+  Anchor,
+  Skeleton,
+  useMantineTheme,
+} from '@mantine/core';
 import { IconBrandGithub, IconBrandLinkedin } from '@tabler/icons-react';
 import { useImageLoader } from '@/shared';
 
@@ -8,6 +18,8 @@ import { useThemeColorContext } from '@/shared';
 export const AboutPage = () => {
   const { isLoading: imageLoading, hasError: imageError } = useImageLoader(authorPic);
   const { primaryColor } = useThemeColorContext();
+  const { colors } = useMantineTheme();
+  const color = colors[primaryColor]?.[6];
 
   return (
     <Container size="md" py="lg">
@@ -42,26 +54,21 @@ export const AboutPage = () => {
           Connect with Me
         </Title>
         <Group gap="lg">
-          <Anchor
-            c={primaryColor}
-            href="https://github.com/Ilya758"
-            target="_blank"
-            underline="hover"
-          >
+          <Anchor c={color} href="https://github.com/Ilya758" target="_blank" underline="hover">
             <Group gap="xs">
               <IconBrandGithub stroke={1.5} />
               <Text>GitHub</Text>
             </Group>
           </Anchor>
           <Anchor
-            c={primaryColor}
+            c={color}
             href="https://www.linkedin.com/in/illia-skaryna/"
             target="_blank"
             underline="hover"
           >
             <Group gap="xs">
               <IconBrandLinkedin stroke={1.5} />
-              <Text c={primaryColor}>LinkedIn</Text>
+              <Text c={color}>LinkedIn</Text>
             </Group>
           </Anchor>
         </Group>
