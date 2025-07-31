@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.3](https://github.com/Ilya758/react-design-patterns/compare/v1.9.2...v1.9.3) (2025-07-31)
+
+
+### Features
+
+* **page:** lazy loaded transition provider ([a33ba25](https://github.com/Ilya758/react-design-patterns/commit/a33ba25a255a727629cd2acb220bbdcd7e46d60c))
+
+
+### Bug Fixes
+
+* **header:** block navigation to active page ([c72aed9](https://github.com/Ilya758/react-design-patterns/commit/c72aed99a06eab112a6d5e7566fedd1a0c6423b8))
+
 ### [1.9.2](https://github.com/Ilya758/react-design-patterns/compare/v1.9.1...v1.9.2) (2025-07-31)
 
 
