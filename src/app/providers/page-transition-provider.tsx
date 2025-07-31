@@ -1,11 +1,18 @@
 import { useLocation, useRoutes } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { Suspense, lazy } from 'react';
+import { useFramerMotion } from '../model/hooks';
 
-const ANIMATION = {
-  animate: { opacity: 1, y: 0 },
-  initial: { opacity: 0, y: 6 },
-  transition: { duration: 0.25 },
-};
+const LazyAnimatePresence = lazy(() =>
+  import('framer-motion').then(({ AnimatePresence }) => ({
+    default: AnimatePresence,
+  })),
+);
+
+const LazyMotion = lazy(() =>
+  import('framer-motion').then(({ motion }) => ({
+    default: motion.div,
+  })),
+);
 
 export type Props = {
   routes: Parameters<typeof useRoutes>[0];
@@ -14,19 +21,24 @@ export type Props = {
 export const PageTransitionProvider = ({ routes }: Props) => {
   const location = useLocation();
   const element = useRoutes(routes, location);
+  const { isLoaded } = useFramerMotion();
 
-  return (
-    <AnimatePresence mode="wait" initial={false}>
-      <motion.div
-        animate={ANIMATION.animate}
-        initial={ANIMATION.initial}
-        key={location.key}
-        style={{ height: '100%' }}
-        transition={ANIMATION.transition}
-      >
-        {element}
-      </motion.div>
-    </AnimatePresence>
+  const animatedContent = (
+    <Suspense fallback={<div style={{ height: '100%' }}>{element}</div>}>
+      <LazyAnimatePresence mode="wait" initial={false}>
+        <LazyMotion
+          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 6 }}
+          key={location.key}
+          style={{ height: '100%' }}
+          transition={{ duration: 0.25 }}
+        >
+          {element}
+        </LazyMotion>
+      </LazyAnimatePresence>
+    </Suspense>
   );
+
+  return isLoaded ? animatedContent : element;
 };
 
