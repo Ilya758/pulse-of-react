@@ -1,6 +1,6 @@
 import { Group, Text, Burger, Menu, ActionIcon, Button } from '@mantine/core';
 import { IconBrandGithub, IconUserCircle, IconDotsVertical } from '@tabler/icons-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ThemeToggle } from '@/features/theme-toggle';
 import { useMediaQuery } from '@mantine/hooks';
 import { Choose, If, Otherwise } from '@/shared';
@@ -19,25 +19,32 @@ type Props = {
 export const Header = ({ opened, toggle, isTablet, isMobile }: Props) => {
   const matchesStoMDesktop = useMediaQuery('(min-width: 992px) and (max-width: 1200px)');
   const navigate = useNavigate();
+  const location = useLocation();
   const { primaryColor: colorKey } = useThemeColorContext();
   const { colors } = useMantineTheme();
   const color = colors[colorKey]?.[6];
 
   const handleLogoGeneralClick = useCallback(() => {
-    navigate('/');
+    if (location.pathname !== '/') {
+      navigate('/');
 
-    if (!isTablet && opened) {
-      toggle();
+      if (!isTablet && opened) {
+        toggle();
+      }
     }
-  }, [isTablet, navigate, opened, toggle]);
+  }, [isTablet, navigate, opened, toggle, location.pathname]);
+
+  const handleAboutClick = useCallback(() => {
+    if (location.pathname !== '/about') {
+      navigate('/about');
+    }
+  }, [navigate, location.pathname]);
 
   const LogoGroup = (
     <Group gap={0} align="center" justify={'flex-start'}>
       {!isTablet && <Burger ml={12} opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />}
       <Logo color={color} size={60} onClick={handleLogoGeneralClick} />
       <Text
-        component={Link}
-        to="/"
         c={color}
         fw={700}
         size={'xl'}
@@ -68,7 +75,7 @@ export const Header = ({ opened, toggle, isTablet, isMobile }: Props) => {
               >
                 GitHub
               </Menu.Item>
-              <Menu.Item component={Link} to="/about" leftSection={<IconUserCircle size={14} />}>
+              <Menu.Item onClick={handleAboutClick} leftSection={<IconUserCircle size={14} />}>
                 About The Author
               </Menu.Item>
               <Menu.Divider />
@@ -90,11 +97,10 @@ export const Header = ({ opened, toggle, isTablet, isMobile }: Props) => {
             <IconBrandGithub stroke={1.5} />
           </ActionIcon>
           <Button
-            component={Link}
-            to="/about"
             variant="default"
             leftSection={<IconUserCircle size={18} />}
             aria-label="Meet the Author"
+            onClick={handleAboutClick}
           >
             Meet the Author
           </Button>
@@ -116,7 +122,7 @@ export const Header = ({ opened, toggle, isTablet, isMobile }: Props) => {
               >
                 GitHub
               </Menu.Item>
-              <Menu.Item component={Link} to="/about" leftSection={<IconUserCircle size={14} />}>
+              <Menu.Item onClick={handleAboutClick} leftSection={<IconUserCircle size={14} />}>
                 About Me
               </Menu.Item>
             </Menu.Dropdown>
