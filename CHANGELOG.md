@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.4](https://github.com/Ilya758/react-design-patterns/compare/v1.9.3...v1.9.4) (2025-08-01)
+
+
+### Features
+
+* **page:** prioritize scroll to top on next frame ([24da693](https://github.com/Ilya758/react-design-patterns/commit/24da693a643bfc78e2d10be0ffcc7aa6eba98d79))
+
 ### [1.9.3](https://github.com/Ilya758/react-design-patterns/compare/v1.9.2...v1.9.3) (2025-07-31)
 
 
