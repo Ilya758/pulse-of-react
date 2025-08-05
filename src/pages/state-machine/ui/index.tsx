@@ -21,7 +21,7 @@ export const StateMachine = () => {
     <>
       <Space h={4} />
       <Title order={1} mb="lg">
-        State Machine with Discriminated Unions
+        State Machine
       </Title>
 
       <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">

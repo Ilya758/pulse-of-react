@@ -2,12 +2,6 @@ import { lazy } from 'react';
 
 const HomePage = lazy(() => import('@/pages/home').then(({ HomePage }) => ({ default: HomePage })));
 
-const UseReducerStateManagement = lazy(() =>
-  import('@/pages/use-reducer-state-management').then(({ UseReducerStateManagement }) => ({
-    default: UseReducerStateManagement,
-  })),
-);
-
 const HooksPage = lazy(() =>
   import('@/pages/hooks').then(({ HooksPage }) => ({ default: HooksPage })),
 );
@@ -62,7 +56,6 @@ const ObserverPage = lazy(() =>
 
 export const ROUTES = [
   { path: '/', element: <HomePage /> },
-  { path: '/state-management', element: <UseReducerStateManagement /> },
   { path: 'hooks', element: <HooksPage /> },
   { path: '/render-props', element: <RenderPropsPage /> },
   { path: '/context-providers', element: <ContextProvidersPage /> },
