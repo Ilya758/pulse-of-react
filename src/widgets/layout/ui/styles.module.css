@@ -88,3 +88,14 @@
   }
 }
 
+.scrollableMenu {
+  overflow: hidden auto;
+  max-height: 100vh;
+}
+
+@media (max-width: 992px) {
+  .scrollableMenu {
+    max-height: calc(100vh - 60px);
+  }
+}
+

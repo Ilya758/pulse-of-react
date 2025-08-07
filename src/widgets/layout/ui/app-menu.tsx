@@ -58,9 +58,11 @@ export const AppMenu = ({ isTablet, pathname, toggle }: Props) => {
   }, [isTablet, navigate, pathname, toggle, bgColor, textColor]);
 
   return (
-    <Menu trigger="hover" loop={false} withinPortal={false} trapFocus={false}>
-      {links}
-    </Menu>
+    <div className={styles.scrollableMenu}>
+      <Menu trigger="hover" loop={false} withinPortal={false} trapFocus={false}>
+        {links}
+      </Menu>
+    </div>
   );
 };
 
