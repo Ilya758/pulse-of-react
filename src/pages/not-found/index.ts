@@ -1,0 +1,2 @@
+export { NotFoundPage } from './ui';
+

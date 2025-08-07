@@ -2,6 +2,10 @@ import { lazy } from 'react';
 
 const HomePage = lazy(() => import('@/pages/home').then(({ HomePage }) => ({ default: HomePage })));
 
+const NotFoundPage = lazy(() =>
+  import('@/pages/not-found').then(({ NotFoundPage }) => ({ default: NotFoundPage })),
+);
+
 const HooksPage = lazy(() =>
   import('@/pages/hooks').then(({ HooksPage }) => ({ default: HooksPage })),
 );
@@ -68,6 +72,6 @@ export const ROUTES = [
   { path: '/factory', element: <FactoryPage /> },
   { path: '/facade', element: <FacadePage /> },
   { path: '/observer', element: <ObserverPage /> },
-  { path: '*', element: <>not found</> },
+  { path: '*', element: <NotFoundPage /> },
 ];
 
