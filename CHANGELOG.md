@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.10.1](https://github.com/Ilya758/react-design-patterns/compare/v1.10.0...v1.10.1) (2025-08-11)
+
+
+### Features
+
+* **menu:** group-scoped app menu ([0fe93b1](https://github.com/Ilya758/react-design-patterns/commit/0fe93b131c100cea082af11afb5d1889aa152076))
+* **page:** implemented 404 page ([203ee58](https://github.com/Ilya758/react-design-patterns/commit/203ee5852a2f18f578c00ef94e2a33cb5196608e))
+
+
+### Bug Fixes
+
+* **menu:** allow app menu scrolling on small screens ([4dd199e](https://github.com/Ilya758/react-design-patterns/commit/4dd199e709cac53e53372680a1456f3820eece4d))
+* **page:** color tweaking for 404 page ([c665284](https://github.com/Ilya758/react-design-patterns/commit/c665284cd4d8707839d7b8a5094dfaa5bf0c39cc))
+
 ## [1.10.0](https://github.com/Ilya758/react-design-patterns/compare/v1.9.4...v1.10.0) (2025-08-05)
 
 ### [1.9.4](https://github.com/Ilya758/react-design-patterns/compare/v1.9.3...v1.9.4) (2025-08-01)
