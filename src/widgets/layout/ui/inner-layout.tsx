@@ -17,7 +17,6 @@ export const InnerLayout = ({ children }: Props) => {
   const showAside = allowTOC(pathname);
   const isTablet = useMediaQuery('(min-width: 768px)', false);
   const isMobile = useMediaQuery('(max-width: 420px)', false);
-  const isSDesktop = useMediaQuery('(min-width: 992px)');
 
   return (
     <AppShell
@@ -27,7 +26,6 @@ export const InnerLayout = ({ children }: Props) => {
         breakpoint: 'sm',
         collapsed: { mobile: !opened, desktop: false },
       }}
-      layout="alt"
       aside={{
         width: showAside ? 280 : 0,
         breakpoint: 'md',
@@ -39,7 +37,12 @@ export const InnerLayout = ({ children }: Props) => {
         <Header opened={opened} toggle={toggle} isTablet={isTablet} isMobile={isMobile} />
       </AppShell.Header>
 
-      <AppShell.Navbar p="md" pt={!isSDesktop && opened ? 72 : 'md'}>
+      <AppShell.Navbar
+        style={{
+          overflow: 'auto',
+        }}
+        px={0}
+      >
         <AppMenu opened={opened} pathname={pathname} toggle={toggle} isTablet={isTablet} />
       </AppShell.Navbar>
 

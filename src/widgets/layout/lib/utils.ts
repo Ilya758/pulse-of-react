@@ -1,5 +1,9 @@
 import { ROUTES } from '../model';
 
 export const allowTOC = (pathname: string) => {
-  return ROUTES.some((route) => route.href === pathname);
+  return (
+    pathname !== '/coming-soon' &&
+    ROUTES.some(({ items }) => items.some(({ href }) => href === pathname))
+  );
 };
+
