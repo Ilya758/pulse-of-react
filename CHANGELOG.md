@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.0](https://github.com/Ilya758/react-design-patterns/compare/v1.10.1...v1.11.0) (2025-08-13)
+
+
+### Features
+
+* **page:** new access control page ([524fa7a](https://github.com/Ilya758/react-design-patterns/commit/524fa7a38f4c5131f154e31b3b65d1fccb581298))
+
+
+### Bug Fixes
+
+* **packages:** removed unstable spotlight ([4291aac](https://github.com/Ilya758/react-design-patterns/commit/4291aacfaaa45d29a17693c56a8fb25b7b32dfa3))
+
 ### [1.10.1](https://github.com/Ilya758/react-design-patterns/compare/v1.10.0...v1.10.1) (2025-08-11)
 
 
