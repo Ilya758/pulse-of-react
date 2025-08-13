@@ -58,6 +58,10 @@ const ObserverPage = lazy(() =>
   import('@/pages/observer').then(({ ObserverPage }) => ({ default: ObserverPage })),
 );
 
+const AccessControlPage = lazy(() =>
+  import('@/pages/access-control').then(({ AccessControlPage }) => ({ default: AccessControlPage })),
+);
+
 export const ROUTES = [
   { path: '/', element: <HomePage /> },
   { path: 'hooks', element: <HooksPage /> },
@@ -72,6 +76,7 @@ export const ROUTES = [
   { path: '/factory', element: <FactoryPage /> },
   { path: '/facade', element: <FacadePage /> },
   { path: '/observer', element: <ObserverPage /> },
+  { path: '/access-control', element: <AccessControlPage /> },
   { path: '*', element: <NotFoundPage /> },
 ];
 
