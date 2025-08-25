@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.12.0](https://github.com/Ilya758/react-design-patterns/compare/v1.11.0...v1.12.0) (2025-08-25)
+
+
+### Features
+
+* **page:** new auth page ([a1f33a9](https://github.com/Ilya758/react-design-patterns/commit/a1f33a998f322540119d3e1c3b870d7c22c72476))
+
 ## [1.11.0](https://github.com/Ilya758/react-design-patterns/compare/v1.10.1...v1.11.0) (2025-08-13)
 
 
