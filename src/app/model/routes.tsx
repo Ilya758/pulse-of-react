@@ -59,7 +59,13 @@ const ObserverPage = lazy(() =>
 );
 
 const AccessControlPage = lazy(() =>
-  import('@/pages/access-control').then(({ AccessControlPage }) => ({ default: AccessControlPage })),
+  import('@/pages/access-control').then(({ AccessControlPage }) => ({
+    default: AccessControlPage,
+  })),
+);
+
+const AuthZvsAuthNPage = lazy(() =>
+  import('@/pages/authz-vs-authn').then(({ AuthZvsAuthNPage }) => ({ default: AuthZvsAuthNPage })),
 );
 
 export const ROUTES = [
@@ -77,6 +83,7 @@ export const ROUTES = [
   { path: '/facade', element: <FacadePage /> },
   { path: '/observer', element: <ObserverPage /> },
   { path: '/access-control', element: <AccessControlPage /> },
+  { path: '/auth', element: <AuthZvsAuthNPage /> },
   { path: '*', element: <NotFoundPage /> },
 ];
 

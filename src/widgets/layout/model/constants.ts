@@ -26,6 +26,10 @@ export const ROUTES = [
         name: 'Access Control',
         href: '/access-control',
       },
+      {
+        name: 'AuthZ vs AuthN & Session Management',
+        href: '/auth',
+      },
     ],
   },
   {

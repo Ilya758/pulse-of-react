@@ -1,0 +1,1 @@
+export { can } from './utils';
