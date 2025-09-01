@@ -30,6 +30,10 @@ export const ROUTES = [
         name: 'AuthZ vs AuthN & Session Management',
         href: '/auth',
       },
+      {
+        name: 'Content Security Policy',
+        href: '/content-security-policy',
+      },
     ],
   },
   {

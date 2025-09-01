@@ -68,6 +68,12 @@ const AuthZvsAuthNPage = lazy(() =>
   import('@/pages/authz-vs-authn').then(({ AuthZvsAuthNPage }) => ({ default: AuthZvsAuthNPage })),
 );
 
+const ContentSecurityPolicyPage = lazy(() =>
+  import('@/pages/content-security-policy').then(({ ContentSecurityPolicyPage }) => ({
+    default: ContentSecurityPolicyPage,
+  })),
+);
+
 export const ROUTES = [
   { path: '/', element: <HomePage /> },
   { path: 'hooks', element: <HooksPage /> },
@@ -84,6 +90,7 @@ export const ROUTES = [
   { path: '/observer', element: <ObserverPage /> },
   { path: '/access-control', element: <AccessControlPage /> },
   { path: '/auth', element: <AuthZvsAuthNPage /> },
+  { path: '/content-security-policy', element: <ContentSecurityPolicyPage /> },
   { path: '*', element: <NotFoundPage /> },
 ];
 
