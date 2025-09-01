@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.13.0](https://github.com/Ilya758/react-design-patterns/compare/v1.12.0...v1.13.0) (2025-09-01)
+
+
+### Features
+
+* **page:** new csp page ([cf115b6](https://github.com/Ilya758/react-design-patterns/commit/cf115b6e03bf721baba0834b51044d2533d28bb4))
+
 ## [1.12.0](https://github.com/Ilya758/react-design-patterns/compare/v1.11.0...v1.12.0) (2025-08-25)
 
 
