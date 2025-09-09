@@ -98,7 +98,7 @@ export const ROUTES = [
   { path: '/observer', element: <ObserverPage /> },
   { path: '/access-control', element: <AccessControlPage /> },
   { path: '/auth', element: <AuthZvsAuthNPage /> },
-  { path: '/content-security-policy', element: <ContentSecurityPolicyPage /> },
+  { path: '/csp', element: <ContentSecurityPolicyPage /> },
   { path: '/cors', element: <CrossOriginResourceSharingPage /> },
   { path: '*', element: <NotFoundPage /> },
 ];
