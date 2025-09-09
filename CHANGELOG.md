@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.14.1](https://github.com/Ilya758/react-design-patterns/compare/v1.14.0...v1.14.1) (2025-09-09)
+
+
+### Features
+
+* **page:** conditional cors logs ([046d6b8](https://github.com/Ilya758/react-design-patterns/commit/046d6b8d75c2fcd1f497b01e4e3c76915a06b8a8))
+
+
+### Bug Fixes
+
+* **routes:** csp route edit ([f7c7cb8](https://github.com/Ilya758/react-design-patterns/commit/f7c7cb8e88c1d8f40a2bda16f3f7e6c021c7705c))
+
 ## [1.14.0](https://github.com/Ilya758/react-design-patterns/compare/v1.13.0...v1.14.0) (2025-09-09)
 
 
