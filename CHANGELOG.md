@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.14.0](https://github.com/Ilya758/react-design-patterns/compare/v1.13.0...v1.14.0) (2025-09-09)
+
+
+### Features
+
+* **page:** new cors page ([34fac60](https://github.com/Ilya758/react-design-patterns/commit/34fac60d4d78c94690300fc09ae062fb2759cccc))
+
 ## [1.13.0](https://github.com/Ilya758/react-design-patterns/compare/v1.12.0...v1.13.0) (2025-09-01)
 
 
