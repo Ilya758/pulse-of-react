@@ -1,0 +1,2 @@
+export { CrossOriginResourceSharingPage } from './ui';
+

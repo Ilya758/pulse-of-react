@@ -74,6 +74,14 @@ const ContentSecurityPolicyPage = lazy(() =>
   })),
 );
 
+const CrossOriginResourceSharingPage = lazy(() =>
+  import('@/pages/cross-origin-resource-sharing').then(
+    ({ CrossOriginResourceSharingPage: Page }) => ({
+      default: Page,
+    }),
+  ),
+);
+
 export const ROUTES = [
   { path: '/', element: <HomePage /> },
   { path: 'hooks', element: <HooksPage /> },
@@ -91,6 +99,7 @@ export const ROUTES = [
   { path: '/access-control', element: <AccessControlPage /> },
   { path: '/auth', element: <AuthZvsAuthNPage /> },
   { path: '/content-security-policy', element: <ContentSecurityPolicyPage /> },
+  { path: '/cors', element: <CrossOriginResourceSharingPage /> },
   { path: '*', element: <NotFoundPage /> },
 ];
 

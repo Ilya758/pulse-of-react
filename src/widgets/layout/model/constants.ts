@@ -32,7 +32,11 @@ export const ROUTES = [
       },
       {
         name: 'Content Security Policy',
-        href: '/content-security-policy',
+        href: '/csp',
+      },
+      {
+        name: 'Cross-Origin Resource Sharing',
+        href: '/cors',
       },
     ],
   },
