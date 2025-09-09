@@ -24,6 +24,7 @@ import {
 } from '@tabler/icons-react';
 import { initialState, corsExampleReducer } from '../model';
 import { mockServer } from '../api';
+import { If } from '@/shared';
 
 export const Example = () => {
   const [{ serverConfig, clientRequest, logs, error }, dispatch] = useReducer(
@@ -180,7 +181,6 @@ export const Example = () => {
             }
             formatOnBlur
             autosize
-            minRows={4}
           />
           <Switch
             label="Include Credentials (e.g., cookies, Authorization header)"
@@ -198,27 +198,29 @@ export const Example = () => {
         </Stack>
       </SimpleGrid>
 
-      <Tabs defaultValue="logs" mt="xl">
-        <Tabs.List>
-          <Tabs.Tab value="logs" leftSection={<IconCode size={16} />}>
-            Logs
-          </Tabs.Tab>
-        </Tabs.List>
-        <Tabs.Panel value="logs" pt="md">
-          {error && (
-            <Alert
-              icon={<IconAlertCircle size={16} />}
-              title="CORS Error"
-              color="red"
-              variant="light"
-              mb="md"
-            >
-              {error}
-            </Alert>
-          )}
-          <Code block>{logs.join('\n')}</Code>
-        </Tabs.Panel>
-      </Tabs>
+      <If condition={!!logs.length}>
+        <Tabs defaultValue="logs" mt="xl">
+          <Tabs.List>
+            <Tabs.Tab value="logs" leftSection={<IconCode size={16} />}>
+              Logs
+            </Tabs.Tab>
+          </Tabs.List>
+          <Tabs.Panel value="logs" pt="md">
+            {error && (
+              <Alert
+                icon={<IconAlertCircle size={16} />}
+                title="CORS Error"
+                color="red"
+                variant="light"
+                mb="md"
+              >
+                {error}
+              </Alert>
+            )}
+            <Code block>{logs.join('\n')}</Code>
+          </Tabs.Panel>
+        </Tabs>
+      </If>
     </Paper>
   );
 };
