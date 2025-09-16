@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.15.0](https://github.com/Ilya758/react-design-patterns/compare/v1.14.1...v1.15.0) (2025-09-16)
+
+
+### Features
+
+* **page:** new csrf page ([6bd373c](https://github.com/Ilya758/react-design-patterns/commit/6bd373cf6df672af3f3a96866fb2bf222169b3d5))
+
 ### [1.14.1](https://github.com/Ilya758/react-design-patterns/compare/v1.14.0...v1.14.1) (2025-09-09)
 
 
