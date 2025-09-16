@@ -38,6 +38,10 @@ export const ROUTES = [
         name: 'Cross-Origin Resource Sharing',
         href: '/cors',
       },
+      {
+        name: 'Cross-Site Request Forgery',
+        href: '/csrf',
+      },
     ],
   },
   {

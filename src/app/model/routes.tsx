@@ -82,6 +82,12 @@ const CrossOriginResourceSharingPage = lazy(() =>
   ),
 );
 
+const CrossSiteRequestForgeryPage = lazy(() =>
+  import('@/pages/cross-site-request-forgery').then(({ CrossSiteRequestForgery: Page }) => ({
+    default: Page,
+  })),
+);
+
 export const ROUTES = [
   { path: '/', element: <HomePage /> },
   { path: 'hooks', element: <HooksPage /> },
@@ -100,6 +106,7 @@ export const ROUTES = [
   { path: '/auth', element: <AuthZvsAuthNPage /> },
   { path: '/csp', element: <ContentSecurityPolicyPage /> },
   { path: '/cors', element: <CrossOriginResourceSharingPage /> },
+  { path: '/csrf', element: <CrossSiteRequestForgeryPage /> },
   { path: '*', element: <NotFoundPage /> },
 ];
 
