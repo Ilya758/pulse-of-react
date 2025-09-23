@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.16.0](https://github.com/Ilya758/react-design-patterns/compare/v1.15.0...v1.16.0) (2025-09-23)
+
+
+### Features
+
+* **page:** new xss page ([d327785](https://github.com/Ilya758/react-design-patterns/commit/d327785e293bd834f563a5566c2e05f9ed79eff0))
+
 ## [1.15.0](https://github.com/Ilya758/react-design-patterns/compare/v1.14.1...v1.15.0) (2025-09-16)
 
 
