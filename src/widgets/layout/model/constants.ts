@@ -42,6 +42,10 @@ export const ROUTES = [
         name: 'Cross-Site Request Forgery',
         href: '/csrf',
       },
+      {
+        name: 'Cross-Site Scripting',
+        href: '/xss',
+      },
     ],
   },
   {
