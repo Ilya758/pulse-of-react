@@ -1,0 +1,2 @@
+export { PrototypePollutionPage } from './ui';
+

@@ -94,6 +94,12 @@ const CrossSiteScriptingPage = lazy(() =>
   })),
 );
 
+const PrototypePollutionPage = lazy(() =>
+  import('@/pages/prototype-pollution').then(({ PrototypePollutionPage: Page }) => ({
+    default: Page,
+  })),
+);
+
 export const ROUTES = [
   { path: '/', element: <HomePage /> },
   { path: 'hooks', element: <HooksPage /> },
@@ -114,6 +120,7 @@ export const ROUTES = [
   { path: '/cors', element: <CrossOriginResourceSharingPage /> },
   { path: '/csrf', element: <CrossSiteRequestForgeryPage /> },
   { path: '/xss', element: <CrossSiteScriptingPage /> },
+  { path: '/prototype-pollution', element: <PrototypePollutionPage /> },
   { path: '*', element: <NotFoundPage /> },
 ];
 

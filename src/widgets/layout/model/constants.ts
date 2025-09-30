@@ -46,6 +46,10 @@ export const ROUTES = [
         name: 'Cross-Site Scripting',
         href: '/xss',
       },
+      {
+        name: 'Prototype Pollution',
+        href: '/prototype-pollution',
+      },
     ],
   },
   {
