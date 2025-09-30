@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.17.0](https://github.com/Ilya758/react-design-patterns/compare/v1.16.0...v1.17.0) (2025-09-30)
+
+
+### Features
+
+* **page:** new prototype pollution page ([7c8e6cb](https://github.com/Ilya758/react-design-patterns/commit/7c8e6cbfc35647a3965c21aec2c510a6234945e3))
+
 ## [1.16.0](https://github.com/Ilya758/react-design-patterns/compare/v1.15.0...v1.16.0) (2025-09-23)
 
 
