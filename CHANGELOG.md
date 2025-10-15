@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.18.1](https://github.com/Ilya758/react-design-patterns/compare/v1.18.0...v1.18.1) (2025-10-15)
+
+
+### Bug Fixes
+
+* **TOC:** artificial delay to sync TOC with DOM ([4f4ec34](https://github.com/Ilya758/react-design-patterns/commit/4f4ec345e3bf56c6bb6982668e0bcc17a7dcdb32))
+
 ## [1.18.0](https://github.com/Ilya758/react-design-patterns/compare/v1.17.0...v1.18.0) (2025-10-15)
 
 
