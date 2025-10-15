@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.18.0](https://github.com/Ilya758/react-design-patterns/compare/v1.17.0...v1.18.0) (2025-10-15)
+
+
+### Features
+
+* **page:** new fcp page ([be5659e](https://github.com/Ilya758/react-design-patterns/commit/be5659ee4947c72d8549ceb0919d7e27db5b7495))
+
 ## [1.17.0](https://github.com/Ilya758/react-design-patterns/compare/v1.16.0...v1.17.0) (2025-09-30)
 
 
