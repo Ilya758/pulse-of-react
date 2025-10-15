@@ -10,21 +10,28 @@ type Props = {
 export const Layout = ({ children }: Props) => {
   const [isContentLoaded, setIsContentLoaded] = useState(false);
   const { pathname } = useLocation();
+  const [isMounted, setIsMounted] = useState(true);
   const contextValue = useMemo(
     () => ({
       signalContentLoaded: () => {
-        setIsContentLoaded(true);
+        if (isMounted)
+          setTimeout(() => {
+            setIsMounted(false);
+          }, 500);
+        else {
+          setIsContentLoaded(true);
+        }
       },
       isContentLoaded,
     }),
-    [isContentLoaded],
+    [isContentLoaded, isMounted],
   );
 
   useEffect(() => {
     return () => {
       setIsContentLoaded(false);
     };
-  }, [pathname]);
+  }, [isMounted, pathname]);
 
   return (
     <TocContentProvider value={contextValue}>
