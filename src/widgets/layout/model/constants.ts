@@ -57,8 +57,8 @@ export const ROUTES = [
     icon: IconSpeedboat,
     items: [
       {
-        name: 'Coming Soon',
-        href: '/coming-soon',
+        name: 'First Contentful Paint',
+        href: '/first-contentful-paint',
       },
     ],
   },

@@ -1,0 +1,2 @@
+export { FirstContentfulPaintPage } from './ui';
+

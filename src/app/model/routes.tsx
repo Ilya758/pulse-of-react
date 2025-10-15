@@ -100,6 +100,12 @@ const PrototypePollutionPage = lazy(() =>
   })),
 );
 
+const FirstContentfulPaintPage = lazy(() =>
+  import('@/pages/first-contentful-paint').then(({ FirstContentfulPaintPage }) => ({
+    default: FirstContentfulPaintPage,
+  })),
+);
+
 export const ROUTES = [
   { path: '/', element: <HomePage /> },
   { path: 'hooks', element: <HooksPage /> },
@@ -121,6 +127,7 @@ export const ROUTES = [
   { path: '/csrf', element: <CrossSiteRequestForgeryPage /> },
   { path: '/xss', element: <CrossSiteScriptingPage /> },
   { path: '/prototype-pollution', element: <PrototypePollutionPage /> },
+  { path: '/first-contentful-paint', element: <FirstContentfulPaintPage /> },
   { path: '*', element: <NotFoundPage /> },
 ];
 
