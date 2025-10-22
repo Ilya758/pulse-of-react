@@ -106,6 +106,8 @@ const FirstContentfulPaintPage = lazy(() =>
   })),
 );
 
+const LcpPage = lazy(() => import('@/pages/lcp').then(({ LcpPage }) => ({ default: LcpPage })));
+
 export const ROUTES = [
   { path: '/', element: <HomePage /> },
   { path: 'hooks', element: <HooksPage /> },
@@ -128,6 +130,6 @@ export const ROUTES = [
   { path: '/xss', element: <CrossSiteScriptingPage /> },
   { path: '/prototype-pollution', element: <PrototypePollutionPage /> },
   { path: '/first-contentful-paint', element: <FirstContentfulPaintPage /> },
+  { path: '/lcp', element: <LcpPage /> },
   { path: '*', element: <NotFoundPage /> },
 ];
-

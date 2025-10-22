@@ -1,0 +1,2 @@
+export { LcpPage } from './ui';
+

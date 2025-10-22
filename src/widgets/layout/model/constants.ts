@@ -60,6 +60,10 @@ export const ROUTES = [
         name: 'First Contentful Paint',
         href: '/first-contentful-paint',
       },
+      {
+        name: 'Largest Contentful Paint',
+        href: '/lcp',
+      },
     ],
   },
 ];
