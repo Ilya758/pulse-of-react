@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.19.0](https://github.com/Ilya758/react-design-patterns/compare/v1.18.1...v1.19.0) (2025-10-22)
+
+
+### Features
+
+* **page:** new lcp page ([e6f758e](https://github.com/Ilya758/react-design-patterns/commit/e6f758ee4b8621803bd0fcb999ccaf0a785afd6e))
+* **persona:** new persona ([0a70bcc](https://github.com/Ilya758/react-design-patterns/commit/0a70bcc0d927407f18043441e52f97ca2f7fcd15))
+
 ### [1.18.1](https://github.com/Ilya758/react-design-patterns/compare/v1.18.0...v1.18.1) (2025-10-15)
 
 
