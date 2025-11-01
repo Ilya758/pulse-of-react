@@ -7,4 +7,3 @@ export interface AccordionContextValue {
 }
 
 export const AccordionContext = createContext<AccordionContextValue | undefined>(undefined);
-

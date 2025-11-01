@@ -1,33 +1,32 @@
-import { FC, useEffect } from 'react';
-import { Title, Text, List, Space, Alert, Badge, Group } from '@mantine/core';
-import { IconInfoCircle, IconFileTypeTsx, IconAlertTriangle } from '@tabler/icons-react';
 import { CodeHighlightTabs } from '@mantine/code-highlight';
+import { Alert, Badge, Group, List, Space, Text, Title } from '@mantine/core';
+import { IconAlertTriangle, IconFileTypeTsx, IconInfoCircle } from '@tabler/icons-react';
+import { FC, useEffect } from 'react';
 import { SectionBlock } from '@/shared';
 import { useTocContent } from '@/widgets/layout';
-
-import { LcpOptimizationExample } from './example';
 import {
+  LCP_CDN_OPTIMIZATION_CODE,
+  LCP_IMAGE_OPTIMIZATION_CODE,
   LCP_METRICS_CODE,
+  LCP_MONITORING_CODE,
   LCP_OPTIMIZATION_CODE,
   LCP_REACT_OPTIMIZATION_CODE,
-  LCP_MONITORING_CODE,
-  LCP_IMAGE_OPTIMIZATION_CODE,
-  LCP_CDN_OPTIMIZATION_CODE,
 } from '../model';
+import { LcpOptimizationExample } from './example';
 
 export const LcpPage: FC = () => {
   const { signalContentLoaded } = useTocContent();
 
-  useEffect(signalContentLoaded, [signalContentLoaded]);
+  useEffect(signalContentLoaded, []);
 
   return (
     <>
       <Space h={4} />
-      <Title order={1} mb="lg">
+      <Title mb="lg" order={1}>
         Largest Contentful Paint (LCP)
       </Title>
 
-      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core Concept">
         <Text>
           Largest Contentful Paint (LCP) is one of the three Core Web Vitals metrics, and it
           represents how quickly the main content of a web page becomes visible to users. LCP
@@ -42,14 +41,14 @@ export const LcpPage: FC = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="What Counts as LCP" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="What Counts as LCP">
         <Text mb="md">
           LCP considers several types of elements when determining the largest contentful paint:
         </Text>
         <List spacing="xs">
           <List.Item>
             <Group gap="xs">
-              <Text span fw={700}>
+              <Text fw={700} span>
                 Images:
               </Text>{' '}
               Including img elements, SVG images, and CSS background images
@@ -57,7 +56,7 @@ export const LcpPage: FC = () => {
           </List.Item>
           <List.Item>
             <Group gap="xs">
-              <Text span fw={700}>
+              <Text fw={700} span>
                 Text Elements:
               </Text>{' '}
               Block-level elements containing text nodes (paragraphs, headings, etc.)
@@ -65,7 +64,7 @@ export const LcpPage: FC = () => {
           </List.Item>
           <List.Item>
             <Group gap="xs">
-              <Text span fw={700}>
+              <Text fw={700} span>
                 Video Elements:
               </Text>{' '}
               The poster image of a video element
@@ -73,7 +72,7 @@ export const LcpPage: FC = () => {
           </List.Item>
           <List.Item>
             <Group gap="xs">
-              <Text span fw={700}>
+              <Text fw={700} span>
                 Canvas Elements:
               </Text>{' '}
               Elements that have been painted with bitmap content
@@ -81,8 +80,8 @@ export const LcpPage: FC = () => {
           </List.Item>
         </List>
 
-        <Alert icon={<IconAlertTriangle size="1rem" />} color="yellow" mt="md">
-          <Text span fw={700}>
+        <Alert color="yellow" icon={<IconAlertTriangle size="1rem" />} mt="md">
+          <Text fw={700} span>
             Note:
           </Text>{' '}
           Elements that are removed from the DOM (like animated banners) are not considered for LCP.
@@ -90,7 +89,7 @@ export const LcpPage: FC = () => {
         </Alert>
       </SectionBlock>
 
-      <SectionBlock title="LCP Thresholds" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="LCP Thresholds">
         <Text mb="md">
           Google recommends the following LCP thresholds for optimal user experience:
         </Text>
@@ -114,11 +113,11 @@ export const LcpPage: FC = () => {
         </Group>
       </SectionBlock>
 
-      <SectionBlock title="How LCP is Measured" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="How LCP is Measured">
         <Text mb="md">LCP measurement involves four key parts of the loading process:</Text>
         <List spacing="sm">
           <List.Item>
-            <Title order={5} mb="xs">
+            <Title mb="xs" order={5}>
               Time to First Byte (TTFB)
             </Title>
             <Text>
@@ -127,7 +126,7 @@ export const LcpPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} mb="xs">
+            <Title mb="xs" order={5}>
               Resource Load Delay
             </Title>
             <Text>
@@ -136,13 +135,13 @@ export const LcpPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} mb="xs">
+            <Title mb="xs" order={5}>
               Resource Load Time
             </Title>
             <Text>Time it takes to load the LCP resource itself.</Text>
           </List.Item>
           <List.Item>
-            <Title order={5} mb="xs">
+            <Title mb="xs" order={5}>
               Element Render Delay
             </Title>
             <Text>
@@ -152,135 +151,135 @@ export const LcpPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Measuring LCP in Practice" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Measuring LCP in Practice">
         <Text mb="md">You can measure LCP using both browser APIs and web vitals libraries:</Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mb="lg"
           code={[
             {
-              fileName: 'lcp-metrics.js',
-              language: 'javascript',
               code: LCP_METRICS_CODE,
+              fileName: 'lcp-metrics.js',
               icon: <IconFileTypeTsx size={14} />,
+              language: 'javascript',
             },
           ]}
+          defaultExpanded={false}
+          mb="lg"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
 
-      <SectionBlock title="Core LCP Optimization Strategies" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core LCP Optimization Strategies">
         <Text mb="md">
           Optimizing LCP involves addressing the four main parts of the LCP timeline. Here are the
           most effective strategies:
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mb="lg"
           code={[
             {
-              fileName: 'lcp-optimization.html',
-              language: 'html',
               code: LCP_OPTIMIZATION_CODE,
+              fileName: 'lcp-optimization.html',
               icon: <IconFileTypeTsx size={14} />,
+              language: 'html',
             },
           ]}
+          defaultExpanded={false}
+          mb="lg"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
 
-      <SectionBlock title="React-Specific LCP Optimization" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="React-Specific LCP Optimization">
         <Text mb="md">
           In React applications, you have additional tools and patterns to optimize LCP:
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mb="lg"
           code={[
             {
-              fileName: 'react-lcp-optimization.tsx',
-              language: 'tsx',
               code: LCP_REACT_OPTIMIZATION_CODE,
+              fileName: 'react-lcp-optimization.tsx',
               icon: <IconFileTypeTsx size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          mb="lg"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
 
-      <SectionBlock title="Image Optimization for LCP" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Image Optimization for LCP">
         <Text mb="md">
           Images are often the LCP element. Here's how to optimize them effectively:
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mb="lg"
           code={[
             {
-              fileName: 'image-optimization.tsx',
-              language: 'tsx',
               code: LCP_IMAGE_OPTIMIZATION_CODE,
+              fileName: 'image-optimization.tsx',
               icon: <IconFileTypeTsx size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          mb="lg"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
 
-      <SectionBlock title="CDN and Delivery Optimization" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="CDN and Delivery Optimization">
         <Text mb="md">
           Content delivery networks and caching strategies play a crucial role in LCP performance:
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mb="lg"
           code={[
             {
-              fileName: 'cdn-optimization.js',
-              language: 'javascript',
               code: LCP_CDN_OPTIMIZATION_CODE,
+              fileName: 'cdn-optimization.js',
               icon: <IconFileTypeTsx size={14} />,
+              language: 'javascript',
             },
           ]}
+          defaultExpanded={false}
+          mb="lg"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
 
-      <SectionBlock title="Real User Monitoring (RUM)" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Real User Monitoring (RUM)">
         <Text mb="md">
           Monitoring LCP in production helps you understand real-world performance:
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mb="lg"
           code={[
             {
-              fileName: 'lcp-monitoring.js',
-              language: 'javascript',
               code: LCP_MONITORING_CODE,
+              fileName: 'lcp-monitoring.js',
               icon: <IconFileTypeTsx size={14} />,
+              language: 'javascript',
             },
           ]}
+          defaultExpanded={false}
+          mb="lg"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
 
-      <SectionBlock title="Key Best Practices" initialSpaceAfterDivider="xs">
-        <List spacing="sm" icon={<IconInfoCircle size={16} />}>
+      <SectionBlock initialSpaceAfterDivider="xs" title="Key Best Practices">
+        <List icon={<IconInfoCircle size={16} />} spacing="sm">
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Preload Critical Resources
             </Title>
             <Text>Use link rel="preload" for LCP candidates like hero images and fonts.</Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Optimize Server Response
             </Title>
             <Text>
@@ -288,13 +287,13 @@ export const LcpPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Compress and Transform Images
             </Title>
             <Text>Use modern formats (WebP, AVIF), proper sizing, and compression techniques.</Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Eliminate Render-Blocking Resources
             </Title>
             <Text>
@@ -302,7 +301,7 @@ export const LcpPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Use Resource Hints
             </Title>
             <Text>Implement DNS prefetch, preconnect, and prefetch strategically.</Text>
@@ -310,34 +309,34 @@ export const LcpPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Common Pitfalls to Avoid" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Common Pitfalls to Avoid">
         <List spacing="sm">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Lazy Loading Above-the-Fold Content:
             </Text>{' '}
             Never lazy load your LCP candidate element.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Client-Side Only Rendering:
             </Text>{' '}
             Server-side rendering significantly improves LCP for content-heavy pages.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Large Unoptimized Images:
             </Text>{' '}
             Always compress and resize images appropriately for the viewport.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Slow Font Loading:
             </Text>{' '}
             Use font-display: swap to prevent invisible text while fonts load.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Excessive Third-Party Scripts:
             </Text>{' '}
             Minimize and optimize third-party dependencies that can block rendering.
@@ -345,7 +344,7 @@ export const LcpPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Interactive LCP Optimization Example" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Interactive LCP Optimization Example">
         <Text mb="md">
           Try the interactive simulator below to understand how different optimization strategies
           affect LCP performance:
@@ -355,4 +354,3 @@ export const LcpPage: FC = () => {
     </>
   );
 };
-

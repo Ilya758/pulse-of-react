@@ -1,28 +1,32 @@
-import { useState, useEffect } from 'react';
 import {
-  Text,
-  Group,
+  Alert,
   Badge,
   Button,
-  Stack,
-  Select,
-  TextInput,
-  Alert,
-  Paper,
-  Title,
   Divider,
+  Group,
+  Paper,
+  Select,
   SimpleGrid,
+  Stack,
+  Text,
+  TextInput,
+  Title,
 } from '@mantine/core';
 import { IconShield, IconShieldCheck, IconShieldX, IconUser } from '@tabler/icons-react';
-import { User, AccessRequest, AccessDecision, Permission, AccessContext } from '../model';
-import { hashUserId, HybridAccessControlService, SimpleFeatureToggleService } from '../lib';
+import { useEffect, useState } from 'react';
+import { HybridAccessControlService, hashUserId, SimpleFeatureToggleService } from '../lib';
 import {
-  USER_ROLES,
-  RESOURCE_SELECT_OPTIONS,
   ACTION_SELECT_OPTIONS,
-  TIME_CONTEXT_SELECT_OPTIONS,
+  AccessContext,
+  AccessDecision,
+  AccessRequest,
   DEPARTMENT_SELECT_OPTIONS,
   generateUserSelectOptions,
+  Permission,
+  RESOURCE_SELECT_OPTIONS,
+  TIME_CONTEXT_SELECT_OPTIONS,
+  USER_ROLES,
+  User,
 } from '../model';
 
 export const Example = () => {
@@ -32,10 +36,10 @@ export const Example = () => {
   const [resource, setResource] = useState('documents');
   const [action, setAction] = useState('read');
   const [context, setContext] = useState<AccessContext>({
-    time: '14:30',
-    ip_address: '192.168.1.100',
     department: 'engineering',
+    ip_address: '192.168.1.100',
     resourceDepartment: 'engineering',
+    time: '14:30',
   });
   const [accessDecision, setAccessDecision] = useState<AccessDecision | null>(null);
   const [userPermissions, setUserPermissions] = useState<Permission[]>([]);
@@ -51,17 +55,22 @@ export const Example = () => {
     accessControl.assignRoleToUser(sampleUser.id, 'user');
     setUserPermissions(accessControl.getUserPermissions(sampleUser.id));
     setEnabledFeatures(featureToggles.getEnabledFeatures(sampleUser));
-  }, []);
+  }, [
+    accessControl.addUser,
+    accessControl.assignRoleToUser,
+    accessControl.getUserPermissions,
+    featureToggles.getEnabledFeatures,
+  ]);
 
   const checkAccess = () => {
     if (!currentUser) return;
 
     const request: AccessRequest = {
-      user: currentUser,
-      resource,
       action,
       context,
+      resource,
       timestamp: new Date(),
+      user: currentUser,
     };
 
     const decision = accessControl.checkAccess(request);
@@ -84,70 +93,71 @@ export const Example = () => {
 
   return (
     <Stack gap="xl">
-      <Paper withBorder p="lg">
+      <Paper p="lg" withBorder>
         <Group mb="md">
           <IconUser size={20} />
           <Title order={4}>Access Control Demo</Title>
           <Badge color="blue">Hybrid RBAC + ABAC</Badge>
+          "kek"
         </Group>
 
         <Stack gap="lg">
           <SimpleGrid cols={2} spacing="lg">
             <Select
-              label="User"
-              value={currentUser?.id || ''}
-              onChange={(value) => value && changeUserId(value)}
               data={generateUserSelectOptions(hashUserId)}
+              label="User"
+              onChange={(value) => value && changeUserId(value)}
+              value={currentUser?.id || ''}
             />
             <Select
-              label="Resource"
-              value={resource}
-              onChange={(value) => value && setResource(value)}
               data={RESOURCE_SELECT_OPTIONS}
+              label="Resource"
+              onChange={(value) => value && setResource(value)}
+              value={resource}
             />
           </SimpleGrid>
 
           <SimpleGrid cols={2} spacing="lg">
             <Select
-              label="Action"
-              value={action}
-              onChange={(value) => value && setAction(value)}
               data={ACTION_SELECT_OPTIONS}
+              label="Action"
+              onChange={(value) => value && setAction(value)}
+              value={action}
             />
             <Select
-              label="Time Context"
-              value={context.time}
-              onChange={(value) => value && setContext({ ...context, time: value })}
               data={TIME_CONTEXT_SELECT_OPTIONS}
+              label="Time Context"
+              onChange={(value) => value && setContext({ ...context, time: value })}
+              value={context.time}
             />
           </SimpleGrid>
 
           <SimpleGrid cols={2} spacing="lg">
             <TextInput
+              description="Try 8.8.8.8 (denied) vs 192.168.1.100 (allowed)"
               label="IP Address"
-              value={context.ip_address}
               onChange={(e) => setContext({ ...context, ip_address: e.target.value })}
               placeholder="192.168.1.100"
-              description="Try 8.8.8.8 (denied) vs 192.168.1.100 (allowed)"
+              value={context.ip_address}
             />
             <Select
-              label="User Department"
-              value={context.department}
-              onChange={(value) => value && setContext({ ...context, department: value })}
               data={DEPARTMENT_SELECT_OPTIONS}
               description="User's department for access control"
+              label="User Department"
+              onChange={(value) => value && setContext({ ...context, department: value })}
+              value={context.department}
             />
           </SimpleGrid>
 
-          <Group justify="flex-start" align="flex-end">
+          <Group align="flex-end" justify="flex-start">
             <Select
-              label="Resource Department"
-              value={context.resourceDepartment}
-              onChange={(value) => value && setContext({ ...context, resourceDepartment: value })}
               data={DEPARTMENT_SELECT_OPTIONS}
               description="Department of the resource being accessed"
+              label="Resource Department"
+              onChange={(value) => value && setContext({ ...context, resourceDepartment: value })}
+              value={context.resourceDepartment}
             />
-            <Button onClick={checkAccess} leftSection={<IconShield size={16} />}>
+            <Button leftSection={<IconShield size={16} />} onClick={checkAccess}>
               Check Access
             </Button>
           </Group>
@@ -156,7 +166,7 @@ export const Example = () => {
 
       <SimpleGrid cols={2} spacing="lg">
         {currentUser && (
-          <Paper withBorder p="lg">
+          <Paper p="lg" withBorder>
             <Group mb="md">
               <IconUser size={20} />
               <Title order={4}>User Profile & Permissions</Title>
@@ -164,56 +174,56 @@ export const Example = () => {
 
             <Stack gap="md">
               <div>
-                <Text size="sm" fw={500} mb="xs">
+                <Text fw={500} mb="xs" size="sm">
                   User Details
                 </Text>
                 <Group gap="xs" mb="xs">
-                  <Badge variant="outline" size="sm">
+                  <Badge size="sm" variant="outline">
                     {currentUser.roles?.join(', ')}
                   </Badge>
-                  <Badge variant="outline" size="sm">
+                  <Badge size="sm" variant="outline">
                     ID: {currentUser.id}
                   </Badge>
                 </Group>
-                <Text size="xs" c="dimmed">
+                <Text c="dimmed" size="xs">
                   Hash: {hashUserId(currentUser.id)} (Hash % 100 ={' '}
                   {hashUserId(currentUser.id) % 100})
                 </Text>
               </div>
 
               <div>
-                <Text size="sm" fw={500} mb="xs">
+                <Text fw={500} mb="xs" size="sm">
                   Permissions
                 </Text>
                 {userPermissions.length > 0 ? (
                   <Group gap="xs">
                     {userPermissions.map((permission) => (
-                      <Badge key={permission.id} variant="light" size="sm">
+                      <Badge key={permission.id} size="sm" variant="light">
                         {permission.resource}:{permission.action}
                       </Badge>
                     ))}
                   </Group>
                 ) : (
-                  <Text size="sm" c="dimmed">
+                  <Text c="dimmed" size="sm">
                     No permissions assigned
                   </Text>
                 )}
               </div>
 
               <div>
-                <Text size="sm" fw={500} mb="xs">
+                <Text fw={500} mb="xs" size="sm">
                   Enabled Features
                 </Text>
                 {enabledFeatures.length ? (
                   <Group gap="xs">
                     {enabledFeatures.map((featureId) => (
-                      <Badge key={featureId} color="green" variant="light" size="sm">
+                      <Badge color="green" key={featureId} size="sm" variant="light">
                         {featureId}
                       </Badge>
                     ))}
                   </Group>
                 ) : (
-                  <Text size="sm" c="dimmed">
+                  <Text c="dimmed" size="sm">
                     No features enabled for this user
                   </Text>
                 )}
@@ -223,30 +233,30 @@ export const Example = () => {
         )}
 
         {accessDecision && (
-          <Paper withBorder p="lg">
+          <Paper p="lg" withBorder>
             <Group mb="md">
               {accessDecision.allowed ? (
-                <IconShieldCheck size={24} color="green" />
+                <IconShieldCheck color="green" size={24} />
               ) : (
-                <IconShieldX size={24} color="red" />
+                <IconShieldX color="red" size={24} />
               )}
               <Title order={4}>
                 Access Decision: {accessDecision.allowed ? 'GRANTED' : 'DENIED'}
               </Title>
             </Group>
 
-            <Alert color={accessDecision.allowed ? 'green' : 'red'} variant="light" mb="md">
+            <Alert color={accessDecision.allowed ? 'green' : 'red'} mb="md" variant="light">
               {accessDecision.reason}
             </Alert>
 
             {accessDecision.policies.length > 0 && (
               <Stack gap="xs">
-                <Text size="sm" fw={500}>
+                <Text fw={500} size="sm">
                   Applied Policies:
                 </Text>
                 <Group gap="xs">
                   {accessDecision.policies.map((policy) => (
-                    <Badge key={policy} variant="outline" size="sm">
+                    <Badge key={policy} size="sm" variant="outline">
                       {policy}
                     </Badge>
                   ))}
@@ -256,7 +266,7 @@ export const Example = () => {
 
             <Divider my="md" />
 
-            <Text size="xs" c="dimmed">
+            <Text c="dimmed" size="xs">
               Decision made at: {accessDecision?.timestamp?.toLocaleTimeString()}
             </Text>
           </Paper>
@@ -265,4 +275,3 @@ export const Example = () => {
     </Stack>
   );
 };
-

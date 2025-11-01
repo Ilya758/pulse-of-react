@@ -107,4 +107,3 @@ createWidget();
 // The 'containerClass' is inherited from the polluted prototype,
 // leading to an XSS payload being injected into the DOM.
 `;
-

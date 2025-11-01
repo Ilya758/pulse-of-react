@@ -1,4 +1,4 @@
-import { ReactElement, FC, Children, isValidElement, cloneElement } from 'react';
+import { Children, cloneElement, FC, isValidElement, ReactElement } from 'react';
 
 type Props = {
   id: string;
@@ -14,4 +14,3 @@ export const AccordionItem: FC<Props> = ({ id, children }) => (
     )}
   </div>
 );
-

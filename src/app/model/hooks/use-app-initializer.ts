@@ -16,9 +16,10 @@ export const useAppInitializer = () => {
       setAppReady(true);
     };
 
-    initializeApp();
+    initializeApp().catch(() => {
+      throw new Error('Failed to initialize app');
+    });
   }, []);
 
   return { appReady };
 };
-

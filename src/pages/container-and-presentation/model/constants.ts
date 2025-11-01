@@ -180,4 +180,3 @@ export const UserProfileForm = ({ user, isSaving, onInputChange, onSave }: Props
     </Paper>
   );
 };`;
-

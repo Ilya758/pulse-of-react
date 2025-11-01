@@ -1,19 +1,17 @@
 import {
-  Container,
-  Title,
-  Text,
-  Paper,
-  Avatar,
-  Group,
   Anchor,
+  Avatar,
+  Container,
+  Group,
+  Paper,
   Skeleton,
+  Text,
+  Title,
   useMantineTheme,
 } from '@mantine/core';
 import { IconBrandGithub, IconBrandLinkedin } from '@tabler/icons-react';
-import { useImageLoader } from '@/shared';
-
+import { useImageLoader, useThemeColorContext } from '@/shared';
 import authorPic from '/assets/author.jpg';
-import { useThemeColorContext } from '@/shared';
 
 export const AboutPage = () => {
   const { isLoading: imageLoading, hasError: imageError } = useImageLoader(authorPic);
@@ -22,16 +20,16 @@ export const AboutPage = () => {
   const color = colors[primaryColor]?.[6];
 
   return (
-    <Container size="md" py="lg">
-      <Paper shadow="xs" p="xl" radius="md" withBorder>
+    <Container py="lg" size="md">
+      <Paper p="xl" radius="md" shadow="xs" withBorder>
         <Group justify="center" mb="xl">
-          {imageLoading && <Skeleton height={150} width={150} radius="50%" />}
-          {!imageLoading && !imageError && (
-            <Avatar src={authorPic} alt="Author's Name" size={150} radius="50%" />
+          {imageLoading && <Skeleton height={150} radius="50%" width={150} />}
+          {!(imageLoading || imageError) && (
+            <Avatar alt="Author's Name" radius="50%" size={150} src={authorPic} />
           )}
-          {!imageLoading && imageError && <Skeleton height={150} width={150} radius="50%" />}
+          {!imageLoading && imageError && <Skeleton height={150} radius="50%" width={150} />}
         </Group>
-        <Title order={1} ta="center" mb="sm">
+        <Title mb="sm" order={1} ta="center">
           About the Author
         </Title>
 
@@ -50,7 +48,7 @@ export const AboutPage = () => {
           test of time.
         </Text>
 
-        <Title order={3} mb="md">
+        <Title mb="md" order={3}>
           Connect with Me
         </Title>
         <Group gap="lg">
@@ -76,4 +74,3 @@ export const AboutPage = () => {
     </Container>
   );
 };
-

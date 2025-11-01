@@ -1,5 +1,5 @@
+import { Code, List, Space, Table, Text, Title } from '@mantine/core';
 import { FC, useEffect } from 'react';
-import { Title, Text, List, Space, Code, Table } from '@mantine/core';
 
 import { SectionBlock } from '@/shared';
 import { useTocContent } from '@/widgets/layout';
@@ -9,16 +9,16 @@ import { Example } from './example';
 export const CrossSiteRequestForgery: FC = () => {
   const { signalContentLoaded } = useTocContent();
 
-  useEffect(signalContentLoaded, [signalContentLoaded]);
+  useEffect(signalContentLoaded, []);
 
   return (
     <>
       <Space h={4} />
-      <Title order={1} mb="lg">
+      <Title mb="lg" order={1}>
         Cross-Site Request Forgery (CSRF)
       </Title>
 
-      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core Concept">
         <Text>
           Cross-Site Request Forgery (CSRF or XSRF) is an attack that tricks a user into performing
           unwanted actions on a web application in which they are currently authenticated. If the
@@ -35,11 +35,11 @@ export const CrossSiteRequestForgery: FC = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="How CSRF Attacks Work" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="How CSRF Attacks Work">
         <Text>For a CSRF attack to be possible, three conditions must be met:</Text>
-        <List spacing="xs" mt="md" type="ordered">
+        <List mt="md" spacing="xs" type="ordered">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               A Relevant Action:
             </Text>{' '}
             There is an action within the application that the attacker wants to induce. This could
@@ -47,14 +47,14 @@ export const CrossSiteRequestForgery: FC = () => {
             user-specific data (like changing the user's own password).
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Cookie-Based Session Handling:
             </Text>{' '}
             The application relies solely on session cookies to identify the user who has made the
             request. There is no other mechanism in place for validating user requests.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               No Unpredictable Request Parameters:
             </Text>{' '}
             The requests that perform the action do not contain any parameters whose values the
@@ -71,13 +71,13 @@ export const CrossSiteRequestForgery: FC = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="Prevention Mechanisms" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Prevention Mechanisms">
         <Text>
           Several mechanisms can be used to prevent CSRF attacks. The most common and effective ones
           are:
         </Text>
 
-        <Title order={4} mt="lg" mb="sm">
+        <Title mb="sm" mt="lg" order={4}>
           1. Anti-CSRF Tokens (Synchronizer Token Pattern)
         </Title>
         <Text>
@@ -87,7 +87,7 @@ export const CrossSiteRequestForgery: FC = () => {
           token from the request matches the one stored in the user's session.
         </Text>
 
-        <Title order={4} mt="lg" mb="sm">
+        <Title mb="sm" mt="lg" order={4}>
           2. SameSite Cookie Attribute
         </Title>
         <Text>
@@ -134,7 +134,7 @@ export const CrossSiteRequestForgery: FC = () => {
           </Table.Tbody>
         </Table>
 
-        <Title order={4} mt="lg" mb="sm">
+        <Title mb="sm" mt="lg" order={4}>
           3. Double Submit Cookie Pattern
         </Title>
         <Text>
@@ -147,7 +147,7 @@ export const CrossSiteRequestForgery: FC = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="Example: Interactive CSRF Simulator" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Example: Interactive CSRF Simulator">
         <Text mb="md">
           This interactive example demonstrates a CSRF attack. You can see how a malicious website
           can trick a user into performing an unintended action on a trusted website. You'll also
@@ -160,4 +160,3 @@ export const CrossSiteRequestForgery: FC = () => {
     </>
   );
 };
-

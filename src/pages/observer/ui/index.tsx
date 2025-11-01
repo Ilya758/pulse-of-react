@@ -1,32 +1,32 @@
-import { FC, useEffect } from 'react';
-import { Title, Text, List, Space } from '@mantine/core';
+import { CodeHighlightTabs } from '@mantine/code-highlight';
+import { List, Space, Text, Title } from '@mantine/core';
 import { IconFileTypeTs, IconFileTypeTsx, IconInfoCircle } from '@tabler/icons-react';
+import { FC, useEffect } from 'react';
 import { SectionBlock } from '@/shared';
 import { useTocContent } from '@/widgets/layout';
-import { CodeHighlightTabs } from '@mantine/code-highlight';
 import {
-  OBSERVER_PATTERN_SIGNATURE,
+  EXAMPLE_COMPONENT_CODE,
+  EXAMPLE_USAGE_CODE,
   NEWS_PUBLISHER_CODE,
   NEWS_SUBSCRIBER_CODE,
   NOTIFICATION_SUBSCRIBER_CODE,
-  EXAMPLE_USAGE_CODE,
-  EXAMPLE_COMPONENT_CODE,
+  OBSERVER_PATTERN_SIGNATURE,
 } from '../model';
 import { Example } from './example';
 
 export const ObserverPage: FC = () => {
   const { signalContentLoaded } = useTocContent();
 
-  useEffect(signalContentLoaded, [signalContentLoaded]);
+  useEffect(signalContentLoaded, []);
 
   return (
     <>
       <Space h={4} />
-      <Title order={1} mb="lg">
+      <Title mb="lg" order={1}>
         Observer Pattern
       </Title>
 
-      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core Concept">
         <Text>
           The Observer pattern is a behavioral design pattern that defines a one-to-many dependency
           between objects so that when one object (the publisher) changes state, all its dependents
@@ -35,49 +35,49 @@ export const ObserverPage: FC = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="When to Use This Pattern" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="When to Use This Pattern">
         <Text mb="md">
           The Observer pattern excels in scenarios where you need to build reactive, event-driven
           systems with loose coupling between components:
         </Text>
         <List spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Event-driven architectures:
             </Text>{' '}
             Building systems that need to respond to state changes or events across multiple
             components without tight coupling.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Real-time features:
             </Text>{' '}
             Chat applications, live dashboards, collaborative tools, and any system requiring
             real-time data synchronization.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Notification systems:
             </Text>{' '}
             User notifications, alerts, status updates, and any scenario where multiple components
             need to be notified of changes.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               State synchronization:
             </Text>{' '}
             Keeping multiple components in sync with shared data without prop drilling or complex
             state management.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Custom event systems:
             </Text>{' '}
             Building application-specific event systems for component communication and
             coordination.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Decoupled communication:
             </Text>{' '}
             When you want to avoid direct dependencies between components while still enabling
@@ -86,42 +86,42 @@ export const ObserverPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="When NOT to Use This Pattern" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="When NOT to Use This Pattern">
         <Text mb="md">
           Understanding when to avoid the Observer pattern helps you choose the right solution for
           your specific use case:
         </Text>
         <List spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Simple state management:
             </Text>{' '}
             For basic state that can be handled with useState, useReducer, or Context API in a
             single component or small component tree.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               One-time data flow:
             </Text>{' '}
             When you only need to pass data down the component tree once, prop drilling or Context
             is more appropriate.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Performance-critical scenarios:
             </Text>{' '}
             When frequent notifications would cause performance issues - consider batching or
             debouncing updates.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Simple parent-child communication:
             </Text>{' '}
             For direct parent-to-child or child-to-parent communication, props and callbacks are
             simpler and more explicit.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Global state management:
             </Text>{' '}
             For application-wide state, consider Redux, Zustand, or React Context instead of
@@ -130,52 +130,52 @@ export const ObserverPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Pattern Signature" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Pattern Signature">
         <Text>
           Here's the core structure of the Observer pattern. This TypeScript interface defines the
           contract that publishers and subscribers must follow:
         </Text>
         <CodeHighlightTabs
-          mt="md"
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
           code={[
             {
-              fileName: 'observer-pattern.ts',
-              language: 'ts',
               code: OBSERVER_PATTERN_SIGNATURE,
-              icon: <IconFileTypeTs size={14} color="#2596be" />,
+              fileName: 'observer-pattern.ts',
+              icon: <IconFileTypeTs color="#2596be" size={14} />,
+              language: 'ts',
             },
           ]}
+          defaultExpanded={false}
+          mt="md"
+          radius="md"
+          withExpandButton
         />
-        <Text mt="lg" mb="md">
+        <Text mb="md" mt="lg">
           The pattern is built around four core elements:
         </Text>
         <List spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Publisher (Observable):
             </Text>{' '}
             The central object that manages state and maintains a collection of subscribers. It
             provides a clean API for subscription management and state change notifications.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Subscriber:
             </Text>{' '}
             Objects that register with the publisher and implement a standardized update method.
             They automatically receive notifications whenever the publisher's state changes.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Concrete Publisher:
             </Text>{' '}
             A real-world implementation of the publisher interface that encapsulates specific
             business logic and triggers notifications based on state changes.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Concrete Subscriber:
             </Text>{' '}
             Specific subscriber implementations that define custom behavior for handling state
@@ -184,10 +184,10 @@ export const ObserverPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Key Caveats & Best Practices" initialSpaceAfterDivider="xs">
-        <List spacing="sm" icon={<IconInfoCircle size={16} />}>
+      <SectionBlock initialSpaceAfterDivider="xs" title="Key Caveats & Best Practices">
+        <List icon={<IconInfoCircle size={16} />} spacing="sm">
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Memory Management:
             </Title>
             <Text>
@@ -196,7 +196,7 @@ export const ObserverPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Error Handling:
             </Title>
             <Text>
@@ -205,7 +205,7 @@ export const ObserverPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Performance Optimization:
             </Title>
             <Text>
@@ -214,7 +214,7 @@ export const ObserverPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Type Safety:
             </Title>
             <Text>
@@ -223,7 +223,7 @@ export const ObserverPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Subscriber Order:
             </Title>
             <Text>
@@ -232,7 +232,7 @@ export const ObserverPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Avoid Circular Dependencies:
             </Title>
             <Text>
@@ -241,7 +241,7 @@ export const ObserverPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Cleanup on Unmount:
             </Title>
             <Text>
@@ -252,7 +252,7 @@ export const ObserverPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Comparison with Other Patterns" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Comparison with Other Patterns">
         <List spacing="xs">
           <List.Item>
             <b>Observer vs Pub/Sub:</b> Observer is more direct (publisher knows about subscribers),
@@ -266,7 +266,7 @@ export const ObserverPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Example: News Notification System" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Example: News Notification System">
         <Text mb="md">
           This comprehensive example demonstrates a news notification system using the Observer
           pattern. Users can subscribe to different news categories and receive notifications when
@@ -275,46 +275,45 @@ export const ObserverPage: FC = () => {
           testing the pattern.
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mb="lg"
           code={[
             {
-              fileName: 'news-publisher.ts',
-              language: 'ts',
               code: NEWS_PUBLISHER_CODE,
-              icon: <IconFileTypeTs size={14} color="#2596be" />,
+              fileName: 'news-publisher.ts',
+              icon: <IconFileTypeTs color="#2596be" size={14} />,
+              language: 'ts',
             },
             {
-              fileName: 'news-subscriber.ts',
-              language: 'ts',
               code: NEWS_SUBSCRIBER_CODE,
-              icon: <IconFileTypeTs size={14} color="#2596be" />,
-            },
-            {
-              fileName: 'notification-subscriber.ts',
+              fileName: 'news-subscriber.ts',
+              icon: <IconFileTypeTs color="#2596be" size={14} />,
               language: 'ts',
+            },
+            {
               code: NOTIFICATION_SUBSCRIBER_CODE,
-              icon: <IconFileTypeTs size={14} color="#2596be" />,
+              fileName: 'notification-subscriber.ts',
+              icon: <IconFileTypeTs color="#2596be" size={14} />,
+              language: 'ts',
             },
             {
-              fileName: 'use-news-system.ts',
-              language: 'tsx',
               code: EXAMPLE_USAGE_CODE,
-              icon: <IconFileTypeTsx size={14} color="#2596be" />,
+              fileName: 'use-news-system.ts',
+              icon: <IconFileTypeTsx color="#2596be" size={14} />,
+              language: 'tsx',
             },
             {
-              fileName: 'example.tsx',
-              language: 'tsx',
               code: EXAMPLE_COMPONENT_CODE,
-              icon: <IconFileTypeTsx size={14} color="#2596be" />,
+              fileName: 'example.tsx',
+              icon: <IconFileTypeTsx color="#2596be" size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          mb="lg"
+          radius="md"
+          withExpandButton
         />
         <Example />
       </SectionBlock>
     </>
   );
 };
-

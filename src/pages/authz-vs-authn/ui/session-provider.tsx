@@ -44,6 +44,7 @@ export const SessionProvider = ({
       try {
         const parsed = JSON.parse(raw) as Session;
         setSession(parsed);
+        // biome-ignore lint/suspicious/noEmptyBlockStatements: can be omitted as example
       } catch {}
     }
   }, [persist]);
@@ -66,7 +67,7 @@ export const SessionProvider = ({
 
   const login = useCallback((userId: string, role: Role = 'user') => {
     const now = Date.now();
-    setSession({ userId, role, issuedAt: now, expiresAt: now + 30 * 60 * 1000 });
+    setSession({ expiresAt: now + 30 * 60 * 1000, issuedAt: now, role, userId });
   }, []);
 
   const logout = useCallback(() => setSession(null), []);
@@ -75,12 +76,12 @@ export const SessionProvider = ({
     setSession((prev) => {
       if (!prev) return prev;
       const now = Date.now();
-      return { ...prev, issuedAt: now, expiresAt: now + minutes * 60 * 1000 };
+      return { ...prev, expiresAt: now + minutes * 60 * 1000, issuedAt: now };
     });
   }, []);
 
   const value = useMemo(
-    () => ({ session, isAuthenticated, login, logout, refresh }),
+    () => ({ isAuthenticated, login, logout, refresh, session }),
     [session, isAuthenticated, login, logout, refresh],
   );
 
@@ -115,12 +116,16 @@ export const useIdleSession = (idleMs: number = 10 * 60 * 1000) => {
       'touchstart',
       'visibilitychange',
     ];
-    events.forEach((event) => window.addEventListener(event, resetTimer, { passive: true }));
+    events.forEach((event) => {
+      window.addEventListener(event, resetTimer, { passive: true });
+    });
     resetTimer();
     return () => {
       if (timerRef.current) window.clearTimeout(timerRef.current);
-      events.forEach((event) => window.removeEventListener(event, resetTimer as any));
+
+      events.forEach((event) => {
+        window.removeEventListener(event, resetTimer);
+      });
     };
   }, [idleMs, refresh, logout]);
 };
-

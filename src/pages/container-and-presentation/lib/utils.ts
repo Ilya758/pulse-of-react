@@ -1,17 +1,14 @@
-export const fetchUser = (userId: number) => {
-  return Promise.resolve({
+export const fetchUser = (userId: number) =>
+  Promise.resolve({
+    bio: 'A software developer specializing in React.',
+    email: 'jane.doe@example.com',
     id: userId,
     name: 'Jane Doe',
-    email: 'jane.doe@example.com',
-    bio: 'A software developer specializing in React.',
   });
-};
 
-export const saveUser = () => {
-  return new Promise((resolve) => {
+export const saveUser = () =>
+  new Promise((resolve) => {
     setTimeout(() => {
       resolve({ success: true });
     }, 1500);
   });
-};
-

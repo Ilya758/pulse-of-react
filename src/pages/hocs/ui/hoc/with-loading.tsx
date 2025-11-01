@@ -1,5 +1,5 @@
-import { ComponentType, useState, useEffect } from 'react';
-import { Paper, Group, Loader } from '@mantine/core';
+import { Group, Loader, Paper } from '@mantine/core';
+import { ComponentType, useEffect, useState } from 'react';
 
 export interface WithLoadingProps {
   isLoading: boolean;
@@ -7,8 +7,8 @@ export interface WithLoadingProps {
 
 export const withLoading = <P extends object>(
   WrappedComponent: ComponentType<P & WithLoadingProps>,
-) => {
-  return function WithLoadingComponent(props: P) {
+) =>
+  function WithLoadingComponent(props: P) {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -24,7 +24,7 @@ export const withLoading = <P extends object>(
         <Paper
           h={200}
           p="md"
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}
           withBorder
         >
           <Group justify="center" p="xl">
@@ -36,5 +36,3 @@ export const withLoading = <P extends object>(
 
     return <WrappedComponent {...props} isLoading={isLoading} />;
   };
-};
-

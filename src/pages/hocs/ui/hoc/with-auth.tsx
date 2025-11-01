@@ -15,8 +15,8 @@ export interface WithAuthProps {
   onLogout: () => void;
 }
 
-export const withAuth = <P extends object>(WrappedComponent: ComponentType<P & WithAuthProps>) => {
-  return function WithAuthComponent(props: P) {
+export const withAuth = <P extends object>(WrappedComponent: ComponentType<P & WithAuthProps>) =>
+  function WithAuthComponent(props: P) {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState<User | null>(null);
     const [isLoggingIn, setIsLoggingIn] = useState(false);
@@ -51,5 +51,3 @@ export const withAuth = <P extends object>(WrappedComponent: ComponentType<P & W
       />
     );
   };
-};
-

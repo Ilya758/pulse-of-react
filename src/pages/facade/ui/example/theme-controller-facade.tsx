@@ -1,4 +1,4 @@
-import { Card, Title, Text, Group, ColorSwatch, Stack } from '@mantine/core';
+import { Card, ColorSwatch, Group, Stack, Text, Title } from '@mantine/core';
 import { useThemeColorContext } from '@/shared';
 import { COLOR_NAMES } from '../../model';
 
@@ -6,11 +6,11 @@ export function ThemeControllerFacade() {
   const { primaryColor, setPrimaryColor } = useThemeColorContext();
 
   return (
-    <Card shadow="sm" padding="lg" radius="md" withBorder>
-      <Title order={5} mb="xs">
+    <Card padding="lg" radius="md" shadow="sm" withBorder>
+      <Title mb="xs" order={5}>
         ThemeControllerFacade
       </Title>
-      <Text size="sm" c="dimmed" mb="md">
+      <Text c="dimmed" mb="md" size="sm">
         This component acts as a Facade for Mantine's color scheme and theme system, exposing a
         simple interface for picking a primary color. The color picker below updates the global app
         theme.
@@ -23,12 +23,12 @@ export function ThemeControllerFacade() {
         <Group>
           {COLOR_NAMES.map((color) => (
             <ColorSwatch
-              key={color}
               color={`var(--mantine-color-${color}-6)`}
+              key={color}
               onClick={() => setPrimaryColor(color)}
               style={{
-                cursor: 'pointer',
                 border: primaryColor === color ? '2px solid #000' : undefined,
+                cursor: 'pointer',
               }}
               title={color}
             />
@@ -38,4 +38,3 @@ export function ThemeControllerFacade() {
     </Card>
   );
 }
-

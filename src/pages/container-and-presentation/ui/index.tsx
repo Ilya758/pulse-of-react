@@ -1,8 +1,7 @@
-import { FC, useEffect } from 'react';
-import { List, Text, Title, Space } from '@mantine/core';
-import { IconFileTypeTs, IconInfoCircle } from '@tabler/icons-react';
 import { CodeHighlightTabs } from '@mantine/code-highlight';
-import { Example } from './example';
+import { List, Space, Text, Title } from '@mantine/core';
+import { IconFileTypeTs, IconInfoCircle } from '@tabler/icons-react';
+import { FC, useEffect } from 'react';
 import { SectionBlock } from '@/shared';
 import { useTocContent } from '@/widgets/layout';
 import {
@@ -10,31 +9,32 @@ import {
   USER_PROFILE_CONTAINER_CODE,
   USER_PROFILE_FORM_CODE,
 } from '../model';
+import { Example } from './example';
 
 export const ContainerAndPresentation: FC = () => {
   const { signalContentLoaded } = useTocContent();
 
-  useEffect(signalContentLoaded, [signalContentLoaded]);
+  useEffect(signalContentLoaded, []);
 
   return (
     <>
       <Space h={4} />
-      <Title order={1} mb="lg">
+      <Title mb="lg" order={1}>
         Container and Presentation Pattern
       </Title>
 
-      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core Concept">
         <Text>
           The Container and Presentational pattern proposes separating components into two distinct
           types based on their concerns:
         </Text>
-        <List mt="md" spacing="xs" center>
+        <List center mt="md" spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Container Components:
             </Text>{' '}
             Are concerned with{' '}
-            <Text span fs="italic">
+            <Text fs="italic" span>
               how things work
             </Text>
             <Text span>
@@ -43,11 +43,11 @@ export const ContainerAndPresentation: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Presentational Components:
             </Text>{' '}
             Are concerned with{' '}
-            <Text span fs="italic">
+            <Text fs="italic" span>
               how things look
             </Text>
             <Text span>
@@ -58,14 +58,14 @@ export const ContainerAndPresentation: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="When to Use This Pattern" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="When to Use This Pattern">
         <Text>
           While the rise of Hooks has made this pattern more flexible, it's most effective in
           specific scenarios:
         </Text>
         <List mt="md" spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Complex Components:
             </Text>{' '}
             When a component has significant internal state, manages complex data, or performs
@@ -73,7 +73,7 @@ export const ContainerAndPresentation: FC = () => {
             components improves clarity.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               High Reusability Needed:
             </Text>{' '}
             If you have a piece of UI that needs to be used in many different places with different
@@ -81,7 +81,7 @@ export const ContainerAndPresentation: FC = () => {
             component is ideal.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Designer-Developer Collaboration:
             </Text>{' '}
             Presentational components are perfect for designers to work on. They can be developed
@@ -89,7 +89,7 @@ export const ContainerAndPresentation: FC = () => {
             application logic.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Separating Business Logic from UI:
             </Text>{' '}
             In large-scale applications, keeping the business logic and data fetching separate from
@@ -98,36 +98,36 @@ export const ContainerAndPresentation: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Pattern Signature" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Pattern Signature">
         <Text>
           The core of the pattern can be summarized by the distinct roles and "shapes" of the two
           component types.
         </Text>
         <CodeHighlightTabs
-          mt="md"
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
           code={[
             {
-              fileName: 'signatures.ts',
-              language: 'tsx',
               code: PATTERN_SIGNATURE_CODE,
+              fileName: 'signatures.ts',
               icon: <IconFileTypeTs size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          mt="md"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
 
-      <SectionBlock title="Key Caveats & Best Practices" initialSpaceAfterDivider="xs">
-        <List spacing="sm" icon={<IconInfoCircle size={16} />}>
+      <SectionBlock initialSpaceAfterDivider="xs" title="Key Caveats & Best Practices">
+        <List icon={<IconInfoCircle size={16} />} spacing="sm">
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Keep Presentational Components Pure
             </Title>
             <Text>
               The most significant benefit comes from presentational components that are{' '}
-              <Text span fw={700}>
+              <Text fw={700} span>
                 pure functions
               </Text>{' '}
               of their props. Avoid giving them local state or side effects. This makes them
@@ -135,7 +135,7 @@ export const ContainerAndPresentation: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Use Hooks for Container Logic
             </Title>
             <Text>
@@ -145,7 +145,7 @@ export const ContainerAndPresentation: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Overhead for Simple Components
             </Title>
             <Text>
@@ -156,7 +156,7 @@ export const ContainerAndPresentation: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Prop Drilling
             </Title>
             <Text>
@@ -169,7 +169,7 @@ export const ContainerAndPresentation: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Modern Context & Hooks" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Modern Context & Hooks">
         <Text>
           With the introduction of React Hooks, the strict separation of this pattern has become
           less rigid. Hooks like useState, useEffect, and custom hooks allow functional components
@@ -178,7 +178,7 @@ export const ContainerAndPresentation: FC = () => {
         <Text mt="sm">
           While you might not create separate "Container" and "Presentational" files as often, the
           core principle remains highly relevant . It's still a{' '}
-          <Text span fw={700}>
+          <Text fw={700} span>
             best practice
           </Text>{' '}
           to distinguish between data/logic handling and rendering within your components. A single
@@ -187,7 +187,7 @@ export const ContainerAndPresentation: FC = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="Example: User Profile Editor" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Example: User Profile Editor">
         <Text mb="md">
           This example demonstrates a form with user interaction. The container,{' '}
           <code>UserProfileContainer</code>, handles all the logic: fetching initial data, managing
@@ -197,7 +197,7 @@ export const ContainerAndPresentation: FC = () => {
         <Text mb="md">
           The presentational component, <code>UserProfileForm</code>, is completely controlled by
           its props. It is a{' '}
-          <Text span fw={700}>
+          <Text fw={700} span>
             dumb
           </Text>{' '}
           component that doesn't know where the data comes from or what happens when the save button
@@ -206,24 +206,24 @@ export const ContainerAndPresentation: FC = () => {
         </Text>
 
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mb="lg"
           code={[
             {
-              fileName: 'UserProfileContainer.tsx',
-              language: 'tsx',
               code: USER_PROFILE_CONTAINER_CODE,
+              fileName: 'UserProfileContainer.tsx',
               icon: <IconFileTypeTs size={14} />,
+              language: 'tsx',
             },
             {
-              fileName: 'UserProfileForm.tsx',
-              language: 'tsx',
               code: USER_PROFILE_FORM_CODE,
+              fileName: 'UserProfileForm.tsx',
               icon: <IconFileTypeTs size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          mb="lg"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
 
@@ -231,4 +231,3 @@ export const ContainerAndPresentation: FC = () => {
     </>
   );
 };
-

@@ -14,4 +14,3 @@ export const COLOR_NAMES = [
   'pink',
   'lime',
 ];
-

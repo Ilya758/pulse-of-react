@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface UseImageLoaderReturn {
   isLoading: boolean;
@@ -40,6 +40,5 @@ export const useImageLoader = (src: string): UseImageLoaderReturn => {
     };
   }, [src]);
 
-  return { isLoading, hasError };
+  return { hasError, isLoading };
 };
-

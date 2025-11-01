@@ -3,12 +3,11 @@ import { MOCK_SERVER } from '../model';
 export const mockApiService = {
   transferFunds: async (amount: number, csrfToken?: string) => {
     if (MOCK_SERVER.isCsrfProtectionEnabled && csrfToken !== MOCK_SERVER.csrfToken) {
-      return { success: false, message: 'Invalid CSRF Token. Transfer failed.' };
+      return { message: 'Invalid CSRF Token. Transfer failed.', success: false };
     }
 
     MOCK_SERVER.balance -= amount;
 
-    return { success: true, message: `Successfully transferred $${amount}.` };
+    return { message: `Successfully transferred $${amount}.`, success: true };
   },
 };
-

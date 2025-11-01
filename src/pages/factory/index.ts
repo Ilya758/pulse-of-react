@@ -1,2 +1,1 @@
 export { FactoryPage } from './ui';
-

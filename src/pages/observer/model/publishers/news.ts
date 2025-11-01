@@ -1,4 +1,4 @@
-import { Publisher, Subscriber, NewsItem } from '../types';
+import { NewsItem, Publisher, Subscriber } from '../types';
 
 export class NewsPublisher implements Publisher<NewsItem> {
   private subscribers: Subscriber<NewsItem>[] = [];
@@ -12,7 +12,9 @@ export class NewsPublisher implements Publisher<NewsItem> {
   }
 
   notify(data: NewsItem): void {
-    this.subscribers.forEach((subscriber) => subscriber.update(data));
+    this.subscribers.forEach((subscriber) => {
+      subscriber.update(data);
+    });
   }
 
   addNews(news: Omit<NewsItem, 'id' | 'timestamp'>): void {
@@ -32,4 +34,3 @@ export class NewsPublisher implements Publisher<NewsItem> {
     this.subscribers = [];
   }
 }
-

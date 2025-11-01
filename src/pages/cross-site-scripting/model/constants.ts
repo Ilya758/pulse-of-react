@@ -205,4 +205,3 @@ const safeValue = isSafeCssValue(untrustedInput) ? untrustedInput : 'invalid';
 
 // <div style="width: \${safeValue};">...</div>
 `;
-

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 export interface FormManagerState<T extends object> {
   values: T;
@@ -54,12 +54,15 @@ export function FormManager<T extends object>({ initialValues, children }: FormM
   }, []);
 
   const handleSubmit = useCallback(
-    (onSubmit: (values: T) => void) => (event: React.FormEvent<HTMLFormElement>) => {
+    (onSubmit: (formValues: T) => void) => (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      const allTouched = Object.keys(initialValues).reduce((acc, key) => {
-        acc[key as keyof T] = true;
-        return acc;
-      }, {} as Partial<Record<keyof T, boolean>>);
+      const allTouched = Object.keys(initialValues).reduce(
+        (acc, key) => {
+          acc[key as keyof T] = true;
+          return acc;
+        },
+        {} as Partial<Record<keyof T, boolean>>,
+      );
       setTouched(allTouched);
       onSubmit(values);
     },
@@ -69,15 +72,14 @@ export function FormManager<T extends object>({ initialValues, children }: FormM
   return (
     <>
       {children({
-        values,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit,
         getFieldValue,
+        handleBlur,
+        handleChange,
+        handleSubmit,
         setFieldValue,
+        touched,
+        values,
       })}
     </>
   );
 }
-

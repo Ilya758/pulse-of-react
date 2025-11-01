@@ -1,26 +1,28 @@
-import { useReducer, useCallback, useState } from 'react';
 import {
-  Modal,
+  Alert,
   Button,
+  Checkbox,
+  Divider,
   Group,
+  Modal,
+  Select,
   Stack,
-  Title,
+  Stepper,
   Text,
   TextInput,
-  Select,
-  Checkbox,
-  Stepper,
-  Alert,
-  Divider,
+  Title,
 } from '@mantine/core';
 import {
   IconAlertCircle,
   IconCheck,
-  IconUser,
-  IconSettings,
   IconFileText,
+  IconSettings,
+  IconUser,
 } from '@tabler/icons-react';
+import { useCallback, useReducer, useState } from 'react';
 import {
+  canProceed,
+  getCurrentStep,
   isError,
   isPersonal,
   isPreferences,
@@ -28,8 +30,6 @@ import {
   isSubmitting,
   isSuccess,
   submitForm,
-  getCurrentStep,
-  canProceed,
 } from '../../lib';
 import { modalReducer, PersonalData, PreferencesData } from '../../model';
 
@@ -48,12 +48,12 @@ export const Example = () => {
   }, []);
 
   const handlePersonalUpdate = useCallback((field: keyof PersonalData, value: string) => {
-    dispatch({ type: 'UPDATE_PERSONAL', payload: { [field]: value } });
+    dispatch({ payload: { [field]: value }, type: 'UPDATE_PERSONAL' });
   }, []);
 
   const handlePreferencesUpdate = useCallback(
     (field: keyof PreferencesData, value: string | boolean) => {
-      dispatch({ type: 'UPDATE_PREFERENCES', payload: { [field]: value } });
+      dispatch({ payload: { [field]: value }, type: 'UPDATE_PREFERENCES' });
     },
     [],
   );
@@ -80,8 +80,8 @@ export const Example = () => {
         })
         .catch((error) => {
           dispatch({
-            type: 'SUBMIT_ERROR',
             payload: { error: error instanceof Error ? error.message : 'Unknown error' },
+            type: 'SUBMIT_ERROR',
           });
         });
     }
@@ -97,20 +97,20 @@ export const Example = () => {
         })
         .catch((error) => {
           dispatch({
-            type: 'SUBMIT_ERROR',
             payload: { error: error instanceof Error ? error.message : 'Unknown error' },
+            type: 'SUBMIT_ERROR',
           });
         });
     }
   }, [state]);
 
   return (
-    <Stack maw={720} mt={16} gap="xl">
+    <Stack gap="xl" maw={720} mt={16}>
       <div>
-        <Title order={3} mb="xs">
+        <Title mb="xs" order={3}>
           Multi-Step Modal with State Machine
         </Title>
-        <Text size="sm" c="dimmed">
+        <Text c="dimmed" size="sm">
           This example demonstrates how state machines can manage complex multi-step processes with
           form validation, navigation, and submission states.
         </Text>
@@ -119,19 +119,19 @@ export const Example = () => {
       <Button onClick={handleOpen}>Open Multi-Step Modal</Button>
 
       <Modal
-        opened={opened}
-        onClose={handleClose}
-        size="lg"
-        title="User Registration"
         closeOnClickOutside={!isSubmitting(state)}
         closeOnEscape={!isSubmitting(state)}
+        onClose={handleClose}
+        opened={opened}
+        size="lg"
+        title="User Registration"
         withCloseButton={!isSubmitting(state)}
       >
         <Stack gap="xl">
-          <Stepper active={getCurrentStep(state)} size="sm" completedIcon={<IconCheck size={16} />}>
-            <Stepper.Step label="Personal Info" icon={<IconUser size={16} />} />
-            <Stepper.Step label="Preferences" icon={<IconSettings size={16} />} />
-            <Stepper.Step label="Review" icon={<IconFileText size={16} />} />
+          <Stepper active={getCurrentStep(state)} completedIcon={<IconCheck size={16} />} size="sm">
+            <Stepper.Step icon={<IconUser size={16} />} label="Personal Info" />
+            <Stepper.Step icon={<IconSettings size={16} />} label="Preferences" />
+            <Stepper.Step icon={<IconFileText size={16} />} label="Review" />
           </Stepper>
 
           <Divider />
@@ -141,24 +141,24 @@ export const Example = () => {
               <Title order={4}>Personal Information</Title>
               <TextInput
                 label="First Name"
-                placeholder="Enter your first name"
-                value={state.data.firstName}
                 onChange={(e) => handlePersonalUpdate('firstName', e.target.value)}
+                placeholder="Enter your first name"
                 required
+                value={state.data.firstName}
               />
               <TextInput
                 label="Last Name"
-                placeholder="Enter your last name"
-                value={state.data.lastName}
                 onChange={(e) => handlePersonalUpdate('lastName', e.target.value)}
+                placeholder="Enter your last name"
                 required
+                value={state.data.lastName}
               />
               <TextInput
                 label="Phone Number"
-                placeholder="Enter your phone number"
-                value={state.data.phoneNumber}
                 onChange={(e) => handlePersonalUpdate('phoneNumber', e.target.value)}
+                placeholder="Enter your phone number"
                 required
+                value={state.data.phoneNumber}
               />
             </Stack>
           )}
@@ -167,25 +167,25 @@ export const Example = () => {
             <Stack gap="md">
               <Title order={4}>Preferences</Title>
               <Select
-                label="Theme"
-                placeholder="Choose your theme"
                 data={[
-                  { value: 'light', label: 'Light Theme' },
-                  { value: 'dark', label: 'Dark Theme' },
-                  { value: 'auto', label: 'Auto (System)' },
+                  { label: 'Light Theme', value: 'light' },
+                  { label: 'Dark Theme', value: 'dark' },
+                  { label: 'Auto (System)', value: 'auto' },
                 ]}
-                value={state.preferences.theme}
+                label="Theme"
                 onChange={(value) => handlePreferencesUpdate('theme', value || 'light')}
+                placeholder="Choose your theme"
                 required
+                value={state.preferences.theme}
               />
               <Checkbox
-                label="Enable notifications"
                 checked={state.preferences.notifications}
+                label="Enable notifications"
                 onChange={(e) => handlePreferencesUpdate('notifications', e.target.checked)}
               />
               <Checkbox
-                label="Subscribe to newsletter"
                 checked={state.preferences.newsletter}
+                label="Subscribe to newsletter"
                 onChange={(e) => handlePreferencesUpdate('newsletter', e.target.checked)}
               />
             </Stack>
@@ -196,7 +196,7 @@ export const Example = () => {
               <Title order={4}>Review Your Information</Title>
 
               <div>
-                <Title order={5} mb="xs">
+                <Title mb="xs" order={5}>
                   Personal Information
                 </Title>
                 <Text size="sm">
@@ -206,7 +206,7 @@ export const Example = () => {
               </div>
 
               <div>
-                <Title order={5} mb="xs">
+                <Title mb="xs" order={5}>
                   Preferences
                 </Title>
                 <Text size="sm">Theme: {state.data.preferences.theme}</Text>
@@ -221,21 +221,21 @@ export const Example = () => {
           )}
 
           {isSubmitting(state) && (
-            <Stack gap="md" align="center">
+            <Stack align="center" gap="md">
               <Title order={4}>Submitting...</Title>
-              <Text size="sm" c="dimmed">
+              <Text c="dimmed" size="sm">
                 Please wait while we process your information.
               </Text>
             </Stack>
           )}
 
           {isSuccess(state) && (
-            <Stack gap="md" align="center">
-              <IconCheck size={48} color="green" />
-              <Title order={4} c="green">
+            <Stack align="center" gap="md">
+              <IconCheck color="green" size={48} />
+              <Title c="green" order={4}>
                 Success!
               </Title>
-              <Text size="sm" c="dimmed">
+              <Text c="dimmed" size="sm">
                 Your information has been submitted successfully.
               </Text>
             </Stack>
@@ -243,7 +243,7 @@ export const Example = () => {
 
           {isError(state) && (
             <Stack gap="md">
-              <Alert icon={<IconAlertCircle size={16} />} title="Submission Failed" color="red">
+              <Alert color="red" icon={<IconAlertCircle size={16} />} title="Submission Failed">
                 {state.error}
               </Alert>
             </Stack>
@@ -253,30 +253,30 @@ export const Example = () => {
 
           <Group justify="space-between">
             <Button
-              variant="subtle"
-              onClick={handleBack}
               disabled={
                 isPersonal(state) || isSubmitting(state) || isSuccess(state) || isError(state)
               }
+              onClick={handleBack}
+              variant="subtle"
             >
               Back
             </Button>
 
             <Group>
               {(isPersonal(state) || isPreferences(state)) && (
-                <Button onClick={handleNext} disabled={!canProceed(state)}>
+                <Button disabled={!canProceed(state)} onClick={handleNext}>
                   Next
                 </Button>
               )}
 
               {isReview(state) && (
-                <Button onClick={handleSubmit} loading={isSubmitting(state)}>
+                <Button loading={isSubmitting(state)} onClick={handleSubmit}>
                   Submit
                 </Button>
               )}
 
               {isError(state) && (
-                <Button onClick={handleRetry} color="red" variant="light">
+                <Button color="red" onClick={handleRetry} variant="light">
                   Retry
                 </Button>
               )}
@@ -289,4 +289,3 @@ export const Example = () => {
     </Stack>
   );
 };
-

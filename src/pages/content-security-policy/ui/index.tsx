@@ -1,25 +1,25 @@
-import { FC, useEffect } from 'react';
-import { Title, Text, List, Space, Code } from '@mantine/core';
+import { CodeHighlightTabs } from '@mantine/code-highlight';
+import { Code, List, Space, Text, Title } from '@mantine/core';
 import { IconFileTypeTs, IconInfoCircle } from '@tabler/icons-react';
+import { FC, useEffect } from 'react';
 import { SectionBlock } from '@/shared';
 import { useTocContent } from '@/widgets/layout';
-import { Example } from './example';
-import { CodeHighlightTabs } from '@mantine/code-highlight';
 import { CSP_MIDDLEWARE_CODE } from '../model';
+import { Example } from './example';
 
 export const ContentSecurityPolicyPage: FC = () => {
   const { signalContentLoaded } = useTocContent();
 
-  useEffect(signalContentLoaded, [signalContentLoaded]);
+  useEffect(signalContentLoaded, []);
 
   return (
     <>
       <Space h={4} />
-      <Title order={1} mb="lg">
+      <Title mb="lg" order={1}>
         Content Security Policy (CSP)
       </Title>
 
-      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core Concept">
         <Text>
           Content Security Policy (CSP) is a security standard that helps prevent various types of
           attacks, particularly Cross-Site Scripting (XSS) and data injection attacks. It works by
@@ -33,29 +33,29 @@ export const ContentSecurityPolicyPage: FC = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="Key Benefits" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Key Benefits">
         <List spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               XSS Protection:
             </Text>{' '}
             Prevents execution of malicious scripts injected through user input or compromised
             third-party resources.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Resource Control:
             </Text>{' '}
             Controls which domains can load resources like scripts, styles, images, and fonts.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Data Injection Prevention:
             </Text>{' '}
             Blocks unauthorized data sources and prevents data exfiltration attacks.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Compliance:
             </Text>{' '}
             Helps meet security compliance requirements and security audit standards.
@@ -63,7 +63,7 @@ export const ContentSecurityPolicyPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Directives Overview" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Directives Overview">
         <Text mb="md">
           CSP directives control different types of resources and behaviors. Here are the most
           commonly used directives:
@@ -71,7 +71,7 @@ export const ContentSecurityPolicyPage: FC = () => {
 
         <List spacing="md">
           <List.Item>
-            <Title order={5} mt="sm" mb="xs">
+            <Title mb="xs" mt="sm" order={5}>
               <Code>default-src</Code>:
             </Title>
             <Text>
@@ -81,7 +81,7 @@ export const ContentSecurityPolicyPage: FC = () => {
           </List.Item>
 
           <List.Item>
-            <Title order={5} mt="sm" mb="xs">
+            <Title mb="xs" mt="sm" order={5}>
               <Code>script-src</Code>:
             </Title>
             <Text>
@@ -91,7 +91,7 @@ export const ContentSecurityPolicyPage: FC = () => {
           </List.Item>
 
           <List.Item>
-            <Title order={5} mt="sm" mb="xs">
+            <Title mb="xs" mt="sm" order={5}>
               <Code>style-src</Code>:
             </Title>
             <Text>
@@ -101,7 +101,7 @@ export const ContentSecurityPolicyPage: FC = () => {
           </List.Item>
 
           <List.Item>
-            <Title order={5} mt="sm" mb="xs">
+            <Title mb="xs" mt="sm" order={5}>
               <Code>img-src</Code>:
             </Title>
             <Text>
@@ -111,7 +111,7 @@ export const ContentSecurityPolicyPage: FC = () => {
           </List.Item>
 
           <List.Item>
-            <Title order={5} mt="sm" mb="xs">
+            <Title mb="xs" mt="sm" order={5}>
               <Code>connect-src</Code>:
             </Title>
             <Text>
@@ -121,7 +121,7 @@ export const ContentSecurityPolicyPage: FC = () => {
           </List.Item>
 
           <List.Item>
-            <Title order={5} mt="sm" mb="xs">
+            <Title mb="xs" mt="sm" order={5}>
               <Code>font-src</Code>:
             </Title>
             <Text>
@@ -130,14 +130,14 @@ export const ContentSecurityPolicyPage: FC = () => {
           </List.Item>
 
           <List.Item>
-            <Title order={5} mt="sm" mb="xs">
+            <Title mb="xs" mt="sm" order={5}>
               <Code>object-src</Code>:
             </Title>
             <Text>Controls which plugins can be loaded. Often set to 'none' for security.</Text>
           </List.Item>
 
           <List.Item>
-            <Title order={5} mt="sm" mb="xs">
+            <Title mb="xs" mt="sm" order={5}>
               <Code>frame-src</Code>:
             </Title>
             <Text>Controls which frames can be embedded. Prevents clickjacking attacks.</Text>
@@ -145,32 +145,32 @@ export const ContentSecurityPolicyPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Middleware Integration" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Middleware Integration">
         <Text mb="md">
           In modern web applications, CSP headers are typically set at the server level. The
           following examples show how you can integrate CSP with Node.js backend middleware, such as
           Express.js or Nest.js:
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mt="md"
           code={[
             {
-              fileName: 'csp-middleware.ts',
-              language: 'ts',
               code: CSP_MIDDLEWARE_CODE,
-              icon: <IconFileTypeTs size={14} color="#2596be" />,
+              fileName: 'csp-middleware.ts',
+              icon: <IconFileTypeTs color="#2596be" size={14} />,
+              language: 'ts',
             },
           ]}
+          defaultExpanded={false}
+          mt="md"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
 
-      <SectionBlock title="Best Practices" initialSpaceAfterDivider="xs">
-        <List spacing="sm" icon={<IconInfoCircle size={16} />}>
+      <SectionBlock initialSpaceAfterDivider="xs" title="Best Practices">
+        <List icon={<IconInfoCircle size={16} />} spacing="sm">
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Start Strict, Relax Gradually
             </Title>
             <Text>
@@ -179,7 +179,7 @@ export const ContentSecurityPolicyPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Use Nonces and Hashes
             </Title>
             <Text>
@@ -188,7 +188,7 @@ export const ContentSecurityPolicyPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Monitor Violations
             </Title>
             <Text>
@@ -197,7 +197,7 @@ export const ContentSecurityPolicyPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Test in Staging
             </Title>
             <Text>
@@ -206,7 +206,7 @@ export const ContentSecurityPolicyPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Regular Policy Reviews
             </Title>
             <Text>
@@ -215,7 +215,7 @@ export const ContentSecurityPolicyPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Use Report-Only Mode
             </Title>
             <Text>
@@ -224,7 +224,7 @@ export const ContentSecurityPolicyPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Consider Subresource Integrity
             </Title>
             <Text>
@@ -233,7 +233,7 @@ export const ContentSecurityPolicyPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Environment-Specific Policies
             </Title>
             <Text>
@@ -244,7 +244,7 @@ export const ContentSecurityPolicyPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Example: Interactive CSP Policy Builder" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Example: Interactive CSP Policy Builder">
         <Text mb="md">
           This interactive example demonstrates how to build, test, and validate Content Security
           Policies. You can experiment with different directives and see how they affect resource
@@ -257,4 +257,3 @@ export const ContentSecurityPolicyPage: FC = () => {
     </>
   );
 };
-

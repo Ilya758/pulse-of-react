@@ -1,8 +1,7 @@
 import { IconShield, IconShieldCheck, IconShieldX } from '@tabler/icons-react';
 
-export const generateNonce = (): string => {
-  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-};
+export const generateNonce = (): string =>
+  Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
 export const validateCSPPolicySyntax = (policy: string): { isValid: boolean; errors: string[] } => {
   const errors: string[] = [];
@@ -10,7 +9,7 @@ export const validateCSPPolicySyntax = (policy: string): { isValid: boolean; err
   if (!policy.trim()) {
     errors.push('Policy cannot be empty');
 
-    return { isValid: false, errors };
+    return { errors, isValid: false };
   }
 
   const directives = policy
@@ -33,28 +32,27 @@ export const validateCSPPolicySyntax = (policy: string): { isValid: boolean; err
 
     if (sources.length === 0) {
       errors.push(`Directive "${directiveName}" has no sources`);
-      continue;
     }
   }
 
   return {
-    isValid: errors.length === 0,
     errors,
+    isValid: errors.length === 0,
   };
 };
 
 export const getStatusIcon = (status: 'pass' | 'fail' | 'warning') => {
   switch (status) {
     case 'pass': {
-      return <IconShieldCheck size={16} color="green" />;
+      return <IconShieldCheck color="green" size={16} />;
     }
 
     case 'warning': {
-      return <IconShield size={16} color="orange" />;
+      return <IconShield color="orange" size={16} />;
     }
 
     case 'fail': {
-      return <IconShieldX size={16} color="red" />;
+      return <IconShieldX color="red" size={16} />;
     }
 
     default: {
@@ -106,36 +104,42 @@ export const applyTemplate = (template: 'strict' | 'permissive' | 'ecommerce') =
   switch (template) {
     case 'strict': {
       newDirectives = {
-        'script-src': ['self'],
-        'style-src': ['self'],
-        'img-src': ['self', 'data:', 'https:'],
         'connect-src': ['self'],
         'font-src': ['self'],
         'frame-src': ['none'],
+        'img-src': ['self', 'data:', 'https:'],
+        'script-src': ['self'],
+        'style-src': ['self'],
       };
       break;
     }
+
     case 'permissive': {
       newDirectives = {
-        'script-src': ['self', 'unsafe-inline', 'unsafe-eval'],
-        'style-src': ['self', 'unsafe-inline'],
-        'img-src': ['self', 'data:', 'https:', 'http:'],
         'connect-src': ['self', 'https:', 'wss:'],
         'font-src': ['self', 'data:', 'https:'],
         'frame-src': ['self'],
+        'img-src': ['self', 'data:', 'https:', 'http:'],
+        'script-src': ['self', 'unsafe-inline', 'unsafe-eval'],
+        'style-src': ['self', 'unsafe-inline'],
       };
       break;
     }
+
     case 'ecommerce': {
       newDirectives = {
-        'script-src': ['self', 'https://js.stripe.com', 'https://www.google-analytics.com'],
-        'style-src': ['self', 'unsafe-inline'],
-        'img-src': ['self', 'data:', 'https:', 'https://www.google-analytics.com'],
         'connect-src': ['self', 'https://api.stripe.com', 'https://www.google-analytics.com'],
         'font-src': ['self', 'https://fonts.googleapis.com', 'https://fonts.gstatic.com'],
         'frame-src': ['self', 'https://js.stripe.com'],
+        'img-src': ['self', 'data:', 'https:', 'https://www.google-analytics.com'],
+        'script-src': ['self', 'https://js.stripe.com', 'https://www.google-analytics.com'],
+        'style-src': ['self', 'unsafe-inline'],
       };
       break;
+    }
+
+    default: {
+      throw new Error(`Invalid template: ${template}`);
     }
   }
 
@@ -147,4 +151,3 @@ export const applyTemplate = (template: 'strict' | 'permissive' | 'ecommerce') =
 
   return validatedDirectives;
 };
-

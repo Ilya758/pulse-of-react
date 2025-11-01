@@ -6,7 +6,7 @@ interface ConditionalProps {
 }
 
 interface ChooseConditionalProps {
-  children: Array<ReactElement<ConditionalProps>>;
+  children: ReactElement<ConditionalProps>[];
 }
 
 export const If: React.FC<ConditionalProps> = ({ condition, children }) =>
@@ -35,4 +35,3 @@ export const Choose: React.FC<ChooseConditionalProps> = ({ children }) => {
 
   return selectedChild || null;
 };
-

@@ -1,2 +1,1 @@
 export { NewsPublisher } from './news';
-

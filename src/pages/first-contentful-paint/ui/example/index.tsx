@@ -1,5 +1,5 @@
-import { Card, Text, Badge, Progress, Group, Stack, Alert } from '@mantine/core';
-import { IconSpeedboat, IconInfoCircle } from '@tabler/icons-react';
+import { Alert, Badge, Card, Group, Progress, Stack, Text } from '@mantine/core';
+import { IconInfoCircle, IconSpeedboat } from '@tabler/icons-react';
 import { useFCPMeasurement } from '../../model';
 
 export const FCPMeasurementExample = () => {
@@ -19,7 +19,7 @@ export const FCPMeasurementExample = () => {
   const rating = fcp ? getFCPRating(fcp) : null;
 
   return (
-    <Card shadow="sm" p="lg" radius="md" withBorder>
+    <Card p="lg" radius="md" shadow="sm" withBorder>
       <Stack gap="md">
         <Group>
           <IconSpeedboat size={20} />
@@ -28,28 +28,29 @@ export const FCPMeasurementExample = () => {
           </Text>
         </Group>
 
-        <Alert icon={<IconInfoCircle size="16" />} color="blue">
+        <Alert color="blue" icon={<IconInfoCircle size="16" />}>
           <Text size="sm">
             This example measures the First Contentful Paint (FCP) of the current page. FCP measures
             when the first piece of DOM content is rendered. Good FCP should be ≤ 1.8 seconds.
           </Text>
         </Alert>
 
-        <Card withBorder p="md" bg="gray.0">
+        <Card bg="gray.0" p="md" withBorder>
           <Stack gap="sm">
-            <Text size="sm" c="dimmed">
+            <Text c="dimmed" size="sm">
               Current Page FCP
             </Text>
 
             {isMeasuring ? (
               <Group>
-                <Text size="xl" fw={700}>
+                <Text fw={700} size="xl">
                   Measuring...
                 </Text>
               </Group>
-            ) : fcp ? (
+            ) : // biome-ignore lint/style/noNestedTernary: exists as example
+            fcp ? (
               <Group>
-                <Text size="xl" fw={700}>
+                <Text fw={700} size="xl">
                   {fcp}ms
                 </Text>
                 {rating && (
@@ -59,17 +60,17 @@ export const FCPMeasurementExample = () => {
                 )}
               </Group>
             ) : (
-              <Text size="xl" fw={700} c="dimmed">
+              <Text c="dimmed" fw={700} size="xl">
                 Unable to measure
               </Text>
             )}
 
-            {fcp && <Progress value={getProgress(fcp)} color={rating?.color} size="sm" mt="xs" />}
+            {fcp && <Progress color={rating?.color} mt="xs" size="sm" value={getProgress(fcp)} />}
           </Stack>
         </Card>
 
         <Stack gap="xs">
-          <Text size="sm" fw={600}>
+          <Text fw={600} size="sm">
             FCP Thresholds:
           </Text>
           <Group gap="xs">
@@ -95,4 +96,3 @@ export const FCPMeasurementExample = () => {
     </Card>
   );
 };
-

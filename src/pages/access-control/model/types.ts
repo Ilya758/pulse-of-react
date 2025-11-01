@@ -55,4 +55,3 @@ export interface AccessDecision {
   policies: string[];
   timestamp: Date;
 }
-

@@ -1,30 +1,30 @@
-import { Code, List, Space, Text, Title } from '@mantine/core';
-import { useEffect } from 'react';
 import { CodeHighlight, CodeHighlightTabs } from '@mantine/code-highlight';
-import { IconInfoCircle, IconFileTypeTsx, IconFileTypeTs } from '@tabler/icons-react';
+import { Code, List, Space, Text, Title } from '@mantine/core';
+import { IconFileTypeTs, IconFileTypeTsx, IconInfoCircle } from '@tabler/icons-react';
+import { useEffect } from 'react';
 import { SectionBlock } from '@/shared';
-import {
-  TYPES_CODE,
-  STATE_MACHINE_CODE,
-  EXAMPLE_CODE,
-  DISCRIMINATED_UNION_CODE,
-} from '../model/constants';
 import { useTocContent } from '@/widgets/layout';
+import {
+  DISCRIMINATED_UNION_CODE,
+  EXAMPLE_CODE,
+  STATE_MACHINE_CODE,
+  TYPES_CODE,
+} from '../model/constants';
 import { Example } from './example';
 
 export const StateMachine = () => {
   const { signalContentLoaded } = useTocContent();
 
-  useEffect(signalContentLoaded, [signalContentLoaded]);
+  useEffect(signalContentLoaded, []);
 
   return (
     <>
       <Space h={4} />
-      <Title order={1} mb="lg">
+      <Title mb="lg" order={1}>
         State Machine
       </Title>
 
-      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core Concept">
         <Text>
           State machines are a powerful pattern for managing complex application state with
           predictable transitions. When combined with TypeScript's discriminated unions, they
@@ -33,13 +33,13 @@ export const StateMachine = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="Understanding State Machines" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Understanding State Machines">
         <Text>
           State machines are a mathematical model of computation used to design algorithms and
           computer programs. In React, they help manage complex state transitions in a predictable
           and type-safe manner.
         </Text>
-        <Title order={4} mt="lg" mb="sm">
+        <Title mb="sm" mt="lg" order={4}>
           What are Discriminated Unions?
         </Title>
         <Text>
@@ -53,51 +53,51 @@ export const StateMachine = () => {
           In the context of state machines, each state is represented as a separate type with a
           <Code>type</Code> property that acts as the discriminator:
         </Text>
-        <CodeHighlight mt="md" language="tsx" radius="md" code={DISCRIMINATED_UNION_CODE} />
+        <CodeHighlight code={DISCRIMINATED_UNION_CODE} language="tsx" mt="md" radius="md" />
       </SectionBlock>
 
-      <SectionBlock title="When to Use This Pattern" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="When to Use This Pattern">
         <Text mb="md">
           State machines with discriminated unions excel in specific scenarios where you need
           predictable, type-safe state management:
         </Text>
         <List spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Complex State Logic:
             </Text>{' '}
             When your component has multiple states with different data requirements and complex
             transition rules between them.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Predictable State Transitions:
             </Text>{' '}
             When you need to ensure that state changes follow specific rules and prevent invalid
             state combinations.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Type Safety Requirements:
             </Text>{' '}
             When you want compile-time guarantees that all possible states are handled and
             impossible states are prevented.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Async Operations:
             </Text>{' '}
             When managing loading, success, and error states for asynchronous operations like API
             calls.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Form State Management:
             </Text>{' '}
             When handling complex form states like validation, submission, and error handling.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Multi-step Processes:
             </Text>{' '}
             When managing workflows with multiple steps, each with their own state requirements.
@@ -105,32 +105,32 @@ export const StateMachine = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="When NOT to Use This Pattern" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="When NOT to Use This Pattern">
         <Text mb="md">
           Understanding when to avoid state machines helps you choose the right pattern for your
           specific use case:
         </Text>
         <List mb="lg" spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Simple state management:
             </Text>{' '}
             For basic state that can be handled with useState or useReducer in a single component.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Single state values:
             </Text>{' '}
             When you only need to track a single value without complex transitions or conditions.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Performance-critical scenarios:
             </Text>{' '}
             When the overhead of type checking and discriminated unions would impact performance.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Simple data fetching:
             </Text>{' '}
             For basic API calls - Custom Hooks with useState might be more appropriate.
@@ -138,7 +138,7 @@ export const StateMachine = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Pattern Signature" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Pattern Signature">
         <Text>
           The core of the state machine pattern consists of three main parts: states, actions, and a
           reducer.
@@ -164,10 +164,10 @@ export const StateMachine = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="Key Caveats & Best Practices" initialSpaceAfterDivider="xs">
-        <List spacing="sm" icon={<IconInfoCircle size={16} />}>
+      <SectionBlock initialSpaceAfterDivider="xs" title="Key Caveats & Best Practices">
+        <List icon={<IconInfoCircle size={16} />} spacing="sm">
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Use Descriptive State Names:
             </Title>
             <Text>
@@ -177,7 +177,7 @@ export const StateMachine = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Keep States Minimal:
             </Title>
             <Text>
@@ -186,7 +186,7 @@ export const StateMachine = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Use Type Guards:
             </Title>
             <Text>
@@ -195,7 +195,7 @@ export const StateMachine = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Handle All Transitions:
             </Title>
             <Text>
@@ -204,7 +204,7 @@ export const StateMachine = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Separate Concerns:
             </Title>
             <Text>
@@ -213,7 +213,7 @@ export const StateMachine = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Memoize State Checks:
             </Title>
             <Text>
@@ -222,7 +222,7 @@ export const StateMachine = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Document State Transitions:
             </Title>
             <Text>
@@ -235,29 +235,29 @@ export const StateMachine = () => {
 
       <SectionBlock title="Example: User Registration Multi-Step Modal">
         <CodeHighlightTabs
-          withExpandButton={true}
-          defaultExpanded={false}
-          radius="md"
           code={[
             {
-              fileName: 'types.ts',
-              language: 'tsx',
               code: TYPES_CODE,
-              icon: <IconFileTypeTs size={14} color="#2596be" />,
+              fileName: 'types.ts',
+              icon: <IconFileTypeTs color="#2596be" size={14} />,
+              language: 'tsx',
             },
             {
-              fileName: 'state-machine.ts',
-              language: 'tsx',
               code: STATE_MACHINE_CODE,
-              icon: <IconFileTypeTs size={14} color="#2596be" />,
+              fileName: 'state-machine.ts',
+              icon: <IconFileTypeTs color="#2596be" size={14} />,
+              language: 'tsx',
             },
             {
-              fileName: 'example.tsx',
-              language: 'tsx',
               code: EXAMPLE_CODE,
-              icon: <IconFileTypeTsx size={14} color="#2596be" />,
+              fileName: 'example.tsx',
+              icon: <IconFileTypeTsx color="#2596be" size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          radius="md"
+          withExpandButton={true}
         />
 
         <Example />
@@ -266,4 +266,3 @@ export const StateMachine = () => {
     </>
   );
 };
-

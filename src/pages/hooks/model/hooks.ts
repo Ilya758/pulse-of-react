@@ -5,6 +5,7 @@ export const useFetch = <T>(url: string, options = {}) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: required to fetch data
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
@@ -37,7 +38,9 @@ export const useFetch = <T>(url: string, options = {}) => {
     };
 
     if (url) {
-      fetchData();
+      fetchData().catch(() => {
+        throw new Error('Failed to fetch data');
+      });
     } else {
       setLoading(false);
       setData(null);
@@ -48,6 +51,5 @@ export const useFetch = <T>(url: string, options = {}) => {
     };
   }, [url, JSON.stringify(options)]);
 
-  return { data, loading, error };
+  return { data, error, loading };
 };
-

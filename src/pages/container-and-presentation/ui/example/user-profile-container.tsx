@@ -1,9 +1,9 @@
-import { FC, useCallback, useEffect, useState } from 'react';
-import { UserProfileForm } from './user-profile-form';
 import { notifications } from '@mantine/notifications';
 import { IconCheck } from '@tabler/icons-react';
-import { User } from '../../model';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { fetchUser, saveUser } from '../../lib';
+import { User } from '../../model';
+import { UserProfileForm } from './user-profile-form';
 
 export const UserProfileContainer: FC = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -23,32 +23,32 @@ export const UserProfileContainer: FC = () => {
 
     setIsSaving(true);
     notifications.show({
+      autoClose: false,
       id: 'save-user',
       loading: true,
-      title: 'Saving your profile',
       message: 'Please wait while we update your information.',
-      autoClose: false,
+      title: 'Saving your profile',
       withCloseButton: false,
     });
 
     try {
       await saveUser();
       notifications.update({
-        id: 'save-user',
-        color: 'teal',
-        loading: false,
-        icon: <IconCheck size={16} />,
-        title: 'Profile Saved!',
-        message: 'Your profile has been successfully updated.',
         autoClose: 2000,
+        color: 'teal',
+        icon: <IconCheck size={16} />,
+        id: 'save-user',
+        loading: false,
+        message: 'Your profile has been successfully updated.',
+        title: 'Profile Saved!',
       });
     } catch {
       notifications.update({
-        id: 'save-user',
-        color: 'red',
-        title: 'Error',
-        message: 'Failed to save your profile. Please try again.',
         autoClose: 5000,
+        color: 'red',
+        id: 'save-user',
+        message: 'Failed to save your profile. Please try again.',
+        title: 'Error',
       });
     } finally {
       setIsSaving(false);
@@ -71,11 +71,10 @@ export const UserProfileContainer: FC = () => {
 
   return (
     <UserProfileForm
-      user={user}
       isSaving={isSaving}
       onInputChange={handleInputChange}
       onSave={handleSave}
+      user={user}
     />
   );
 };
-

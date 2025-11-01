@@ -1,6 +1,6 @@
+import { AccessDecision, AccessRequest, User } from '../../model';
 import { SimpleABACService } from './abac';
 import { SimpleRBACService } from './rbac';
-import { AccessRequest, AccessDecision, User } from '../../model';
 
 export class HybridAccessControlService {
   private rbacService: SimpleRBACService;
@@ -21,8 +21,8 @@ export class HybridAccessControlService {
     if (!hasRBACAccess) {
       return {
         allowed: false,
-        reason: 'Access denied by RBAC - insufficient role permissions',
         policies: [],
+        reason: 'Access denied by RBAC - insufficient role permissions',
         timestamp: new Date(),
       };
     }
@@ -31,8 +31,8 @@ export class HybridAccessControlService {
 
     const decision = {
       allowed: abacResult.allowed,
-      reason: abacResult.reason,
       policies: abacResult.policies,
+      reason: abacResult.reason,
       timestamp: new Date(),
     };
 

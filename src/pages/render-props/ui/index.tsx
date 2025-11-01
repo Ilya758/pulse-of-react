@@ -1,25 +1,25 @@
-import { Code, List, Space, Text, Title } from '@mantine/core';
-import { Example } from './example';
-import { useEffect } from 'react';
 import { CodeHighlight, CodeHighlightTabs } from '@mantine/code-highlight';
+import { Code, List, Space, Text, Title } from '@mantine/core';
 import { IconFileTypeTsx, IconInfoCircle } from '@tabler/icons-react';
+import { useEffect } from 'react';
 import { SectionBlock } from '@/shared';
-import { EXAMPLE_CODE, DATA_PROVIDER_CODE, RENDER_PROPS_CODE } from '../model/constants';
 import { useTocContent } from '@/widgets/layout';
+import { DATA_PROVIDER_CODE, EXAMPLE_CODE, RENDER_PROPS_CODE } from '../model/constants';
+import { Example } from './example';
 
 export const RenderPropsPage: React.FC = () => {
   const { signalContentLoaded } = useTocContent();
 
-  useEffect(signalContentLoaded, [signalContentLoaded]);
+  useEffect(signalContentLoaded, []);
 
   return (
     <>
       <Space h={4} />
-      <Title order={1} mb="lg">
+      <Title mb="lg" order={1}>
         Render Props
       </Title>
 
-      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core Concept">
         <Text>
           The term "render prop" refers to a technique for sharing code between React components
           using a prop whose value is a function. A component with a render prop takes a function
@@ -29,10 +29,10 @@ export const RenderPropsPage: React.FC = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="When to Use Render Props" initialSpaceAfterDivider="md">
+      <SectionBlock initialSpaceAfterDivider="md" title="When to Use Render Props">
         <List spacing="xs" type="ordered">
           <List.Item>
-            <Title order={5} mb="xs">
+            <Title mb="xs" order={5}>
               Sharing Cross-Cutting Concerns:
             </Title>
             <Text>
@@ -43,7 +43,7 @@ export const RenderPropsPage: React.FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} mb="xs">
+            <Title mb="xs" order={5}>
               Exposing Data to Parent Components:
             </Title>
             <Text>
@@ -53,7 +53,7 @@ export const RenderPropsPage: React.FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} mb="xs">
+            <Title mb="xs" order={5}>
               Avoiding Wrapper Hell:
             </Title>
             <Text>
@@ -62,7 +62,7 @@ export const RenderPropsPage: React.FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} mb="xs">
+            <Title mb="xs" order={5}>
               Better Prop Type Inference:
             </Title>
             <Text>
@@ -72,20 +72,20 @@ export const RenderPropsPage: React.FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Pattern Signature" initialSpaceAfterDivider="md">
+      <SectionBlock initialSpaceAfterDivider="md" title="Pattern Signature">
         <Text>
           A common way to implement a render prop is to have a prop (often named <Code>render</Code>{' '}
           or <Code>children</Code> if it's the only one) that is a function. This function receives
           arguments from the component and returns JSX.
         </Text>
         <Space h="md" />
-        <CodeHighlight language="tsx" radius="md" code={RENDER_PROPS_CODE} />
+        <CodeHighlight code={RENDER_PROPS_CODE} language="tsx" radius="md" />
       </SectionBlock>
 
-      <SectionBlock title="Key Caveats & Best Practices" initialSpaceAfterDivider="md">
-        <List spacing="sm" icon={<IconInfoCircle size={16} />}>
+      <SectionBlock initialSpaceAfterDivider="md" title="Key Caveats & Best Practices">
+        <List icon={<IconInfoCircle size={16} />} spacing="sm">
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Prop Naming:
             </Title>
             <Text>
@@ -95,7 +95,7 @@ export const RenderPropsPage: React.FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Performance Considerations:
             </Title>
             <Text>
@@ -108,7 +108,7 @@ export const RenderPropsPage: React.FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Readability:
             </Title>
             <Text>
@@ -117,7 +117,7 @@ export const RenderPropsPage: React.FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Alternatives:
             </Title>
             <Text>
@@ -138,23 +138,23 @@ export const RenderPropsPage: React.FC = () => {
           forms.
         </Text>
         <CodeHighlightTabs
-          withExpandButton={true}
-          defaultExpanded={false}
-          radius="md"
           code={[
             {
-              fileName: 'FormManager.tsx',
-              language: 'tsx',
               code: DATA_PROVIDER_CODE,
+              fileName: 'FormManager.tsx',
               icon: <IconFileTypeTsx size={14} />,
+              language: 'tsx',
             },
             {
-              fileName: 'Example.tsx',
-              language: 'tsx',
               code: EXAMPLE_CODE,
+              fileName: 'Example.tsx',
               icon: <IconFileTypeTsx size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          radius="md"
+          withExpandButton={true}
         />
         <Example />
       </SectionBlock>
@@ -162,4 +162,3 @@ export const RenderPropsPage: React.FC = () => {
     </>
   );
 };
-

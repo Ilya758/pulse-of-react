@@ -25,8 +25,8 @@ export class SimpleABACService {
       default: {
         return {
           allowed: true,
-          reason: 'Access granted (no specific policies apply)',
           policies: [],
+          reason: 'Access granted (no specific policies apply)',
         };
       }
     }
@@ -43,8 +43,8 @@ export class SimpleABACService {
 
     return {
       allowed: true,
-      reason: 'Access granted by policies',
       policies: [...policies, 'business-hours'],
+      reason: 'Access granted by policies',
     };
   }
 
@@ -59,8 +59,8 @@ export class SimpleABACService {
 
     return {
       allowed: true,
-      reason: 'Access granted by policies',
       policies: [...policies, 'business-hours'],
+      reason: 'Access granted by policies',
     };
   }
 
@@ -74,33 +74,33 @@ export class SimpleABACService {
     if (ip && (ip.startsWith('192.168.1.') || ip.startsWith('10.0.'))) {
       return {
         allowed: true,
-        reason: 'Access granted by policies',
         policies: [...policies, 'office-network'],
+        reason: 'Access granted by policies',
       };
     }
 
     return {
       allowed: false,
-      reason: 'Access denied: Must be on office network for sensitive documents',
       policies: ['office-network'],
+      reason: 'Access denied: Must be on office network for sensitive documents',
     };
   }
 
   private evaluateTimePolicy(context: any, _policies: string[]) {
     const time = context.time as string;
 
-    if (!time) return { allowed: true, reason: 'No time context', policies: [] };
+    if (!time) return { allowed: true, policies: [], reason: 'No time context' };
 
-    const hour = parseInt(time.split(':')[0]);
+    const hour = Number.parseInt(time.split(':')[0], 10);
 
     if (hour >= 9 && hour <= 17) {
-      return { allowed: true, reason: 'Business hours', policies: [] };
+      return { allowed: true, policies: [], reason: 'Business hours' };
     }
 
     return {
       allowed: false,
-      reason: 'Access denied: Outside business hours (9 AM - 5 PM)',
       policies: ['business-hours'],
+      reason: 'Access denied: Outside business hours (9 AM - 5 PM)',
     };
   }
 
@@ -110,8 +110,8 @@ export class SimpleABACService {
     if (userRole !== 'manager') {
       return {
         allowed: true,
-        reason: 'Access granted (not a manager edit operation)',
         policies: [],
+        reason: 'Access granted (not a manager edit operation)',
       };
     }
 
@@ -121,23 +121,23 @@ export class SimpleABACService {
     if (!userDept) {
       return {
         allowed: false,
-        reason: 'Access denied: Manager must have department assigned',
         policies: ['department-access'],
+        reason: 'Access denied: Manager must have department assigned',
       };
     }
 
     if (resourceDept && userDept !== resourceDept) {
       return {
         allowed: false,
-        reason: `Access denied: Manager can only edit documents from their own department (${userDept} vs ${resourceDept})`,
         policies: ['department-access'],
+        reason: `Access denied: Manager can only edit documents from their own department (${userDept} vs ${resourceDept})`,
       };
     }
 
     return {
       allowed: true,
-      reason: 'Access granted by policies',
       policies: [...policies, 'department-access'],
+      reason: 'Access granted by policies',
     };
   }
 
@@ -152,24 +152,23 @@ export class SimpleABACService {
     if (resourceDept && userDept && userDept !== resourceDept) {
       return {
         allowed: false,
-        reason: `Access denied: Users can only read reports from their own department (${userDept} vs ${resourceDept})`,
         policies: ['department-access'],
+        reason: `Access denied: Users can only read reports from their own department (${userDept} vs ${resourceDept})`,
       };
     }
 
     if (resourceDept && userDept) {
       return {
         allowed: true,
-        reason: 'Access granted by policies',
         policies: [...policies, 'business-hours', 'department-access'],
+        reason: 'Access granted by policies',
       };
     }
 
     return {
       allowed: true,
-      reason: 'Access granted by policies',
       policies: [...policies, 'business-hours'],
+      reason: 'Access granted by policies',
     };
   }
 }
-

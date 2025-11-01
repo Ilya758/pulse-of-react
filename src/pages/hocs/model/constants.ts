@@ -267,4 +267,3 @@ const withFeature = <P extends object>(
 
 export const HOC_PATTERN_USAGE = `// Usage
 const EnhancedComponent = withFeature(BaseComponent);`;
-

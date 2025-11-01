@@ -1,25 +1,25 @@
+import { Container, Group, Paper, SimpleGrid, Stack, Text, ThemeIcon, Title } from '@mantine/core';
+import { IconBook, IconFolderOpen, IconGauge, IconMapSearch, IconTools } from '@tabler/icons-react';
 import { useThemeColorContext } from '@/shared';
-import { Container, Title, Text, Paper, SimpleGrid, ThemeIcon, Stack, Group } from '@mantine/core';
-import { IconBook, IconFolderOpen, IconTools, IconGauge, IconMapSearch } from '@tabler/icons-react';
 
 export const HomePage = () => {
   const { primaryColor } = useThemeColorContext();
 
   return (
-    <Container size="lg" py="xl">
-      <Paper shadow="md" p="xl" radius="md" withBorder>
-        <Title order={1} ta="center" mb="lg">
+    <Container mx="auto" py="xl" size="lg">
+      <Paper p="xl" radius="md" shadow="md" withBorder>
+        <Title mb="lg" order={1} ta="center">
           Welcome to Pulse-Of-React!
         </Title>
-        <Text fz="lg" ta="center" mb="xl">
+        <Text fz="lg" mb="xl" ta="center">
           Your finger on the beat of modern React development. Explore essential concepts, ecosystem
           trends, and practical design patterns.
         </Text>
 
-        <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="xl" mb="xl">
-          <Paper p="lg" shadow="xs" withBorder radius="md">
+        <SimpleGrid cols={{ base: 1, sm: 2 }} mb="xl" spacing="xl">
+          <Paper p="lg" radius="md" shadow="xs" withBorder>
             <Group>
-              <ThemeIcon color={primaryColor} variant="light" size="xl" radius="md">
+              <ThemeIcon color={primaryColor} radius="md" size="xl" variant="light">
                 <IconBook size="1.5rem" />
               </ThemeIcon>
               <Title order={3}>React's Vital Signs</Title>
@@ -30,9 +30,9 @@ export const HomePage = () => {
               manage state effectively.
             </Text>
           </Paper>
-          <Paper p="lg" shadow="xs" withBorder radius="md">
+          <Paper p="lg" radius="md" shadow="xs" withBorder>
             <Group>
-              <ThemeIcon color={primaryColor} variant="light" size="xl" radius="md">
+              <ThemeIcon color={primaryColor} radius="md" size="xl" variant="light">
                 <IconGauge size="1.5rem" />
               </ThemeIcon>
               <Title order={3}>Optimizing React Performance</Title>
@@ -45,14 +45,14 @@ export const HomePage = () => {
           </Paper>
         </SimpleGrid>
 
-        <Title order={2} ta="center" mb="lg" mt="xl">
+        <Title mb="lg" mt="xl" order={2} ta="center">
           Inside This Project
         </Title>
 
-        <SimpleGrid cols={{ base: 1, md: 3 }} spacing="lg" mb="xl">
+        <SimpleGrid cols={{ base: 1, md: 3 }} mb="xl" spacing="lg">
           <Stack>
             <Group>
-              <ThemeIcon color={primaryColor} variant="light" size="lg" radius="md">
+              <ThemeIcon color={primaryColor} radius="md" size="lg" variant="light">
                 <IconFolderOpen size="1.2rem" />
               </ThemeIcon>
               <Title order={4}>Structure</Title>
@@ -64,7 +64,7 @@ export const HomePage = () => {
           </Stack>
           <Stack>
             <Group>
-              <ThemeIcon color={primaryColor} variant="light" size="lg" radius="md">
+              <ThemeIcon color={primaryColor} radius="md" size="lg" variant="light">
                 <IconTools size="1.2rem" />
               </ThemeIcon>
               <Title order={4}>Tech Stack</Title>
@@ -77,7 +77,7 @@ export const HomePage = () => {
           </Stack>
           <Stack>
             <Group>
-              <ThemeIcon color={primaryColor} variant="light" size="lg" radius="md">
+              <ThemeIcon color={primaryColor} radius="md" size="lg" variant="light">
                 <IconMapSearch size="1.2rem" />
               </ThemeIcon>
               <Title order={4}>Navigating This Guide</Title>
@@ -92,4 +92,3 @@ export const HomePage = () => {
     </Container>
   );
 };
-

@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 export const ScrollToTop = () => {
   const { pathname } = useLocation();
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: pathname is needed to trigger the effect
   useEffect(() => {
     requestAnimationFrame(() => {
       setTimeout(() => {
@@ -14,4 +15,3 @@ export const ScrollToTop = () => {
 
   return null;
 };
-

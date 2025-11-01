@@ -1,23 +1,22 @@
-import { ComponentType } from 'react';
-import { notifications } from '@mantine/notifications';
 import { useMediaQuery } from '@mantine/hooks';
+import { notifications } from '@mantine/notifications';
+import { ComponentType } from 'react';
 import { getNotificationConfig } from '../../lib';
 
 export interface WithAnalyticsProps {
   trackEvent: (eventName: string, data?: Record<string, unknown>) => void;
 }
 
-export const withAnalytics = <P extends object>(
-  WrappedComponent: ComponentType<P & WithAnalyticsProps>,
-) => {
-  return (props: P) => {
+export const withAnalytics =
+  <P extends object>(WrappedComponent: ComponentType<P & WithAnalyticsProps>) =>
+  (props: P) => {
     const isDesktop = useMediaQuery('(min-width: 1024px)', true);
 
     const trackEvent = (eventName: string, data?: Record<string, unknown>) => {
       notifications.show({
         autoClose: 3000,
-        position: isDesktop ? 'bottom-right' : 'top-right',
         message: `${eventName}${data ? `: ${JSON.stringify(data)}` : ''}`,
+        position: isDesktop ? 'bottom-right' : 'top-right',
         title: 'Analytics Event',
         ...getNotificationConfig(eventName),
       });
@@ -25,5 +24,3 @@ export const withAnalytics = <P extends object>(
 
     return <WrappedComponent {...props} trackEvent={trackEvent} />;
   };
-};
-

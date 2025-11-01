@@ -1,38 +1,38 @@
 export const CSP_DIRECTIVES = [
   {
-    name: 'script-src',
-    description: 'Controls which scripts can execute',
     defaultValue: ['self'],
+    description: 'Controls which scripts can execute',
+    name: 'script-src',
     options: ['self', 'unsafe-inline', 'unsafe-eval', 'none', 'https:', 'data:'],
   },
   {
-    name: 'style-src',
-    description: 'Controls which stylesheets can be loaded',
     defaultValue: ['self'],
+    description: 'Controls which stylesheets can be loaded',
+    name: 'style-src',
     options: ['self', 'unsafe-inline', 'none', 'https:', 'data:'],
   },
   {
-    name: 'img-src',
-    description: 'Controls which images can be loaded',
     defaultValue: ['self', 'data:', 'https:'],
+    description: 'Controls which images can be loaded',
+    name: 'img-src',
     options: ['self', 'data:', 'https:', 'http:', 'none'],
   },
   {
-    name: 'connect-src',
-    description: 'Controls which URLs can be loaded via fetch, XHR, WebSocket',
     defaultValue: ['self'],
+    description: 'Controls which URLs can be loaded via fetch, XHR, WebSocket',
+    name: 'connect-src',
     options: ['self', 'https:', 'wss:', 'none'],
   },
   {
-    name: 'font-src',
-    description: 'Controls which fonts can be loaded',
     defaultValue: ['self'],
+    description: 'Controls which fonts can be loaded',
+    name: 'font-src',
     options: ['self', 'data:', 'https:', 'none'],
   },
   {
-    name: 'frame-src',
-    description: 'Controls which frames can be embedded',
     defaultValue: ['none'],
+    description: 'Controls which frames can be embedded',
+    name: 'frame-src',
     options: ['self', 'none', 'https:'],
   },
 ];
@@ -121,4 +121,3 @@ export const cspMiddleware = createCSPMiddleware({
 function generateNonce(): string {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 }`;
-

@@ -1,27 +1,26 @@
-import { FC, useEffect } from 'react';
-import { Title, Text, List, Space, Code, Alert, Table } from '@mantine/core';
-import { IconFileTypeTs, IconInfoCircle } from '@tabler/icons-react';
 import { CodeHighlightTabs } from '@mantine/code-highlight';
+import { Alert, Code, List, Space, Table, Text, Title } from '@mantine/core';
+import { IconFileTypeTs, IconInfoCircle } from '@tabler/icons-react';
+import { FC, useEffect } from 'react';
 
 import { SectionBlock } from '@/shared';
 import { useTocContent } from '@/widgets/layout';
-
-import { Example } from './example';
 import { CORS_EXPRESS_MIDDLEWARE_CODE, CORS_NESTJS_MIDDLEWARE_CODE } from '../model';
+import { Example } from './example';
 
 export const CrossOriginResourceSharingPage: FC = () => {
   const { signalContentLoaded } = useTocContent();
 
-  useEffect(signalContentLoaded, [signalContentLoaded]);
+  useEffect(signalContentLoaded, []);
 
   return (
     <>
       <Space h={4} />
-      <Title order={1} mb="lg">
+      <Title mb="lg" order={1}>
         Cross-Origin Resource Sharing (CORS)
       </Title>
 
-      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core Concept">
         <Text>
           Cross-Origin Resource Sharing (CORS) is a security mechanism that allows a web page from
           one origin (domain, protocol, or port) to request resources from a different origin. It is
@@ -36,29 +35,29 @@ export const CrossOriginResourceSharingPage: FC = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="Why CORS is Necessary" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Why CORS is Necessary">
         <Text>
           The Same-Origin Policy is a strict security measure that prevents scripts on one page from
           accessing data on another page with a different origin. While this is crucial for
           security, it is too restrictive for many legitimate use cases, such as:
         </Text>
-        <List spacing="xs" mt="md">
+        <List mt="md" spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               APIs on Different Domains:
             </Text>{' '}
             A single-page application (SPA) hosted on `app.example.com` might need to fetch data
             from an API at `api.example.com`.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Third-Party Services:
             </Text>{' '}
             Applications often rely on external services for things like analytics, payments, or
             weather data, which are hosted on different origins.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Content Delivery Networks (CDNs):
             </Text>{' '}
             Serving assets like images, scripts, and stylesheets from a CDN improves performance but
@@ -71,17 +70,17 @@ export const CrossOriginResourceSharingPage: FC = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="How CORS Works" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="How CORS Works">
         <Text>
           CORS categorizes cross-origin requests into two main types: "simple requests" and
           "preflighted requests."
         </Text>
 
-        <Title order={4} mt="lg" mb="sm">
+        <Title mb="sm" mt="lg" order={4}>
           Simple Requests
         </Title>
         <Text>A request is considered "simple" if it meets all of the following conditions:</Text>
-        <List spacing="xs" mt="md">
+        <List mt="md" spacing="xs">
           <List.Item>
             The method is one of <Code>GET</Code>, <Code>HEAD</Code>, or <Code>POST</Code>.
           </List.Item>
@@ -104,7 +103,7 @@ export const CrossOriginResourceSharingPage: FC = () => {
           response. Otherwise, the request fails.
         </Text>
 
-        <Title order={4} mt="lg" mb="sm">
+        <Title mb="sm" mt="lg" order={4}>
           Preflighted Requests
         </Title>
         <Text>
@@ -126,11 +125,11 @@ export const CrossOriginResourceSharingPage: FC = () => {
           <Code>Access-Control-Allow-*</Code> headers), the browser then sends the actual request.
         </Text>
         <Alert
-          mt="md"
-          variant="light"
           color="blue"
-          title="Preflight Requests and Performance"
           icon={<IconInfoCircle />}
+          mt="md"
+          title="Preflight Requests and Performance"
+          variant="light"
         >
           Preflight requests add an extra round-trip to the server, which can impact performance.
           Servers can use the <Code>Access-Control-Max-Age</Code> header to cache the results of a
@@ -138,7 +137,7 @@ export const CrossOriginResourceSharingPage: FC = () => {
         </Alert>
       </SectionBlock>
 
-      <SectionBlock title="Common CORS Headers" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Common CORS Headers">
         <Text>
           CORS is managed through a set of HTTP headers exchanged between the browser and the
           server. Here are some of the most important ones:
@@ -201,7 +200,7 @@ export const CrossOriginResourceSharingPage: FC = () => {
         </Table>
       </SectionBlock>
 
-      <SectionBlock title="CORS Configuration with Express.js" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="CORS Configuration with Express.js">
         <Text>
           In a Node.js backend using the Express.js framework, handling CORS is straightforward with
           the <Code>cors</Code> middleware package. It provides a simple and flexible way to
@@ -211,28 +210,28 @@ export const CrossOriginResourceSharingPage: FC = () => {
           First, you need to install the package: <Code>npm install cors</Code>
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mt="lg"
           code={[
             {
-              fileName: 'express-cors-example.ts',
-              language: 'ts',
               code: CORS_EXPRESS_MIDDLEWARE_CODE,
-              icon: <IconFileTypeTs size={14} color="#2596be" />,
+              fileName: 'express-cors-example.ts',
+              icon: <IconFileTypeTs color="#2596be" size={14} />,
+              language: 'ts',
             },
             {
-              fileName: 'nestjs-cors-example.ts',
-              language: 'ts',
               code: CORS_NESTJS_MIDDLEWARE_CODE,
-              icon: <IconFileTypeTs size={14} color="#2596be" />,
+              fileName: 'nestjs-cors-example.ts',
+              icon: <IconFileTypeTs color="#2596be" size={14} />,
+              language: 'ts',
             },
           ]}
+          defaultExpanded={false}
+          mt="lg"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
 
-      <SectionBlock title="Example: Interactive CORS Simulator" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Example: Interactive CORS Simulator">
         <Text mb="md">
           This interactive example demonstrates how different server-side CORS configurations affect
           cross-origin requests from a client application. You can simulate various scenarios and
@@ -245,4 +244,3 @@ export const CrossOriginResourceSharingPage: FC = () => {
     </>
   );
 };
-

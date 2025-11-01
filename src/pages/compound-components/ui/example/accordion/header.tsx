@@ -1,7 +1,7 @@
-import { FC, ReactNode, useContext } from 'react';
 import { Button, Group } from '@mantine/core';
-import { AccordionContext } from '../../../model';
+import { FC, ReactNode, useContext } from 'react';
 import { useThemeColorContext } from '@/shared';
+import { AccordionContext } from '../../../model';
 
 type Props = {
   children: ReactNode;
@@ -18,8 +18,8 @@ export const AccordionHeader: FC<Props> = ({ children, id = '' }) => {
 
   return (
     <Button
-      aria-expanded={isOpen}
       aria-controls={`panel-${id}`}
+      aria-expanded={isOpen}
       color={primaryColor}
       fullWidth
       onClick={() => ctx.toggleItem(id)}
@@ -32,4 +32,3 @@ export const AccordionHeader: FC<Props> = ({ children, id = '' }) => {
     </Button>
   );
 };
-

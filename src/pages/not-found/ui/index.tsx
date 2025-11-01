@@ -1,16 +1,16 @@
-import { useThemeColorContext } from '@/shared';
 import {
-  Container,
-  Title,
-  Text,
-  Paper,
   Button,
-  Stack,
+  Container,
   Group,
+  Paper,
+  Stack,
+  Text,
+  Title,
   useMantineTheme,
 } from '@mantine/core';
-import { IconHome, IconArrowLeft } from '@tabler/icons-react';
+import { IconArrowLeft, IconHome } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
+import { useThemeColorContext } from '@/shared';
 import { GooseSVG } from './goose-svg';
 
 export const NotFoundPage = () => {
@@ -20,10 +20,10 @@ export const NotFoundPage = () => {
   const navigate = useNavigate();
 
   return (
-    <Container size="md" py="xl">
-      <Paper shadow="md" p="xl" radius="md" withBorder>
+    <Container py="xl" size="md">
+      <Paper p="xl" radius="md" shadow="md" withBorder>
         <Stack align="center" gap="xl">
-          <Title order={1} ta="center" c={bgColor}>
+          <Title c={bgColor} order={1} ta="center">
             Honk! 🦢 Page Not Found
           </Title>
 
@@ -31,22 +31,22 @@ export const NotFoundPage = () => {
             <GooseSVG />
           </div>
 
-          <Text fz="lg" ta="center" c={bgColor}>
+          <Text c={bgColor} fz="lg" ta="center">
             This confused goose can't find what you're looking for!
           </Text>
 
           <Group>
             <Button
-              leftSection={<IconArrowLeft size="1rem" />}
-              variant="outline"
-              onClick={() => navigate(-1)}
               color={bgColor}
+              leftSection={<IconArrowLeft size="1rem" />}
+              onClick={() => navigate(-1)}
+              variant="outline"
             >
               Fly Back
             </Button>
             <Button
-              leftSection={<IconHome size="1rem" />}
               color={bgColor}
+              leftSection={<IconHome size="1rem" />}
               onClick={() => navigate('/')}
             >
               Go Home
@@ -57,4 +57,3 @@ export const NotFoundPage = () => {
     </Container>
   );
 };
-

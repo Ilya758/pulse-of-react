@@ -1,7 +1,6 @@
-import { Suspense, lazy, useState } from 'react';
-import { Loader, Button, Paper, Alert } from '@mantine/core';
-import { If } from '@/shared';
-import { useThemeColorContext } from '@/shared';
+import { Alert, Button, Loader, Paper } from '@mantine/core';
+import { lazy, Suspense, useState } from 'react';
+import { If, useThemeColorContext } from '@/shared';
 
 function FallbackComponent() {
   return (
@@ -13,7 +12,7 @@ function FallbackComponent() {
 
 const LazyFeature = lazy(() =>
   import('./lazy-feature')
-    .then(({ LazyFeature }) => ({ default: LazyFeature }))
+    .then(({ LazyFeature: LazyFeatureComponent }) => ({ default: LazyFeatureComponent }))
     .catch((error) => {
       console.error('Component Failed Loading:', error);
       return { default: FallbackComponent };
@@ -26,7 +25,7 @@ export const LazyWithErrorBoundaryExample = () => {
 
   return (
     <Paper mb="md">
-      <Button onClick={() => setShow((s) => !s)} mb="md">
+      <Button mb="md" onClick={() => setShow((s) => !s)}>
         {show ? 'Hide' : 'Show'} Lazy Feature
       </Button>
       <If condition={show}>
@@ -37,4 +36,3 @@ export const LazyWithErrorBoundaryExample = () => {
     </Paper>
   );
 };
-

@@ -19,4 +19,3 @@ export const toggleAccordionItem = (
 
   return isOpen ? {} : { [id]: true };
 };
-

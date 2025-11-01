@@ -42,9 +42,9 @@ export const getCurrentStep = (state: ModalState): number => {
 export const canProceed = (state: ModalState): boolean => {
   if (isPersonal(state)) {
     return (
-      state.data.firstName.trim() !== '' &&
-      state.data.lastName.trim() !== '' &&
-      state.data.phoneNumber.trim() !== ''
+      state.data.firstName.trim() !== ''
+      && state.data.lastName.trim() !== ''
+      && state.data.phoneNumber.trim() !== ''
     );
   }
 
@@ -54,4 +54,3 @@ export const canProceed = (state: ModalState): boolean => {
 
   return false;
 };
-

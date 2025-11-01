@@ -1,14 +1,14 @@
 export const GooseSVG = () => (
   <svg
-    width="800px"
     height="800px"
-    viewBox="0 0 150 150"
-    xmlns="http://www.w3.org/2000/svg"
     style={{
-      width: 'clamp(200px, 50vw, 280px)',
       height: 'auto',
       maxWidth: '100%',
+      width: 'clamp(200px, 50vw, 280px)',
     }}
+    viewBox="0 0 150 150"
+    width="800px"
+    xmlns="http://www.w3.org/2000/svg"
   >
     <defs>
       <style>
@@ -52,4 +52,3 @@ export const GooseSVG = () => (
     />
   </svg>
 );
-

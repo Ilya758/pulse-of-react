@@ -1,2 +1,1 @@
-export * from './useImageLoader';
-
+export * from './use-image-loader';

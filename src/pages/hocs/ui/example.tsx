@@ -1,12 +1,12 @@
-import { Button, Paper, Text, Title, Stack, Group, Badge, Alert } from '@mantine/core';
+import { Alert, Badge, Button, Group, Paper, Stack, Text, Title } from '@mantine/core';
 import { useState } from 'react';
 import {
-  withAuth,
-  withLoading,
-  withAnalytics,
+  WithAnalyticsProps,
   WithAuthProps,
   WithLoadingProps,
-  WithAnalyticsProps,
+  withAnalytics,
+  withAuth,
+  withLoading,
 } from './hoc';
 
 type DashboardComponentProps = WithAuthProps & WithLoadingProps & WithAnalyticsProps;
@@ -36,7 +36,7 @@ const Dashboard = ({
 
   if (error) {
     return (
-      <Paper p="md" withBorder h={{ base: 'auto', sm: 200 }}>
+      <Paper h={{ base: 'auto', sm: 200 }} p="md" withBorder>
         <Alert
           color="red"
           onClose={resetError}
@@ -46,7 +46,7 @@ const Dashboard = ({
           withCloseButton
         >
           <Text size="sm">{error.message}</Text>
-          <Button variant="white" color="red" size="xs" mt="md" onClick={resetError}>
+          <Button color="red" mt="md" onClick={resetError} size="xs" variant="white">
             Try again
           </Button>
         </Alert>
@@ -56,16 +56,16 @@ const Dashboard = ({
 
   if (!isAuthenticated) {
     return (
-      <Paper p="md" withBorder h={{ base: 'auto', sm: 200 }}>
+      <Paper h={{ base: 'auto', sm: 200 }} p="md" withBorder>
         <Stack>
           <Title order={3}>Dashboard</Title>
           <Text c="dimmed">Please log in to view your dashboard</Text>
           <Button
+            loading={isLoggingIn}
             onClick={() => {
               trackEvent('login', { timestamp: new Date().toISOString() });
               onLogin();
             }}
-            loading={isLoggingIn}
           >
             {isLoggingIn ? 'Logging in...' : 'Log In'}
           </Button>
@@ -75,7 +75,7 @@ const Dashboard = ({
   }
 
   return (
-    <Paper p="md" withBorder h={{ base: 'auto', sm: 200 }}>
+    <Paper h={{ base: 'auto', sm: 200 }} p="md" withBorder>
       <Stack>
         <Group justify="space-between">
           <Title order={3}>Dashboard</Title>
@@ -83,7 +83,7 @@ const Dashboard = ({
         </Group>
 
         <Text>Welcome, {user?.name}!</Text>
-        <Text size="sm" c="dimmed">
+        <Text c="dimmed" size="sm">
           {user?.email}
         </Text>
 
@@ -92,9 +92,9 @@ const Dashboard = ({
             color="green"
             onClick={() => {
               trackEvent('profile', {
+                timestamp: new Date().toISOString(),
                 userId: user?.id,
                 userRole: user?.role,
-                timestamp: new Date().toISOString(),
               });
             }}
             variant="light"
@@ -105,9 +105,9 @@ const Dashboard = ({
             color="orange"
             onClick={() => {
               trackEvent('logout', {
+                timestamp: new Date().toISOString(),
                 userId: user?.id,
                 userRole: user?.role,
-                timestamp: new Date().toISOString(),
               });
               onLogout();
             }}
@@ -115,7 +115,7 @@ const Dashboard = ({
           >
             Log Out
           </Button>
-          <Button variant="light" color="red" onClick={simulateError}>
+          <Button color="red" onClick={simulateError} variant="light">
             Simulate Error
           </Button>
         </Group>
@@ -125,4 +125,3 @@ const Dashboard = ({
 };
 
 export const Example = withAuth(withLoading(withAnalytics(Dashboard)));
-

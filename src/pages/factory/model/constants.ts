@@ -47,26 +47,26 @@ export const FactoryExample: FC = () => (
 `;
 
 export const SELECT_OPTIONS = [
-  { value: 'option1', label: 'Option 1' },
-  { value: 'option2', label: 'Option 2' },
+  { label: 'Option 1', value: 'option1' },
+  { label: 'Option 2', value: 'option2' },
 ];
 
 export const INPUT_FACTORY_SELECT_OPTIONS = [
-  { value: 'text', label: 'Text' },
-  { value: 'number', label: 'Number' },
-  { value: 'password', label: 'Password' },
-  { value: 'textarea', label: 'Textarea' },
-  { value: 'select', label: 'Select' },
-  { value: 'checkbox', label: 'Checkbox' },
-  { value: 'switch', label: 'Switch' },
+  { label: 'Text', value: 'text' },
+  { label: 'Number', value: 'number' },
+  { label: 'Password', value: 'password' },
+  { label: 'Textarea', value: 'textarea' },
+  { label: 'Select', value: 'select' },
+  { label: 'Checkbox', value: 'checkbox' },
+  { label: 'Switch', value: 'switch' },
 ];
 
 export const DEFAULT_CONFIG: InputConfig = {
-  type: 'text',
+  description: '',
   label: 'Your input',
   placeholder: 'Type something...',
   required: false,
-  description: '',
+  type: 'text',
 };
 
 export const INPUT_FACTORY_TYPES_CODE = `export interface BaseConfig {
@@ -144,7 +144,6 @@ export const InputFactory = ({ config, value, onChange }: Props) => {
       );
     }
     case 'number': {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { type: _, ...rest } = config;
       const numberProps: Omit<NumberConfig, 'type'> = rest;
 
@@ -336,4 +335,3 @@ export const Example: FC = () => {
   );
 };
 `;
-

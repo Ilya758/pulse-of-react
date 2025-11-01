@@ -1,5 +1,5 @@
-import { Text } from '@mantine/core';
 import { CodeHighlightTabs } from '@mantine/code-highlight';
+import { Text } from '@mantine/core';
 import { ThemeControllerFacade } from './theme-controller-facade';
 
 const THEME_CONTROLLER_FACADE_CODE = `import { Card, Title, Text, Group, ColorSwatch, Stack } from '@mantine/core';
@@ -44,29 +44,26 @@ export function ThemeControllerFacade() {
 }
 `;
 
-export const Example = () => {
-  return (
-    <>
-      <Text mb="md">
-        This example demonstrates how to use the Facade pattern to wrap Mantine's color scheme and
-        theme system, exposing a simple interface for toggling dark/light mode and picking a primary
-        color.
-      </Text>
-      <CodeHighlightTabs
-        withExpandButton
-        defaultExpanded={false}
-        radius="md"
-        mb="lg"
-        code={[
-          {
-            fileName: 'ThemeControllerFacade.tsx',
-            language: 'tsx',
-            code: THEME_CONTROLLER_FACADE_CODE,
-          },
-        ]}
-      />
-      <ThemeControllerFacade />
-    </>
-  );
-};
-
+export const Example = () => (
+  <>
+    <Text mb="md">
+      This example demonstrates how to use the Facade pattern to wrap Mantine's color scheme and
+      theme system, exposing a simple interface for toggling dark/light mode and picking a primary
+      color.
+    </Text>
+    <CodeHighlightTabs
+      code={[
+        {
+          code: THEME_CONTROLLER_FACADE_CODE,
+          fileName: 'ThemeControllerFacade.tsx',
+          language: 'tsx',
+        },
+      ]}
+      defaultExpanded={false}
+      mb="lg"
+      radius="md"
+      withExpandButton
+    />
+    <ThemeControllerFacade />
+  </>
+);

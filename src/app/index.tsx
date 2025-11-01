@@ -1,12 +1,12 @@
-import { BrowserRouter } from 'react-router-dom';
-import { Layout } from '@/widgets/layout';
 import { LoadingOverlay } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
+import { BrowserRouter } from 'react-router-dom';
+import { Layout } from '@/widgets/layout';
 import '@mantine/notifications/styles.css';
 import { Choose, If, Otherwise, ThemeColorProvider } from '@/shared';
-import { ScrollToTop } from './ui';
-import { PageTransitionProvider, SuspenseProvider, ThemeProvider } from './providers';
 import { ROUTES, useAppInitializer } from './model';
+import { PageTransitionProvider, SuspenseProvider, ThemeProvider } from './providers';
+import { ScrollToTop } from './ui';
 import './index.css';
 
 export const App = () => {
@@ -29,13 +29,13 @@ export const App = () => {
           </If>
           <Otherwise>
             <LoadingOverlay
-              visible
-              overlayProps={{ radius: 'sm', blur: 2 }}
               loaderProps={{
                 // TODO: use primary color inside consumer
                 color: 'indigo',
                 type: 'bars',
               }}
+              overlayProps={{ blur: 2, radius: 'sm' }}
+              visible
             />
           </Otherwise>
         </Choose>
@@ -43,4 +43,3 @@ export const App = () => {
     </ThemeColorProvider>
   );
 };
-

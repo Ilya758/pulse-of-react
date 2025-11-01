@@ -1,5 +1,5 @@
+import { Box, Collapse } from '@mantine/core';
 import { FC, ReactNode, useContext } from 'react';
-import { Collapse, Box } from '@mantine/core';
 import { AccordionContext } from '../../../model';
 
 type Props = {
@@ -13,11 +13,10 @@ export const AccordionPanel: FC<Props> = ({ id = '', children }) => {
   if (!ctx) throw new Error('Accordion.Panel must be used within Accordion');
 
   return (
-    <Collapse in={!!ctx.openItems[id]} id={`panel-${id}`} transitionDuration={200}>
+    <Collapse id={`panel-${id}`} in={!!ctx.openItems[id]} transitionDuration={200}>
       <Box p="md" style={{ borderRadius: 8 }}>
         {children}
       </Box>
     </Collapse>
   );
 };
-

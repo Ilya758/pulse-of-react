@@ -1,12 +1,10 @@
-import { Group, Text, Burger, Menu, ActionIcon, Button } from '@mantine/core';
-import { IconBrandGithub, IconUserCircle, IconDotsVertical } from '@tabler/icons-react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { ThemeToggle } from '@/features/theme-toggle';
+import { ActionIcon, Burger, Button, Group, Menu, Text, useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { Choose, If, Otherwise } from '@/shared';
+import { IconBrandGithub, IconDotsVertical, IconUserCircle } from '@tabler/icons-react';
 import { useCallback } from 'react';
-import { useThemeColorContext } from '@/shared';
-import { useMantineTheme } from '@mantine/core';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ThemeToggle } from '@/features/theme-toggle';
+import { Choose, If, Otherwise, useThemeColorContext } from '@/shared';
 import { Logo } from './logo';
 
 type Props = {
@@ -41,15 +39,15 @@ export const Header = ({ opened, toggle, isTablet, isMobile }: Props) => {
   }, [navigate, location.pathname]);
 
   const LogoGroup = (
-    <Group gap={0} align="center" justify={'flex-start'}>
-      {!isTablet && <Burger ml={12} opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />}
-      <Logo color={color} size={60} onClick={handleLogoGeneralClick} />
+    <Group align="center" gap={0} justify={'flex-start'}>
+      {!isTablet && <Burger hiddenFrom="sm" ml={12} onClick={toggle} opened={opened} size="sm" />}
+      <Logo color={color} onClick={handleLogoGeneralClick} size={60} />
       <Text
         c={color}
         fw={700}
-        size={'xl'}
         ml="xs"
         onClick={handleLogoGeneralClick}
+        size={'xl'}
         style={{ cursor: 'pointer' }}
       >
         Pulse-Of-React
@@ -57,12 +55,12 @@ export const Header = ({ opened, toggle, isTablet, isMobile }: Props) => {
     </Group>
   );
   const ActionsGroup = (
-    <Group gap="xs" wrap="nowrap" justify={'flex-end'} style={{}}>
+    <Group gap="xs" justify={'flex-end'} style={{}} wrap="nowrap">
       <Choose>
         <If condition={isMobile || matchesStoMDesktop}>
           <Menu shadow="md" width={200}>
             <Menu.Target>
-              <ActionIcon variant="default" aria-label="Actions menu" size="lg">
+              <ActionIcon aria-label="Actions menu" size="lg" variant="default">
                 <IconDotsVertical stroke={1.5} />
               </ActionIcon>
             </Menu.Target>
@@ -70,12 +68,12 @@ export const Header = ({ opened, toggle, isTablet, isMobile }: Props) => {
               <Menu.Item
                 component="a"
                 href="https://github.com/Ilya758/react-design-patterns"
-                target="_blank"
                 leftSection={<IconBrandGithub size={14} />}
+                target="_blank"
               >
                 GitHub
               </Menu.Item>
-              <Menu.Item onClick={handleAboutClick} leftSection={<IconUserCircle size={14} />}>
+              <Menu.Item leftSection={<IconUserCircle size={14} />} onClick={handleAboutClick}>
                 About The Author
               </Menu.Item>
               <Menu.Divider />
@@ -87,20 +85,20 @@ export const Header = ({ opened, toggle, isTablet, isMobile }: Props) => {
         </If>
         <If condition={isTablet}>
           <ActionIcon
+            aria-label="Open GitHub repository"
             component="a"
             href="https://github.com/Ilya758/react-design-patterns"
+            size="lg"
             target="_blank"
             variant="default"
-            aria-label="Open GitHub repository"
-            size="lg"
           >
             <IconBrandGithub stroke={1.5} />
           </ActionIcon>
           <Button
-            variant="default"
-            leftSection={<IconUserCircle size={18} />}
             aria-label="Meet the Author"
+            leftSection={<IconUserCircle size={18} />}
             onClick={handleAboutClick}
+            variant="default"
           >
             Meet the Author
           </Button>
@@ -109,7 +107,7 @@ export const Header = ({ opened, toggle, isTablet, isMobile }: Props) => {
         <Otherwise>
           <Menu shadow="md" width={200}>
             <Menu.Target>
-              <ActionIcon variant="default" aria-label="Actions menu" size="lg">
+              <ActionIcon aria-label="Actions menu" size="lg" variant="default">
                 <IconDotsVertical stroke={1.5} />
               </ActionIcon>
             </Menu.Target>
@@ -117,12 +115,12 @@ export const Header = ({ opened, toggle, isTablet, isMobile }: Props) => {
               <Menu.Item
                 component="a"
                 href="https://github.com/Ilya758/react-design-patterns"
-                target="_blank"
                 leftSection={<IconBrandGithub size={14} />}
+                target="_blank"
               >
                 GitHub
               </Menu.Item>
-              <Menu.Item onClick={handleAboutClick} leftSection={<IconUserCircle size={14} />}>
+              <Menu.Item leftSection={<IconUserCircle size={14} />} onClick={handleAboutClick}>
                 About Me
               </Menu.Item>
             </Menu.Dropdown>
@@ -135,14 +133,13 @@ export const Header = ({ opened, toggle, isTablet, isMobile }: Props) => {
 
   return (
     <Group
-      gap={0}
       align="center"
+      gap={0}
       justify="space-between"
-      style={{ width: '100%', paddingRight: 'var(--mantine-spacing-md)' }}
+      style={{ paddingRight: 'var(--mantine-spacing-md)', width: '100%' }}
     >
       {LogoGroup}
       {ActionsGroup}
     </Group>
   );
 };
-

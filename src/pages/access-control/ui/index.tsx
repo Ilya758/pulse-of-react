@@ -1,17 +1,17 @@
-import { FC, useEffect } from 'react';
-import { Title, Text, List, Space, Alert } from '@mantine/core';
+import { CodeHighlightTabs } from '@mantine/code-highlight';
+import { Alert, List, Space, Text, Title } from '@mantine/core';
 import { IconFileTypeTs, IconFileTypeTsx, IconInfoCircle } from '@tabler/icons-react';
+import { FC, useEffect } from 'react';
 import { SectionBlock } from '@/shared';
 import { useTocContent } from '@/widgets/layout';
-import { CodeHighlightTabs } from '@mantine/code-highlight';
 import {
-  ACCESS_CONTROL_SIGNATURE_CODE,
-  RBAC_IMPLEMENTATION_CODE,
   ABAC_IMPLEMENTATION_CODE,
-  HYBRID_IMPLEMENTATION_CODE,
+  ACCESS_CONTROL_SIGNATURE_CODE,
   EXAMPLE_USAGE_CODE,
-  REACT_FEATURE_TOGGLE_CODE,
+  HYBRID_IMPLEMENTATION_CODE,
   PRACTICAL_DASHBOARD_EXAMPLE_CODE,
+  RBAC_IMPLEMENTATION_CODE,
+  REACT_FEATURE_TOGGLE_CODE,
   ROLE_DEFINITIONS_CODE,
 } from '../model';
 import { Example } from './example';
@@ -19,16 +19,16 @@ import { Example } from './example';
 export const AccessControlPage: FC = () => {
   const { signalContentLoaded } = useTocContent();
 
-  useEffect(signalContentLoaded, [signalContentLoaded]);
+  useEffect(signalContentLoaded, []);
 
   return (
     <>
       <Space h={4} />
-      <Title order={1} mb="lg">
+      <Title mb="lg" order={1}>
         Access Control
       </Title>
 
-      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core Concept">
         <Text>
           Access Control is a security pattern that determines who can access what resources and
           under what conditions. It's fundamental to application security and can be implemented
@@ -43,35 +43,35 @@ export const AccessControlPage: FC = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="Pattern Signature" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Pattern Signature">
         <Text mb="md">
           The Access Control pattern provides a centralized service for making authorization
           decisions. It abstracts the complexity of permission checking and provides a clean API for
           the rest of your application.
         </Text>
         <CodeHighlightTabs
-          withExpandButton={true}
-          defaultExpanded={false}
-          radius="md"
           code={[
             {
-              fileName: 'access-control-signature.ts',
-              language: 'tsx',
               code: ACCESS_CONTROL_SIGNATURE_CODE,
-              icon: <IconFileTypeTs size={14} color="#2596be" />,
+              fileName: 'access-control-signature.ts',
+              icon: <IconFileTypeTs color="#2596be" size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          radius="md"
+          withExpandButton={true}
         />
       </SectionBlock>
 
-      <SectionBlock title="Access Control Models" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Access Control Models">
         <Text mb="lg">
           There are several access control models, each with different strengths and use cases:
         </Text>
 
         <List spacing="md">
           <List.Item>
-            <Title order={5} mt="sm" mb="xs">
+            <Title mb="xs" mt="sm" order={5}>
               Role-Based Access Control (RBAC):
             </Title>
             <Text>
@@ -82,7 +82,7 @@ export const AccessControlPage: FC = () => {
           </List.Item>
 
           <List.Item>
-            <Title order={5} mt="sm" mb="xs">
+            <Title mb="xs" mt="sm" order={5}>
               Attribute-Based Access Control (ABAC):
             </Title>
             <Text>
@@ -93,7 +93,7 @@ export const AccessControlPage: FC = () => {
           </List.Item>
 
           <List.Item>
-            <Title order={5} mt="sm" mb="xs">
+            <Title mb="xs" mt="sm" order={5}>
               Hybrid Models:
             </Title>
             <Text>
@@ -105,78 +105,78 @@ export const AccessControlPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="RBAC Implementation" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="RBAC Implementation">
         <Text mb="md">
           Role-Based Access Control is the most common access control model. It's simple to
           understand and implement, making it suitable for most applications.
         </Text>
         <CodeHighlightTabs
-          withExpandButton={true}
-          defaultExpanded={false}
-          radius="md"
           code={[
             {
-              fileName: 'rbac-service.ts',
-              language: 'tsx',
               code: RBAC_IMPLEMENTATION_CODE,
-              icon: <IconFileTypeTs size={14} color="#2596be" />,
+              fileName: 'rbac-service.ts',
+              icon: <IconFileTypeTs color="#2596be" size={14} />,
+              language: 'tsx',
             },
             {
-              fileName: 'constants.ts',
-              language: 'tsx',
               code: ROLE_DEFINITIONS_CODE,
-              icon: <IconFileTypeTs size={14} color="#2596be" />,
+              fileName: 'constants.ts',
+              icon: <IconFileTypeTs color="#2596be" size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          radius="md"
+          withExpandButton={true}
         />
       </SectionBlock>
 
-      <SectionBlock title="ABAC Implementation" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="ABAC Implementation">
         <Text mb="md">
           Attribute-Based Access Control provides more flexibility by considering various attributes
           when making access decisions. This allows for complex policies based on time, location,
           user attributes, and more.
         </Text>
         <CodeHighlightTabs
-          withExpandButton={true}
-          defaultExpanded={false}
-          radius="md"
           code={[
             {
-              fileName: 'abac-service.ts',
-              language: 'tsx',
               code: ABAC_IMPLEMENTATION_CODE,
-              icon: <IconFileTypeTs size={14} color="#2596be" />,
+              fileName: 'abac-service.ts',
+              icon: <IconFileTypeTs color="#2596be" size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          radius="md"
+          withExpandButton={true}
         />
       </SectionBlock>
 
-      <SectionBlock title="Hybrid Implementation" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Hybrid Implementation">
         <Text mb="md">
           Hybrid access control combines the simplicity of RBAC with the flexibility of ABAC. This
           approach first checks role-based permissions, then applies attribute-based policies for
           more granular control.
         </Text>
         <CodeHighlightTabs
-          withExpandButton={true}
-          defaultExpanded={false}
-          radius="md"
           code={[
             {
-              fileName: 'hybrid-service.ts',
-              language: 'tsx',
               code: HYBRID_IMPLEMENTATION_CODE,
-              icon: <IconFileTypeTs size={14} color="#2596be" />,
+              fileName: 'hybrid-service.ts',
+              icon: <IconFileTypeTs color="#2596be" size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          radius="md"
+          withExpandButton={true}
         />
       </SectionBlock>
 
-      <SectionBlock title="Best Practices" initialSpaceAfterDivider="xs">
-        <List spacing="sm" icon={<IconInfoCircle size={16} />}>
+      <SectionBlock initialSpaceAfterDivider="xs" title="Best Practices">
+        <List icon={<IconInfoCircle size={16} />} spacing="sm">
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Principle of Least Privilege:
             </Title>
             <Text>
@@ -187,7 +187,7 @@ export const AccessControlPage: FC = () => {
           </List.Item>
 
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Centralized Authorization:
             </Title>
             <Text>
@@ -197,7 +197,7 @@ export const AccessControlPage: FC = () => {
           </List.Item>
 
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Regular Access Reviews:
             </Title>
             <Text>
@@ -207,7 +207,7 @@ export const AccessControlPage: FC = () => {
           </List.Item>
 
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Audit Logging:
             </Title>
             <Text>
@@ -217,7 +217,7 @@ export const AccessControlPage: FC = () => {
           </List.Item>
 
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Caching Strategy:
             </Title>
             <Text>
@@ -228,7 +228,7 @@ export const AccessControlPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Feature Toggles & Access Control" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Feature Toggles & Access Control">
         <Text mb="lg">
           Feature toggles (also known as feature flags) and access control are complementary
           patterns that work together to provide granular control over application functionality.
@@ -238,7 +238,7 @@ export const AccessControlPage: FC = () => {
 
         <List spacing="md">
           <List.Item>
-            <Title order={5} mt="sm" mb="xs">
+            <Title mb="xs" mt="sm" order={5}>
               Complementary Patterns:
             </Title>
             <Text>
@@ -249,7 +249,7 @@ export const AccessControlPage: FC = () => {
           </List.Item>
 
           <List.Item>
-            <Title order={5} mt="sm" mb="xs">
+            <Title mb="xs" mt="sm" order={5}>
               Granular Feature Control:
             </Title>
             <Text>
@@ -260,7 +260,7 @@ export const AccessControlPage: FC = () => {
           </List.Item>
 
           <List.Item>
-            <Title order={5} mt="sm" mb="xs">
+            <Title mb="xs" mt="sm" order={5}>
               Dynamic Configuration:
             </Title>
             <Text>
@@ -271,31 +271,31 @@ export const AccessControlPage: FC = () => {
           </List.Item>
         </List>
 
-        <Text mt="lg" mb="md">
+        <Text mb="md" mt="lg">
           Here's how feature toggles can be integrated with access control systems:
         </Text>
 
         <CodeHighlightTabs
-          withExpandButton={true}
-          defaultExpanded={false}
-          radius="md"
           code={[
             {
-              fileName: 'feature-toggle-components.tsx',
-              language: 'tsx',
               code: REACT_FEATURE_TOGGLE_CODE,
-              icon: <IconFileTypeTsx size={14} color="#2596be" />,
+              fileName: 'feature-toggle-components.tsx',
+              icon: <IconFileTypeTsx color="#2596be" size={14} />,
+              language: 'tsx',
             },
             {
-              fileName: 'dashboard-example.tsx',
-              language: 'tsx',
               code: PRACTICAL_DASHBOARD_EXAMPLE_CODE,
-              icon: <IconFileTypeTsx size={14} color="#2596be" />,
+              fileName: 'dashboard-example.tsx',
+              icon: <IconFileTypeTsx color="#2596be" size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          radius="md"
+          withExpandButton={true}
         />
 
-        <Text mt="lg" mb="md">
+        <Text mb="md" mt="lg">
           <strong>Benefits of Feature Toggles:</strong>
         </Text>
 
@@ -332,7 +332,7 @@ export const AccessControlPage: FC = () => {
           </List.Item>
         </List>
 
-        <Alert color="green" variant="light" mt="lg">
+        <Alert color="green" mt="lg" variant="light">
           <Text size="sm">
             <strong>Tip:</strong> React component feature toggles work best when combined with
             server-side feature toggle services. This ensures consistent behavior across your
@@ -340,7 +340,7 @@ export const AccessControlPage: FC = () => {
           </Text>
         </Alert>
 
-        <Text mt="lg" mb="md">
+        <Text mb="md" mt="lg">
           <strong>Integration Strategies:</strong>
         </Text>
 
@@ -366,25 +366,25 @@ export const AccessControlPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Example: Interactive Access Control Demo" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Example: Interactive Access Control Demo">
         <Text mb="md">
           This comprehensive example demonstrates a hybrid access control system that combines RBAC
           and ABAC. Users can test different roles, resources, actions, and contextual attributes to
           see how access decisions are made in real-time.
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mb="lg"
           code={[
             {
-              fileName: 'example.tsx',
-              language: 'tsx',
               code: EXAMPLE_USAGE_CODE,
-              icon: <IconFileTypeTsx size={14} color="#2596be" />,
+              fileName: 'example.tsx',
+              icon: <IconFileTypeTsx color="#2596be" size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          mb="lg"
+          radius="md"
+          withExpandButton
         />
         <Example />
       </SectionBlock>
@@ -392,4 +392,3 @@ export const AccessControlPage: FC = () => {
     </>
   );
 };
-

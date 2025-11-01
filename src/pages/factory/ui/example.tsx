@@ -1,12 +1,12 @@
-import { Group, Stack, Title, Text, Select, TextInput, Checkbox, Paper } from '@mantine/core';
+import { Checkbox, Group, Paper, Select, Stack, Text, TextInput, Title } from '@mantine/core';
 import { FC, useState } from 'react';
 import {
+  DEFAULT_CONFIG,
+  INPUT_FACTORY_SELECT_OPTIONS,
   InputConfig,
   InputValue,
-  SelectConfig,
-  INPUT_FACTORY_SELECT_OPTIONS,
   SELECT_OPTIONS,
-  DEFAULT_CONFIG,
+  SelectConfig,
 } from '../model';
 import { InputFactory } from './input-factory';
 
@@ -23,12 +23,12 @@ export const Example: FC = () => {
     switch (type) {
       case 'select': {
         setConfig({
-          type: 'select',
+          description: config.description,
           label: config.label,
+          options: SELECT_OPTIONS,
           placeholder: config.placeholder,
           required: config.required,
-          description: config.description,
-          options: SELECT_OPTIONS,
+          type: 'select',
         });
         setOptionsInput(SELECT_OPTIONS.map((o) => o.label).join(', '));
         break;
@@ -37,32 +37,32 @@ export const Example: FC = () => {
       case 'checkbox':
       case 'switch': {
         setConfig({
-          type: type as 'checkbox' | 'switch',
+          description: config.description,
           label: config.label,
           required: config.required,
-          description: config.description,
+          type: type as 'checkbox' | 'switch',
         });
         break;
       }
 
       case 'number': {
         setConfig({
-          type: 'number',
+          description: config.description,
           label: config.label,
           placeholder: config.placeholder,
           required: config.required,
-          description: config.description,
+          type: 'number',
         });
         break;
       }
 
       default: {
         setConfig({
-          type: type as 'text' | 'password' | 'textarea',
+          description: config.description,
           label: config.label,
           placeholder: config.placeholder,
           required: config.required,
-          description: config.description,
+          type: type as 'text' | 'password' | 'textarea',
         });
         break;
       }
@@ -70,76 +70,75 @@ export const Example: FC = () => {
   };
 
   return (
-    <Stack maw={500} mt={16} gap="xl">
-      <Text size="sm" c="dimmed">
+    <Stack gap="xl" maw={500} mt={16}>
+      <Text c="dimmed" size="sm">
         Use the controls below to configure the input. The factory will generate the appropriate
         input component based on your selection.
       </Text>
 
-      <Paper shadow="xs" p="md" withBorder>
+      <Paper p="md" shadow="xs" withBorder>
         <Stack gap="md">
           <Group grow>
             <Select
-              label="Input type"
-              value={config.type}
               data={INPUT_FACTORY_SELECT_OPTIONS}
+              label="Input type"
               onChange={handleTypeChange}
+              value={config.type}
             />
             <TextInput
               label="Label"
-              value={config.label || ''}
               onChange={(e) => setConfig((c) => ({ ...c, label: e.target.value }))}
+              value={config.label || ''}
             />
           </Group>
           <Group grow>
             {'placeholder' in config && (
               <TextInput
-                label="Placeholder"
-                value={config.placeholder || ''}
-                onChange={(e) => setConfig((c) => ({ ...c, placeholder: e.target.value }))}
                 disabled={config.type === 'checkbox' || config.type === 'switch'}
+                label="Placeholder"
+                onChange={(e) => setConfig((c) => ({ ...c, placeholder: e.target.value }))}
+                value={config.placeholder || ''}
               />
             )}
             <TextInput
               label="Description"
-              value={config.description || ''}
               onChange={(e) => setConfig((c) => ({ ...c, description: e.target.value }))}
+              value={config.description || ''}
             />
           </Group>
-          <Group grow align="center">
+          <Group align="center" grow>
             {config.type === 'select' && (
               <TextInput
                 label="Options (comma separated)"
-                value={optionsInput}
-                onChange={(e) => setOptionsInput(e.target.value)}
                 onBlur={() => {
                   const options = optionsInput
                     .split(',')
                     .map((s) => s.trim())
                     .filter(Boolean)
-                    .map((label, i) => ({ value: `option${i + 1}`, label }));
-                  setConfig((c) => ({ ...c, options } as SelectConfig));
+                    .map((label, i) => ({ label, value: `option${i + 1}` }));
+                  setConfig((c) => ({ ...c, options }) as SelectConfig);
                 }}
+                onChange={(e) => setOptionsInput(e.target.value)}
+                value={optionsInput}
               />
             )}
             <Checkbox
-              label="Required"
               checked={!!config.required}
+              label="Required"
               onChange={(e) => setConfig((c) => ({ ...c, required: e.target.checked }))}
             />
           </Group>
         </Stack>
       </Paper>
-      <Paper shadow="xs" p="md" withBorder>
-        <Title order={5} mb="sm">
+      <Paper p="md" shadow="xs" withBorder>
+        <Title mb="sm" order={5}>
           Live Input
         </Title>
-        <InputFactory config={config} value={value} onChange={setValue} />
-        <Text size="xs" mt="md" c="dimmed">
+        <InputFactory config={config} onChange={setValue} value={value} />
+        <Text c="dimmed" mt="md" size="xs">
           Current value: {JSON.stringify(value)}
         </Text>
       </Paper>
     </Stack>
   );
 };
-

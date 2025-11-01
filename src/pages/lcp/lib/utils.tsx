@@ -2,9 +2,8 @@ import { LCP_RATINGS, RATING_TO_COLOR, RATING_TO_ICON } from '../model';
 
 export type LcpRating = (typeof LCP_RATINGS)[number];
 
-const isLcpRating = (value: string): value is LcpRating => {
-  return (LCP_RATINGS as readonly string[]).includes(value);
-};
+const isLcpRating = (value: string): value is LcpRating =>
+  (LCP_RATINGS as readonly string[]).includes(value);
 
 export const getRatingColor = (rating: string) => {
   if (!isLcpRating(rating)) return 'gray';
@@ -33,6 +32,9 @@ export const getRatingMessage = (rating: string) => {
     case 'poor': {
       return 'Poor LCP performance. Significant optimization is needed.';
     }
+
+    default: {
+      throw new Error(`Invalid LCP rating: ${rating}`);
+    }
   }
 };
-

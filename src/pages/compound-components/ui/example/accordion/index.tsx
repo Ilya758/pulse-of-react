@@ -1,9 +1,9 @@
-import { useState, useCallback, ReactNode, FC } from 'react';
-import { AccordionItem } from './item';
-import { AccordionHeader } from './header';
-import { AccordionPanel } from './panel';
-import { AccordionContext } from '../../../model';
+import { FC, ReactNode, useCallback, useState } from 'react';
 import { toggleAccordionItem } from '../../../lib';
+import { AccordionContext } from '../../../model';
+import { AccordionHeader } from './header';
+import { AccordionItem } from './item';
+import { AccordionPanel } from './panel';
 
 type Props = {
   allowMultiple?: boolean;
@@ -28,15 +28,13 @@ export const Accordion: FC<Props> & {
 
   const toggleItem = useCallback(
     (id: string) => {
-      setOpenItems((prevState) => {
-        return toggleAccordionItem(prevState, id, allowMultiple);
-      });
+      setOpenItems((prevState) => toggleAccordionItem(prevState, id, allowMultiple));
     },
     [allowMultiple],
   );
 
   return (
-    <AccordionContext.Provider value={{ openItems, toggleItem, allowMultiple }}>
+    <AccordionContext.Provider value={{ allowMultiple, openItems, toggleItem }}>
       {children}
     </AccordionContext.Provider>
   );
@@ -45,4 +43,3 @@ export const Accordion: FC<Props> & {
 Accordion.Item = AccordionItem;
 Accordion.Header = AccordionHeader;
 Accordion.Panel = AccordionPanel;
-

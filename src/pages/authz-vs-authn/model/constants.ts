@@ -180,4 +180,3 @@ export const Root = () => (
     <RouterProvider router={router} />
   </SessionProvider>
 );`;
-

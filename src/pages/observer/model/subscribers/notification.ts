@@ -14,12 +14,12 @@ export class NotificationSubscriber implements Subscriber<NewsItem> {
 
     if (interestedUsers.length) {
       this.onNotification({
-        type: 'news',
+        category: news.category,
         message: `New ${news.category} news: "${news.title}" - Notified: ${interestedUsers
           .map(({ name }) => name)
           .join(', ')}`,
         timestamp: new Date(),
-        category: news.category,
+        type: 'news',
       });
     } else {
       const allInterestedUsers = this.users.filter((user) =>
@@ -28,24 +28,23 @@ export class NotificationSubscriber implements Subscriber<NewsItem> {
 
       if (allInterestedUsers.length > 0) {
         this.onNotification({
-          type: 'news',
+          category: news.category,
           message: `New ${news.category} news: "${
             news.title
           }" - No notifications sent (users ${allInterestedUsers
             .map(({ name }) => name)
             .join(', ')} have notifications disabled)`,
           timestamp: new Date(),
-          category: news.category,
+          type: 'news',
         });
       } else {
         this.onNotification({
-          type: 'news',
+          category: news.category,
           message: `New ${news.category} news: "${news.title}" - No subscribers for this category`,
           timestamp: new Date(),
-          category: news.category,
+          type: 'news',
         });
       }
     }
   }
 }
-

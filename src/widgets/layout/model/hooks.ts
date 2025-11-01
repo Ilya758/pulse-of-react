@@ -18,4 +18,3 @@ export const useTocContent = (): TocContentContextType => {
 };
 
 export const TocContentProvider = TocContentContext.Provider;
-

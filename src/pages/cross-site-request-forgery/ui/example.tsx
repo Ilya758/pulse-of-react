@@ -1,6 +1,6 @@
-import { FC, useState } from 'react';
-import { Paper, Title, Text, Button, Group, NumberInput, Switch, Box } from '@mantine/core';
+import { Box, Button, Group, NumberInput, Paper, Switch, Text, Title } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
+import { FC, useState } from 'react';
 import { mockApiService } from '../api';
 import { MOCK_SERVER } from '../model';
 
@@ -17,9 +17,9 @@ const BankWebsite: FC<{
     const result = await mockApiService.transferFunds(transferAmount, token);
 
     notifications.show({
-      title: result.success ? 'Success' : 'Error',
-      message: result.message,
       color: result.success ? 'green' : 'red',
+      message: result.message,
+      title: result.success ? 'Success' : 'Error',
     });
 
     if (result.success) {
@@ -28,23 +28,23 @@ const BankWebsite: FC<{
   };
 
   return (
-    <Paper withBorder p="md" mt="md">
+    <Paper mt="md" p="md" withBorder>
       <Title order={4}>Your Bank Account</Title>
       <Text>Your current balance: ${balance}</Text>
       <Text mt="sm">Transfer funds:</Text>
       <Group>
         <NumberInput
-          value={amount}
+          min={1}
           onChange={(value) => setAmount(typeof value === 'number' ? value : '')}
           placeholder="Amount"
-          min={1}
+          value={amount}
         />
         <Button disabled={!amount || amount <= 0 || amount > balance} onClick={handleTransfer}>
           Transfer
         </Button>
       </Group>
       {protectionEnabled && (
-        <Text size="xs" c="dimmed" mt="xs">
+        <Text c="dimmed" mt="xs" size="xs">
           (CSRF token is automatically included in the request)
         </Text>
       )}
@@ -55,44 +55,47 @@ const BankWebsite: FC<{
 const MaliciousWebsite: FC<{ onTransferComplete: () => void; balance: number }> = ({
   onTransferComplete,
   balance,
-}) => {
-  return (
-    <Paper withBorder p="md" mt="md" style={{ borderColor: 'red' }}>
-      <Title order={4} c="red">
-        Malicious Website
-      </Title>
-      <Text>Click the button below to win a prize!</Text>
-      <form
-        action="http://bank.example.com/transfer"
-        method="POST"
-        target="csrf_iframe"
-        id="csrf_form"
-      >
-        <input type="hidden" name="amount" value="500" />
-      </form>
-      <Button
-        mt="md"
-        color="red"
-        disabled={balance < 500}
-        onClick={() => {
-          mockApiService.transferFunds(500).then((result) => {
+}) => (
+  <Paper mt="md" p="md" style={{ borderColor: 'red' }} withBorder>
+    <Title c="red" order={4}>
+      Malicious Website
+    </Title>
+    <Text>Click the button below to win a prize!</Text>
+    <form
+      action="http://bank.example.com/transfer"
+      id="csrf_form"
+      method="POST"
+      target="csrf_iframe"
+    >
+      <input name="amount" type="hidden" value="500" />
+    </form>
+    <Button
+      color="red"
+      disabled={balance < 500}
+      mt="md"
+      onClick={() => {
+        mockApiService
+          .transferFunds(500)
+          .then((result) => {
             notifications.show({
-              title: 'Malicious Transfer Attempt',
-              message: `Result on bank server: "${result.message}"`,
               color: result.success ? 'green' : 'red',
+              message: `Result on bank server: "${result.message}"`,
+              title: 'Malicious Transfer Attempt',
             });
             if (result.success) {
               onTransferComplete();
             }
+          })
+          .catch(() => {
+            throw new Error('Failed to transfer funds');
           });
-        }}
-      >
-        Win a Prize!
-      </Button>
-      <iframe name="csrf_iframe" style={{ display: 'none' }} title="csrf-frame" />
-    </Paper>
-  );
-};
+      }}
+    >
+      Win a Prize!
+    </Button>
+    <iframe name="csrf_iframe" style={{ display: 'none' }} title="csrf-frame" />
+  </Paper>
+);
 
 export const Example: FC = () => {
   const [protectionEnabled, setProtectionEnabled] = useState(false);
@@ -111,17 +114,17 @@ export const Example: FC = () => {
 
   return (
     <Paper radius="md">
-      <Title order={3} mb="md">
+      <Title mb="md" order={3}>
         CSRF Attack Simulation
       </Title>
 
       <Group>
         <Switch
           checked={protectionEnabled}
-          onChange={(event) => setProtectionEnabled(event.currentTarget.checked)}
           label="Enable Anti-CSRF Token Protection"
+          onChange={(event) => setProtectionEnabled(event.currentTarget.checked)}
         />
-        <Button size="xs" variant="outline" onClick={resetState}>
+        <Button onClick={resetState} size="xs" variant="outline">
           Reset Simulation
         </Button>
       </Group>
@@ -133,13 +136,12 @@ export const Example: FC = () => {
 
       <Box mt="lg">
         <BankWebsite
-          protectionEnabled={protectionEnabled}
           balance={balance}
           onTransfer={syncBalance}
+          protectionEnabled={protectionEnabled}
         />
-        <MaliciousWebsite onTransferComplete={syncBalance} balance={balance} />
+        <MaliciousWebsite balance={balance} onTransferComplete={syncBalance} />
       </Box>
     </Paper>
   );
 };
-

@@ -1,25 +1,25 @@
-import { useState, useEffect, useCallback } from 'react';
 import {
-  Paper,
-  Text,
-  Group,
+  Alert,
   Badge,
   Button,
-  Stack,
-  MultiSelect,
-  Alert,
-  Title,
-  Divider,
-  SimpleGrid,
   Code,
   CopyButton,
-  Tooltip,
-  Tabs,
+  Divider,
+  Group,
   List,
+  MultiSelect,
+  Paper,
+  SimpleGrid,
+  Stack,
+  Tabs,
+  Text,
+  Title,
+  Tooltip,
 } from '@mantine/core';
-import { IconShield, IconCopy, IconTestPipe, IconInfoCircle } from '@tabler/icons-react';
+import { IconCopy, IconInfoCircle, IconShield, IconTestPipe } from '@tabler/icons-react';
+import { useCallback, useEffect, useState } from 'react';
+import { applyTemplate, getStatusIcon, testPolicy, updatePolicy } from '../lib';
 import { CSP_DIRECTIVES } from '../model';
-import { getStatusIcon, updatePolicy, testPolicy, applyTemplate } from '../lib';
 
 export const Example = () => {
   const [directives, setDirectives] = useState<Record<string, string[]>>({});
@@ -65,17 +65,17 @@ export const Example = () => {
   return (
     <Tabs defaultValue="policy-builder">
       <Tabs.List>
-        <Tabs.Tab value="policy-builder" leftSection={<IconShield size={16} />}>
+        <Tabs.Tab leftSection={<IconShield size={16} />} value="policy-builder">
           Policy Builder
         </Tabs.Tab>
-        <Tabs.Tab value="examples" leftSection={<IconInfoCircle size={16} />}>
+        <Tabs.Tab leftSection={<IconInfoCircle size={16} />} value="examples">
           Examples
         </Tabs.Tab>
       </Tabs.List>
 
-      <Tabs.Panel value="policy-builder" pt="md">
+      <Tabs.Panel pt="md" value="policy-builder">
         <Stack gap="xl">
-          <Paper withBorder p="lg">
+          <Paper p="lg" withBorder>
             <Group mb="md">
               <IconShield size={20} />
               <Title order={4}>CSP Policy Builder</Title>
@@ -86,20 +86,20 @@ export const Example = () => {
 
             <Stack gap="lg">
               <Group>
-                <Button variant="outline" onClick={() => handleApplyTemplate('strict')} size="sm">
+                <Button onClick={() => handleApplyTemplate('strict')} size="sm" variant="outline">
                   Strict Template
                 </Button>
                 <Button
-                  variant="outline"
                   onClick={() => handleApplyTemplate('permissive')}
                   size="sm"
+                  variant="outline"
                 >
                   Permissive Template
                 </Button>
                 <Button
-                  variant="outline"
                   onClick={() => handleApplyTemplate('ecommerce')}
                   size="sm"
+                  variant="outline"
                 >
                   E-commerce Template
                 </Button>
@@ -111,22 +111,22 @@ export const Example = () => {
 
                   return (
                     <div key={directive.name}>
-                      <Text size="sm" fw={500} mb="xs">
+                      <Text fw={500} mb="xs" size="sm">
                         {directive.name}
                       </Text>
-                      <Text size="xs" c="dimmed" mb="xs">
+                      <Text c="dimmed" mb="xs" size="xs">
                         {directive.description}
                       </Text>
                       <MultiSelect
-                        value={currentValue}
+                        clearable
+                        data={directive.options}
                         onChange={(value) => {
                           updateDirective(directive.name, value);
                         }}
-                        data={directive.options}
                         placeholder="Select sources"
-                        size="sm"
                         searchable
-                        clearable
+                        size="sm"
+                        value={currentValue}
                       />
                     </div>
                   );
@@ -137,9 +137,9 @@ export const Example = () => {
 
               <Group>
                 <Button
-                  variant="outline"
-                  onClick={() => setReportOnly(!reportOnly)}
                   color={reportOnly ? 'orange' : 'indigo'}
+                  onClick={() => setReportOnly(!reportOnly)}
+                  variant="outline"
                 >
                   {reportOnly ? 'Enforce Policy' : 'Report Only Mode'}
                 </Button>
@@ -155,8 +155,8 @@ export const Example = () => {
               {!!testResults.length && (
                 <Alert title="Policy Test Results" variant="light">
                   <Stack gap="xs">
-                    {testResults.map((result, index) => (
-                      <Group key={index} gap="xs">
+                    {testResults.map((result) => (
+                      <Group gap="xs" key={result.directive}>
                         {getStatusIcon(result.status)}
                         <Text size="sm">
                           <Code>{result.directive}</Code>: {result.status}
@@ -169,17 +169,17 @@ export const Example = () => {
             </Stack>
           </Paper>
 
-          <Paper withBorder p="lg">
+          <Paper p="lg" withBorder>
             <Group mb="md">
               <Title order={4}>Generated Policy</Title>
               <CopyButton value={currentPolicy}>
                 {({ copied, copy }) => (
                   <Tooltip label={copied ? 'Copied' : 'Copy policy'}>
                     <Button
-                      variant="light"
-                      size="sm"
-                      onClick={copy}
                       leftSection={<IconCopy size={16} />}
+                      onClick={copy}
+                      size="sm"
+                      variant="light"
                     >
                       {copied ? 'Copied' : 'Copy'}
                     </Button>
@@ -190,7 +190,7 @@ export const Example = () => {
 
             <Code block>{currentPolicy || 'No policy generated'}</Code>
 
-            <Text size="xs" c="dimmed" mt="xs">
+            <Text c="dimmed" mt="xs" size="xs">
               Add this header to your server response:{' '}
               {reportOnly ? 'Content-Security-Policy-Report-Only' : 'Content-Security-Policy'}
             </Text>
@@ -198,10 +198,10 @@ export const Example = () => {
         </Stack>
       </Tabs.Panel>
 
-      <Tabs.Panel value="examples" pt="md">
+      <Tabs.Panel pt="md" value="examples">
         <Stack gap="lg">
-          <Paper withBorder p="lg">
-            <Title order={4} mb="md">
+          <Paper p="lg" withBorder>
+            <Title mb="md" order={4}>
               Common CSP Configurations
             </Title>
 
@@ -215,7 +215,7 @@ export const Example = () => {
                 <Tabs.Tab value="development">Development</Tabs.Tab>
               </Tabs.List>
 
-              <Tabs.Panel value="strict" pt="md">
+              <Tabs.Panel pt="md" value="strict">
                 <Stack gap="md">
                   <Text>
                     <strong>Strict Configuration:</strong> High-security applications with minimal
@@ -227,8 +227,8 @@ export const Example = () => {
                     form-action 'self'; frame-ancestors 'none'
                   </Code>
 
-                  <Alert title="Why Strict CSPs Are Better" color="orange" variant="light">
-                    <Text size="sm" mb="xs">
+                  <Alert color="orange" title="Why Strict CSPs Are Better" variant="light">
+                    <Text mb="xs" size="sm">
                       <strong>Allowlist-based CSPs</strong> (like{' '}
                       <code>script-src www.googleapis.com</code>) are often ineffective against XSS
                       because they can be bypassed by attackers. Strict CSPs based on nonces or
@@ -245,7 +245,7 @@ export const Example = () => {
                 </Stack>
               </Tabs.Panel>
 
-              <Tabs.Panel value="strict-nonce" pt="md">
+              <Tabs.Panel pt="md" value="strict-nonce">
                 <Stack gap="md">
                   <Text>
                     <strong>Strict with Nonces:</strong> High-security applications that need to
@@ -258,13 +258,13 @@ export const Example = () => {
                     'none';
                   </Code>
 
-                  <Alert title="About Nonces" color="blue" variant="light">
-                    <Text size="sm" mb="xs">
+                  <Alert color="blue" title="About Nonces" variant="light">
+                    <Text mb="xs" size="sm">
                       <strong>Nonces</strong> are random numbers used only once that mark specific{' '}
                       <code>&lt;script&gt;</code> tags as trusted. They must be generated at runtime
                       for every response and be unpredictable.
                     </Text>
-                    <List size="xs" mt="xs">
+                    <List mt="xs" size="xs">
                       <List.Item>
                         <strong>How it works:</strong> Server generates a unique nonce per request,
                         includes it in the CSP header, and adds it to trusted script/style tags
@@ -280,13 +280,13 @@ export const Example = () => {
                     </List>
                   </Alert>
 
-                  <Alert title="strict-dynamic Directive" color="green" variant="light">
-                    <Text size="sm" mb="xs">
+                  <Alert color="green" title="strict-dynamic Directive" variant="light">
+                    <Text mb="xs" size="sm">
                       The <Code>'strict-dynamic'</Code> directive automatically allows scripts
                       loaded by trusted scripts to execute, reducing deployment effort and enabling
                       dynamic script loading.
                     </Text>
-                    <List size="xs" mt="xs">
+                    <List mt="xs" size="xs">
                       <List.Item>
                         <strong>Trust propagation:</strong> Scripts loaded by nonce/hash-authorized
                         scripts are automatically trusted
@@ -321,7 +321,7 @@ export const Example = () => {
                 </Stack>
               </Tabs.Panel>
 
-              <Tabs.Panel value="strict-hash" pt="md">
+              <Tabs.Panel pt="md" value="strict-hash">
                 <Stack gap="md">
                   <Text>
                     <strong>Strict with Hashes:</strong> High-security applications that need to
@@ -332,13 +332,13 @@ export const Example = () => {
                     base-uri 'none';
                   </Code>
 
-                  <Alert title="About Hash-based CSP" color="blue" variant="light">
-                    <Text size="sm" mb="xs">
+                  <Alert color="blue" title="About Hash-based CSP" variant="light">
+                    <Text mb="xs" size="sm">
                       <strong>Hash-based CSP</strong> uses cryptographic hashes of inline script
                       content to determine which scripts are trusted, without requiring server-side
                       nonce generation.
                     </Text>
-                    <List size="xs" mt="xs">
+                    <List mt="xs" size="xs">
                       <List.Item>
                         <strong>How it works:</strong> Calculate SHA-256 hash of script content and
                         include it in the CSP header
@@ -354,12 +354,12 @@ export const Example = () => {
                     </List>
                   </Alert>
 
-                  <Alert title="When to Use Hash vs Nonce" color="green" variant="light">
-                    <Text size="sm" mb="xs">
+                  <Alert color="green" title="When to Use Hash vs Nonce" variant="light">
+                    <Text mb="xs" size="sm">
                       Choose between hash-based and nonce-based CSP based on your application
                       architecture:
                     </Text>
-                    <List size="xs" mt="xs">
+                    <List mt="xs" size="xs">
                       <List.Item>
                         <strong>Use hashes for:</strong> Static pages, cached content, SPAs, or when
                         you can't generate nonces per request
@@ -393,7 +393,7 @@ export const Example = () => {
                 </Stack>
               </Tabs.Panel>
 
-              <Tabs.Panel value="permissive" pt="md">
+              <Tabs.Panel pt="md" value="permissive">
                 <Stack gap="md">
                   <Text>
                     <strong>Permissive Configuration:</strong> Development environments or
@@ -413,7 +413,7 @@ export const Example = () => {
                 </Stack>
               </Tabs.Panel>
 
-              <Tabs.Panel value="ecommerce" pt="md">
+              <Tabs.Panel pt="md" value="ecommerce">
                 <Stack gap="md">
                   <Text>
                     <strong>E-commerce Configuration:</strong> Applications with payment processing
@@ -436,7 +436,7 @@ export const Example = () => {
                 </Stack>
               </Tabs.Panel>
 
-              <Tabs.Panel value="development" pt="md">
+              <Tabs.Panel pt="md" value="development">
                 <Stack gap="md">
                   <Text>
                     <strong>Development Configuration:</strong> Local development with hot reloading
@@ -462,4 +462,3 @@ export const Example = () => {
     </Tabs>
   );
 };
-

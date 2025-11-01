@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import { Paper, Button, Group, Text, Stack, Progress, Alert, Badge, Code } from '@mantine/core';
+import { Alert, Badge, Button, Code, Group, Paper, Progress, Stack, Text } from '@mantine/core';
 import {
-  IconPhoto,
-  IconClock,
-  IconSpeedboat,
   IconAlertTriangle,
   IconCheck,
+  IconClock,
+  IconPhoto,
+  IconSpeedboat,
 } from '@tabler/icons-react';
+import { useState } from 'react';
 import { getRatingColor, getRatingIcon, getRatingMessage } from '../lib';
 import type { LcpMetric } from '../model';
 
@@ -25,12 +25,13 @@ export const LcpOptimizationExample = () => {
 
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
+    // biome-ignore lint/style/noNestedTernary: exists as example
     const rating = lcpTime < 2500 ? 'good' : lcpTime < 4000 ? 'needs-improvement' : 'poor';
 
     setLcpMetric({
-      value: Math.round(lcpTime),
-      rating,
       element: strategy === 'baseline' ? 'Large unoptimized image' : 'Optimized WebP image',
+      rating,
+      value: Math.round(lcpTime),
     });
 
     setIsSimulating(false);
@@ -50,26 +51,26 @@ export const LcpOptimizationExample = () => {
 
         <Group mb="md">
           <Button
-            variant={currentStrategy === 'baseline' ? 'filled' : 'outline'}
             onClick={() => setCurrentStrategy('baseline')}
             size="sm"
+            variant={currentStrategy === 'baseline' ? 'filled' : 'outline'}
           >
             Baseline Strategy
           </Button>
           <Button
-            variant={currentStrategy === 'optimized' ? 'filled' : 'outline'}
             onClick={() => setCurrentStrategy('optimized')}
             size="sm"
+            variant={currentStrategy === 'optimized' ? 'filled' : 'outline'}
           >
             Optimized Strategy
           </Button>
         </Group>
 
         <Button
-          onClick={() => simulateLCP(currentStrategy)}
-          loading={isSimulating}
           fullWidth
+          loading={isSimulating}
           mb="md"
+          onClick={() => simulateLCP(currentStrategy)}
         >
           {isSimulating ? 'Measuring LCP...' : 'Simulate LCP Measurement'}
         </Button>
@@ -77,17 +78,17 @@ export const LcpOptimizationExample = () => {
         {lcpMetric && (
           <Stack gap="sm">
             <Group justify="space-between">
-              <Text size="sm" fw={500}>
+              <Text fw={500} size="sm">
                 LCP Time:
               </Text>
               <Group gap="xs">
-                <Text size="sm" fw={600}>
+                <Text fw={600} size="sm">
                   {lcpMetric.value}ms
                 </Text>
                 <Badge
                   color={getRatingColor(lcpMetric.rating)}
-                  size="sm"
                   leftSection={getRatingIcon(lcpMetric.rating)}
+                  size="sm"
                 >
                   {lcpMetric.rating}
                 </Badge>
@@ -95,19 +96,20 @@ export const LcpOptimizationExample = () => {
             </Group>
 
             <Group justify="space-between">
-              <Text size="sm" fw={500}>
+              <Text fw={500} size="sm">
                 LCP Element:
               </Text>
               <Code>{lcpMetric.element}</Code>
             </Group>
 
             <Progress
-              value={Math.min((lcpMetric.value / 4000) * 100, 100)}
               color={getRatingColor(lcpMetric.rating)}
               size="sm"
+              value={Math.min((lcpMetric.value / 4000) * 100, 100)}
             />
 
             <Alert
+              color={getRatingColor(lcpMetric.rating)}
               icon={
                 lcpMetric.rating === 'good' ? (
                   <IconCheck size="1rem" />
@@ -115,7 +117,6 @@ export const LcpOptimizationExample = () => {
                   <IconAlertTriangle size="1rem" />
                 )
               }
-              color={getRatingColor(lcpMetric.rating)}
               variant="light"
             >
               {getRatingMessage(lcpMetric.rating)}
@@ -137,7 +138,7 @@ export const LcpOptimizationExample = () => {
                 Image Optimization
               </Text>
             </Group>
-            <Text size="xs" c="dimmed">
+            <Text c="dimmed" size="xs">
               {currentStrategy === 'baseline'
                 ? 'Large JPEG image (2.4MB) without optimization'
                 : 'WebP image with proper dimensions (280KB) + preload'}
@@ -151,7 +152,7 @@ export const LcpOptimizationExample = () => {
                 Resource Loading
               </Text>
             </Group>
-            <Text size="xs" c="dimmed">
+            <Text c="dimmed" size="xs">
               {currentStrategy === 'baseline'
                 ? 'Standard loading with network delays'
                 : 'Preload critical resources + priority hints'}
@@ -165,7 +166,7 @@ export const LcpOptimizationExample = () => {
                 Delivery Strategy
               </Text>
             </Group>
-            <Text size="xs" c="dimmed">
+            <Text c="dimmed" size="xs">
               {currentStrategy === 'baseline'
                 ? 'No CDN, no compression, no caching'
                 : 'CDN delivery + Brotli compression + proper caching'}
@@ -176,4 +177,3 @@ export const LcpOptimizationExample = () => {
     </Stack>
   );
 };
-

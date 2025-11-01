@@ -497,8 +497,7 @@ export const INITIAL_PERSONAL: PersonalData = {
 };
 
 export const INITIAL_PREFERENCES: PreferencesData = {
-  theme: 'light',
-  notifications: true,
   newsletter: false,
+  notifications: true,
+  theme: 'light',
 };
-

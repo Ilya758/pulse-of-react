@@ -1,10 +1,9 @@
-import { useState, useEffect, useCallback } from 'react';
 import { notifications } from '@mantine/notifications';
-import { NewsPublisher } from './publishers';
-import { User } from './types';
-import { NewsSubscriber, NotificationSubscriber } from './subscribers';
-import { NewsItem, NotificationData, NewsCategory } from './types';
+import { useCallback, useEffect, useState } from 'react';
 import { USERS } from './constants';
+import { NewsPublisher } from './publishers';
+import { NewsSubscriber, NotificationSubscriber } from './subscribers';
+import { NewsCategory, NewsItem, NotificationData, User } from './types';
 
 export const useNewsSystem = () => {
   const [newsPublisher] = useState(() => new NewsPublisher());
@@ -68,9 +67,8 @@ export const useNewsSystem = () => {
   return {
     addNews,
     subscriberCount: newsPublisher.getSubscriberCount(),
-    users,
     toggleUserNotifications,
     updateUserCategories,
+    users,
   };
 };
-

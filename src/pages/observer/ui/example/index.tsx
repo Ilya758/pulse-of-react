@@ -1,20 +1,20 @@
-import { useCallback, useState } from 'react';
 import {
-  Stack,
-  Title,
-  Text,
+  Badge,
   Button,
   Group,
-  Paper,
-  Badge,
-  Textarea,
-  Select,
-  TextInput,
-  Switch,
   MultiSelect,
+  Paper,
+  Select,
+  Stack,
+  Switch,
+  Text,
+  Textarea,
+  TextInput,
+  Title,
 } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
-import { useNewsSystem, CATEGORIES, NewsCategory, NewsItem } from '../../model';
+import { useCallback, useState } from 'react';
+import { CATEGORIES, NewsCategory, NewsItem, useNewsSystem } from '../../model';
 
 export const Example = () => {
   const { addNews, subscriberCount, users, toggleUserNotifications, updateUserCategories } =
@@ -28,79 +28,78 @@ export const Example = () => {
   const handleAddNews = useCallback(() => {
     if (newNews.title && newNews.content) {
       addNews(newNews);
-      setNewNews({ title: '', content: '', category: 'technology' });
+      setNewNews({ category: 'technology', content: '', title: '' });
     }
   }, [newNews, addNews]);
 
   return (
     <Stack gap="xl">
       <div>
-        <Title order={3} mb="xs">
+        <Title mb="xs" order={3}>
           News Notification System
         </Title>
-        <Text size="sm" c="dimmed">
+        <Text c="dimmed" size="sm">
           This example demonstrates the Observer pattern with a news notification system. Users
           subscribe to news categories and receive real-time notifications when relevant news is
           published.
         </Text>
       </div>
 
-      <Paper shadow="xs" p="md" withBorder>
+      <Paper p="md" shadow="xs" withBorder>
         <Stack gap="md">
           <Group justify="space-between">
             <Title order={4}>Add News</Title>
             <Badge>Total Subscribers: {subscriberCount}</Badge>
           </Group>
-          <Text size="xs" c="dimmed">
+          <Text c="dimmed" size="xs">
             Subscribers: 2 user subscribers + 1 notification subscriber = {subscriberCount} total
           </Text>
 
           <TextInput
             label="News Title"
+            onChange={(e) => setNewNews((prev) => ({ ...prev, title: e.target.value }))}
             placeholder="Enter news title"
             value={newNews.title}
-            onChange={(e) => setNewNews((prev) => ({ ...prev, title: e.target.value }))}
           />
 
           <Select
-            label="Category"
             data={CATEGORIES}
-            value={newNews.category}
+            label="Category"
             onChange={(value) =>
               setNewNews((prev) => ({ ...prev, category: value as NewsCategory }))
             }
+            value={newNews.category}
           />
 
           <Textarea
             label="Content"
+            minRows={3}
+            onChange={(e) => setNewNews((prev) => ({ ...prev, content: e.target.value }))}
             placeholder="Enter news content"
             value={newNews.content}
-            onChange={(e) => setNewNews((prev) => ({ ...prev, content: e.target.value }))}
-            minRows={3}
           />
 
           <Button
-            onClick={handleAddNews}
+            disabled={!(newNews.title.trim() && newNews.content.trim())}
             leftSection={<IconPlus size={16} />}
-            disabled={!newNews.title.trim() || !newNews.content.trim()}
+            onClick={handleAddNews}
           >
             Publish News
           </Button>
-          {(!newNews.title.trim() || !newNews.content.trim()) && (
-            <Text size="xs" c="dimmed" ta="center">
-              {!newNews.title.trim() &&
-                !newNews.content.trim() &&
-                'Please enter both title and content'}
+          {!(newNews.title.trim() && newNews.content.trim()) && (
+            <Text c="dimmed" size="xs" ta="center">
+              {!(newNews.title.trim() || newNews.content.trim())
+                && 'Please enter both title and content'}
             </Text>
           )}
         </Stack>
       </Paper>
 
-      <Paper shadow="xs" p="md" withBorder>
-        <Title order={4} mb="md">
+      <Paper p="md" shadow="xs" withBorder>
+        <Title mb="md" order={4}>
           Subscriber Configuration
         </Title>
-        <Text size="sm" c="dimmed" mb="md">
+        <Text c="dimmed" mb="md" size="sm">
           This shows how different subscribers (users) are configured to receive only specific types
           of news. You can dynamically change which categories each user subscribes to and whether
           they have notifications enabled. When you publish news, only users subscribed to that
@@ -113,31 +112,31 @@ export const Example = () => {
                 <Group justify="space-between">
                   <Text fw={500}>{user.name}</Text>
                   <Switch
-                    label="Enable notifications"
                     checked={user.preferences.notifications}
+                    label="Enable notifications"
                     onChange={(event) =>
                       toggleUserNotifications({
-                        userId: user.id,
                         enabled: event.currentTarget.checked,
+                        userId: user.id,
                       })
                     }
                     size="sm"
                   />
                 </Group>
                 <MultiSelect
-                  label="Subscribed Categories"
-                  placeholder="Select categories"
+                  clearable
                   data={CATEGORIES}
-                  value={Array.from(user.preferences.categories)}
+                  label="Subscribed Categories"
                   onChange={(value) =>
                     updateUserCategories({
-                      userId: user.id,
                       categories: value as NewsCategory[],
+                      userId: user.id,
                     })
                   }
-                  size="sm"
+                  placeholder="Select categories"
                   searchable
-                  clearable
+                  size="sm"
+                  value={Array.from(user.preferences.categories)}
                 />
               </Stack>
             </Paper>
@@ -147,4 +146,3 @@ export const Example = () => {
     </Stack>
   );
 };
-

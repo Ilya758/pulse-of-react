@@ -23,4 +23,3 @@ export const validate = (values: MyFormValues) => {
 
   return errors;
 };
-

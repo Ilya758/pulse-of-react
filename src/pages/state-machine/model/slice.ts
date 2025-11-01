@@ -5,16 +5,16 @@ export const modalReducer = (state: ModalState, action: ModalAction): ModalState
   switch (action.type) {
     case 'OPEN_PERSONAL': {
       return {
-        type: 'personal',
         data: INITIAL_PERSONAL,
+        type: 'personal',
       };
     }
 
     case 'UPDATE_PERSONAL': {
       if (state.type === 'personal') {
         return {
-          type: 'personal',
           data: { ...state.data, ...action.payload },
+          type: 'personal',
         };
       }
 
@@ -24,9 +24,9 @@ export const modalReducer = (state: ModalState, action: ModalAction): ModalState
     case 'NEXT_TO_PREFERENCES': {
       if (state.type === 'personal') {
         return {
-          type: 'preferences',
           data: state.data,
           preferences: INITIAL_PREFERENCES,
+          type: 'preferences',
         };
       }
 
@@ -36,9 +36,9 @@ export const modalReducer = (state: ModalState, action: ModalAction): ModalState
     case 'UPDATE_PREFERENCES': {
       if (state.type === 'preferences') {
         return {
-          type: 'preferences',
           data: state.data,
           preferences: { ...state.preferences, ...action.payload },
+          type: 'preferences',
         };
       }
 
@@ -48,11 +48,11 @@ export const modalReducer = (state: ModalState, action: ModalAction): ModalState
     case 'NEXT_TO_REVIEW': {
       if (state.type === 'preferences') {
         return {
-          type: 'review',
           data: {
             personal: state.data,
             preferences: state.preferences,
           },
+          type: 'review',
         };
       }
 
@@ -62,8 +62,8 @@ export const modalReducer = (state: ModalState, action: ModalAction): ModalState
     case 'SUBMIT': {
       if (state.type === 'review' || state.type === 'error') {
         return {
-          type: 'submitting',
           data: state.data,
+          type: 'submitting',
         };
       }
 
@@ -73,8 +73,8 @@ export const modalReducer = (state: ModalState, action: ModalAction): ModalState
     case 'SUBMIT_SUCCESS': {
       if (state.type === 'submitting') {
         return {
-          type: 'success',
           data: state.data,
+          type: 'success',
         };
       }
 
@@ -84,9 +84,9 @@ export const modalReducer = (state: ModalState, action: ModalAction): ModalState
     case 'SUBMIT_ERROR': {
       if (state.type === 'submitting') {
         return {
-          type: 'error',
           data: state.data,
           error: action.payload.error,
+          type: 'error',
         };
       }
 
@@ -97,23 +97,23 @@ export const modalReducer = (state: ModalState, action: ModalAction): ModalState
       switch (state.type) {
         case 'preferences': {
           return {
-            type: 'personal',
             data: state.data,
+            type: 'personal',
           };
         }
 
         case 'review': {
           return {
-            type: 'preferences',
             data: state.data.personal,
             preferences: state.data.preferences,
+            type: 'preferences',
           };
         }
 
         case 'error': {
           return {
-            type: 'review',
             data: state.data,
+            type: 'review',
           };
         }
 
@@ -132,4 +132,3 @@ export const modalReducer = (state: ModalState, action: ModalAction): ModalState
     }
   }
 };
-

@@ -13,100 +13,100 @@ export const USER_ROLES: Record<string, string> = {
 
 export const ROLE_DESCRIPTIONS: Record<string, string> = {
   admin: 'Full system access',
+  guest: 'Limited read-only access',
   manager: 'Department management access',
   user: 'Standard user access',
-  guest: 'Limited read-only access',
 };
 
 export const ROLE_DEFINITIONS: Role[] = [
   {
+    description: ROLE_DESCRIPTIONS.admin,
     id: 'admin',
     name: 'Administrator',
-    description: ROLE_DESCRIPTIONS['admin'],
     permissions: [
       {
+        action: '*',
+        description: 'Access to everything',
         id: 'all',
         name: 'All Permissions',
         resource: '*',
-        action: '*',
-        description: 'Access to everything',
       },
     ],
   },
   {
+    description: ROLE_DESCRIPTIONS.manager,
     id: 'manager',
     name: 'Manager',
-    description: ROLE_DESCRIPTIONS['manager'],
     permissions: [
       {
+        action: 'read',
+        description: 'Can read documents',
         id: 'read-docs',
         name: 'Read Documents',
         resource: 'documents',
-        action: 'read',
-        description: 'Can read documents',
       },
       {
+        action: 'edit',
+        description: 'Can edit documents',
         id: 'edit-docs',
         name: 'Edit Documents',
         resource: 'documents',
-        action: 'edit',
-        description: 'Can edit documents',
       },
       {
+        action: 'delete',
+        description: 'Can delete documents',
         id: 'delete-docs',
         name: 'Delete Documents',
         resource: 'documents',
-        action: 'delete',
-        description: 'Can delete documents',
       },
       {
+        action: 'read',
+        description: 'Can read reports',
         id: 'read-reports',
         name: 'Read Reports',
         resource: 'reports',
-        action: 'read',
-        description: 'Can read reports',
       },
       {
+        action: 'edit',
+        description: 'Can edit reports',
         id: 'edit-reports',
         name: 'Edit Reports',
         resource: 'reports',
-        action: 'edit',
-        description: 'Can edit reports',
       },
     ],
   },
   {
+    description: ROLE_DESCRIPTIONS.user,
     id: 'user',
     name: 'User',
-    description: ROLE_DESCRIPTIONS['user'],
     permissions: [
       {
+        action: 'read',
+        description: 'Can read documents',
         id: 'read-docs',
         name: 'Read Documents',
         resource: 'documents',
-        action: 'read',
-        description: 'Can read documents',
       },
       {
+        action: 'edit',
+        description: 'Can edit own documents',
         id: 'edit-own-docs',
         name: 'Edit Own Documents',
         resource: 'documents',
-        action: 'edit',
-        description: 'Can edit own documents',
       },
     ],
   },
   {
+    description: ROLE_DESCRIPTIONS.guest,
     id: 'guest',
     name: 'Guest',
-    description: ROLE_DESCRIPTIONS['guest'],
     permissions: [
       {
+        action: 'read',
+        description: 'Can read public content',
         id: 'read-public',
         name: 'Read Public Content',
         resource: 'public',
-        action: 'read',
-        description: 'Can read public content',
       },
     ],
   },
@@ -1049,72 +1049,70 @@ const UserInfo: React.FC<{ user: User }> = ({ user }) => (
 
 export const USER_SELECT_OPTIONS = [
   {
-    value: 'alice',
     label: 'Alice (Hash: 15) - User Role',
+    value: 'alice',
   },
   {
-    value: 'bob',
     label: 'Bob (Hash: 35) - Manager Role',
+    value: 'bob',
   },
   {
-    value: 'charlie',
     label: 'Charlie (Hash: 55) - Admin Role',
+    value: 'charlie',
   },
   {
-    value: 'diana',
     label: 'Diana (Hash: 75) - Manager Role',
+    value: 'diana',
   },
   {
-    value: 'eve',
     label: 'Eve (Hash: 85) - User Role',
+    value: 'eve',
   },
   {
-    value: 'frank',
     label: 'Frank (Hash: 95) - Guest Role',
+    value: 'frank',
   },
   {
-    value: 'grace',
     label: 'Grace (Hash: 25) - Manager Role',
+    value: 'grace',
   },
   {
-    value: 'henry',
     label: 'Henry (Hash: 65) - User Role',
+    value: 'henry',
   },
 ];
 
 export const RESOURCE_SELECT_OPTIONS = [
-  { value: 'documents', label: 'Documents' },
-  { value: 'reports', label: 'Reports' },
-  { value: 'sensitive-documents', label: 'Sensitive Documents' },
-  { value: 'admin-panel', label: 'Admin Panel' },
-  { value: 'public', label: 'Public Content' },
+  { label: 'Documents', value: 'documents' },
+  { label: 'Reports', value: 'reports' },
+  { label: 'Sensitive Documents', value: 'sensitive-documents' },
+  { label: 'Admin Panel', value: 'admin-panel' },
+  { label: 'Public Content', value: 'public' },
 ];
 
 export const ACTION_SELECT_OPTIONS = [
-  { value: 'read', label: 'Read' },
-  { value: 'edit', label: 'Edit' },
-  { value: 'delete', label: 'Delete' },
-  { value: 'create', label: 'Create' },
+  { label: 'Read', value: 'read' },
+  { label: 'Edit', value: 'edit' },
+  { label: 'Delete', value: 'delete' },
+  { label: 'Create', value: 'create' },
 ];
 
 export const TIME_CONTEXT_SELECT_OPTIONS = [
-  { value: '08:00', label: '08:00 (Outside business hours)' },
-  { value: '14:30', label: '14:30 (Business hours)' },
-  { value: '22:00', label: '22:00 (Outside business hours)' },
+  { label: '08:00 (Outside business hours)', value: '08:00' },
+  { label: '14:30 (Business hours)', value: '14:30' },
+  { label: '22:00 (Outside business hours)', value: '22:00' },
 ];
 
 export const DEPARTMENT_SELECT_OPTIONS = [
-  { value: 'engineering', label: 'Engineering' },
-  { value: 'marketing', label: 'Marketing' },
-  { value: 'finance', label: 'Finance' },
-  { value: 'hr', label: 'Human Resources' },
-  { value: 'sales', label: 'Sales' },
+  { label: 'Engineering', value: 'engineering' },
+  { label: 'Marketing', value: 'marketing' },
+  { label: 'Finance', value: 'finance' },
+  { label: 'Human Resources', value: 'hr' },
+  { label: 'Sales', value: 'sales' },
 ];
 
-export const generateUserSelectOptions = (hashUserId: (id: string) => number) => {
-  return USER_SELECT_OPTIONS.map((option) => ({
+export const generateUserSelectOptions = (hashUserId: (id: string) => number) =>
+  USER_SELECT_OPTIONS.map((option) => ({
     ...option,
     label: option.label.replace(/Hash: \d+/, `Hash: ${hashUserId(option.value) % 100}`),
   }));
-};
-

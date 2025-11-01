@@ -1,31 +1,31 @@
-import { FC, useEffect } from 'react';
-import { Title, Text, List, Space } from '@mantine/core';
 import { CodeHighlightTabs } from '@mantine/code-highlight';
+import { List, Space, Text, Title } from '@mantine/core';
+import { FC, useEffect } from 'react';
 
 import { SectionBlock } from '@/shared';
 import { useTocContent } from '@/widgets/layout';
 
 import {
-  VULNERABLE_CONFIG_MERGE_CODE,
+  PROTOTYPE_IMMUTABILITY_CODE,
   SECURE_CONFIG_MERGE_CODE,
   SECURE_OBJECT_CREATION_CODE,
-  PROTOTYPE_IMMUTABILITY_CODE,
   UI_WIDGET_GADGET_CODE,
+  VULNERABLE_CONFIG_MERGE_CODE,
 } from '../model';
 
 export const PrototypePollutionPage: FC = () => {
   const { signalContentLoaded } = useTocContent();
 
-  useEffect(signalContentLoaded, [signalContentLoaded]);
+  useEffect(signalContentLoaded, []);
 
   return (
     <>
       <Space h={4} />
-      <Title order={1} mb="lg">
+      <Title mb="lg" order={1}>
         Prototype Pollution
       </Title>
 
-      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core Concept">
         <Text>
           Prototype Pollution is a vulnerability specific to JavaScript that occurs when an attacker
           is able to modify `Object.prototype`. Because prototypes are a foundational aspect of
@@ -43,15 +43,15 @@ export const PrototypePollutionPage: FC = () => {
       </SectionBlock>
 
       <SectionBlock
-        title="Anatomy of an Attack: Source, Gadget, Sink"
         initialSpaceAfterDivider="xs"
+        title="Anatomy of an Attack: Source, Gadget, Sink"
       >
         <Text>
           A successful prototype pollution attack hinges on the alignment of three elements:
         </Text>
-        <List spacing="xs" mt="md" type="ordered">
+        <List mt="md" spacing="xs" type="ordered">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Source
             </Text>
             : The entry point for the malicious payload. This is typically user-controlled input,
@@ -59,7 +59,7 @@ export const PrototypePollutionPage: FC = () => {
             insecurely.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Gadget
             </Text>
             : A piece of code that uses a property without first defining it on its own object. This
@@ -67,7 +67,7 @@ export const PrototypePollutionPage: FC = () => {
             polluted prototype.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Sink
             </Text>
             : The final step where the gadget's execution with the polluted property leads to a
@@ -77,86 +77,86 @@ export const PrototypePollutionPage: FC = () => {
         </List>
 
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mt="lg"
           code={[
             {
+              code: VULNERABLE_CONFIG_MERGE_CODE,
               fileName: 'vulnerable-config-merge.ts',
               language: 'ts',
-              code: VULNERABLE_CONFIG_MERGE_CODE,
             },
           ]}
+          defaultExpanded={false}
+          mt="lg"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
 
-      <SectionBlock title="Practical Gadget Example" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Practical Gadget Example">
         <Text>
           Gadgets are often found in libraries or application code that handles configuration
           objects. If a function reads a property from a configuration object but doesn't check if
           the object has its own value for it, it can be exploited.
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mt="lg"
           code={[
             {
+              code: UI_WIDGET_GADGET_CODE,
               fileName: 'ui-widget-gadget.ts',
               language: 'ts',
-              code: UI_WIDGET_GADGET_CODE,
             },
           ]}
+          defaultExpanded={false}
+          mt="lg"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
 
-      <SectionBlock title="Defensive Measures" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Defensive Measures">
         <List spacing="xs" type="ordered">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Prefer Prototype-Free Data Structures
             </Text>
             <Text size="sm">
               When creating objects intended to be used as dictionaries or maps, use{' '}
-              <Text span fw={700}>
+              <Text fw={700} span>
                 `Object.create(null)`
               </Text>{' '}
               to produce an object with no prototype. For collections of values, use{' '}
-              <Text span fw={700}>
+              <Text fw={700} span>
                 `new Set()`
               </Text>
               . These objects cannot be polluted through prototype inheritance.
             </Text>
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Sanitize and Validate Keys
             </Text>
             <Text size="sm">
               In any function that recursively copies properties, explicitly deny keys like{' '}
-              <Text span fw={700}>
+              <Text fw={700} span>
                 `__proto__`
               </Text>
               ,{' '}
-              <Text span fw={700}>
+              <Text fw={700} span>
                 `constructor`
               </Text>
               , and{' '}
-              <Text span fw={700}>
+              <Text fw={700} span>
                 `prototype`
               </Text>
               . Rely on allow-lists for property names where possible.
             </Text>
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Make Prototypes Immutable
             </Text>
             <Text size="sm">
               As a powerful, broad-spectrum defense, freeze the global object prototype with{' '}
-              <Text span fw={700}>
+              <Text fw={700} span>
                 `Object.freeze(Object.prototype)`
               </Text>
               . This prevents any modifications to it. Note that this can cause issues with
@@ -164,7 +164,7 @@ export const PrototypePollutionPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Use Secure Libraries
             </Text>
             <Text size="sm">
@@ -175,42 +175,42 @@ export const PrototypePollutionPage: FC = () => {
         </List>
 
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mt="lg"
           code={[
             {
+              code: SECURE_CONFIG_MERGE_CODE,
               fileName: 'safe-deep-clone.ts',
               language: 'ts',
-              code: SECURE_CONFIG_MERGE_CODE,
             },
             {
+              code: SECURE_OBJECT_CREATION_CODE,
               fileName: 'secure-object-creation.ts',
               language: 'ts',
-              code: SECURE_OBJECT_CREATION_CODE,
             },
             {
+              code: PROTOTYPE_IMMUTABILITY_CODE,
               fileName: 'prototype-immutability.ts',
               language: 'ts',
-              code: PROTOTYPE_IMMUTABILITY_CODE,
             },
           ]}
+          defaultExpanded={false}
+          mt="lg"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
-      <SectionBlock title="Hardening at the Runtime Level" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Hardening at the Runtime Level">
         <Text>
           For an added layer of security in a Node.js environment, you can leverage runtime flags to
           disable features that facilitate prototype pollution attacks.
         </Text>
-        <List spacing="xs" mt="md">
+        <List mt="md" spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Node.js `--disable-proto` Flag
             </Text>
             <Text size="sm">
               Launching a Node.js application with the{' '}
-              <Text span fw={700}>
+              <Text fw={700} span>
                 `--disable-proto=delete`
               </Text>{' '}
               flag completely removes the legacy `__proto__` accessor. While this eliminates a major
@@ -225,4 +225,3 @@ export const PrototypePollutionPage: FC = () => {
     </>
   );
 };
-

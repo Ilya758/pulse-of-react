@@ -74,4 +74,3 @@ export const useFCPMeasurement = () => {
 
   return fcp;
 };`;
-

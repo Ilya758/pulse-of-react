@@ -26,44 +26,44 @@ export const mockServer = (
       }
     }
     return {
+      body: null,
+      headers: responseHeaders,
       status: 204,
       statusText: 'No Content',
-      headers: responseHeaders,
-      body: null,
-    };
-  } else {
-    const isMethodAllowed = allowedMethods.includes(method);
-    const hasDisallowedHeaders = Object.keys(headers).some(
-      (h) =>
-        !['content-type'].includes(h.toLowerCase()) &&
-        !allowedHeaders.map((ah: string) => ah.toLowerCase()).includes(h.toLowerCase()),
-    );
-
-    if (!isOriginAllowed) {
-      return {
-        error:
-          "CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
-      };
-    }
-
-    if (!isMethodAllowed) {
-      return { error: `CORS policy: Method ${method} is not allowed.` };
-    }
-
-    if (hasDisallowedHeaders) {
-      return {
-        error: `CORS policy: Request header field ${Object.keys(headers).find(
-          (h) => !allowedHeaders.includes(h),
-        )} is not allowed by Access-Control-Allow-Headers in preflight response.`,
-      };
-    }
-
-    return {
-      status: 200,
-      statusText: 'OK',
-      headers: responseHeaders,
-      body: { message: 'Request successful!', data: 'some secret data' },
     };
   }
-};
+  const isMethodAllowed = allowedMethods.includes(method);
+  const hasDisallowedHeaders = Object.keys(headers).some(
+    (h) =>
+      !(
+        ['content-type'].includes(h.toLowerCase())
+        || allowedHeaders.map((ah: string) => ah.toLowerCase()).includes(h.toLowerCase())
+      ),
+  );
 
+  if (!isOriginAllowed) {
+    return {
+      error:
+        "CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+    };
+  }
+
+  if (!isMethodAllowed) {
+    return { error: `CORS policy: Method ${method} is not allowed.` };
+  }
+
+  if (hasDisallowedHeaders) {
+    return {
+      error: `CORS policy: Request header field ${Object.keys(headers).find(
+        (h) => !allowedHeaders.includes(h),
+      )} is not allowed by Access-Control-Allow-Headers in preflight response.`,
+    };
+  }
+
+  return {
+    body: { data: 'some secret data', message: 'Request successful!' },
+    headers: responseHeaders,
+    status: 200,
+    statusText: 'OK',
+  };
+};

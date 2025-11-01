@@ -1,20 +1,20 @@
-import { CorsExampleState, CorsExampleAction } from './types';
+import { CorsExampleAction, CorsExampleState } from './types';
 
 export const initialState: CorsExampleState = {
+  clientRequest: {
+    credentials: false,
+    headers: '{\n  "Authorization": "Bearer token"\n}',
+    method: 'GET',
+  },
+  error: null,
+  logs: [],
   serverConfig: {
-    allowedOrigin: 'http://client.example.com',
-    allowedMethods: ['GET', 'POST', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
     allowCredentials: false,
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedMethods: ['GET', 'POST', 'OPTIONS'],
+    allowedOrigin: 'http://client.example.com',
     maxAge: '600',
   },
-  clientRequest: {
-    method: 'GET',
-    headers: '{\n  "Authorization": "Bearer token"\n}',
-    credentials: false,
-  },
-  logs: [],
-  error: null,
 };
 
 export function corsExampleReducer(
@@ -46,8 +46,8 @@ export function corsExampleReducer(
     case 'RESET_SIMULATION': {
       return {
         ...state,
-        logs: [],
         error: null,
+        logs: [],
       };
     }
 
@@ -63,4 +63,3 @@ export function corsExampleReducer(
     }
   }
 }
-

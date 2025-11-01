@@ -25,4 +25,3 @@ export interface CheckboxConfig extends BaseConfig {
 export type InputConfig = TextConfig | NumberConfig | SelectConfig | CheckboxConfig;
 
 export type InputValue = string | number | boolean;
-

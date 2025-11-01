@@ -1,0 +1,130 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.3.2/schema.json",
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on",
+        "useSortedAttributes": "on",
+        "useSortedKeys": "on",
+        "useSortedProperties": "on"
+      }
+    },
+    "enabled": true
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "always",
+      "bracketSpacing": true,
+      "expand": "auto",
+      "operatorLinebreak": "before",
+      "quoteStyle": "single",
+      "semicolons": "always",
+      "trailingCommas": "all"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "a11y": {
+        "noStaticElementInteractions": "off",
+        "noSvgWithoutTitle": "off",
+        "useKeyWithClickEvents": "off"
+      },
+      "complexity": {
+        "noEmptyTypeParameters": "error",
+        "noImplicitCoercions": "off",
+        "useOptionalChain": "error",
+        "useRegexLiterals": "warn",
+        "useSimplifiedLogicExpression": "error"
+      },
+      "nursery": {
+        "noFloatingPromises": "error",
+        "noImportCycles": "error",
+        "noMisusedPromises": "error",
+        "noShadow": "error",
+        "noUnnecessaryConditions": "off",
+        "noUnusedExpressions": "error",
+        "noUselessCatchBinding": "error",
+        "useConsistentArrowReturn": "error",
+        "useMaxParams": {
+          "level": "warn",
+          "options": {
+            "max": 3
+          }
+        }
+      },
+      "performance": {
+        "noAccumulatingSpread": "warn"
+      },
+      "recommended": true,
+      "style": {
+        "noEnum": "error",
+        "noMagicNumbers": "off",
+        "noNegationElse": "error",
+        "noNestedTernary": "error",
+        "noParameterAssign": "error",
+        "noUselessElse": "error",
+        "noYodaExpression": "error",
+        "useCollapsedElseIf": "error",
+        "useCollapsedIf": "error",
+        "useConsistentArrayType": "error",
+        "useConsistentBuiltinInstantiation": "error",
+        "useConsistentObjectDefinitions": "error",
+        "useDefaultParameterLast": "error",
+        "useDefaultSwitchClause": "error",
+        "useExportsLast": "off",
+        "useFilenamingConvention": {
+          "level": "error",
+          "options": {
+            "filenameCases": ["kebab-case"],
+            "match": "%?(.+?)[.](.+)"
+          }
+        },
+        "useImportType": "off",
+        "useNumberNamespace": "error",
+        "useObjectSpread": "error",
+        "useThrowNewError": "error",
+        "useUnifiedTypeSignatures": "error"
+      },
+      "suspicious": {
+        "noConsole": "off",
+        "noConstantBinaryExpressions": "error",
+        "noEmptyBlockStatements": "error",
+        "noEvolvingTypes": "error",
+        "noExplicitAny": "off",
+        "noUnassignedVariables": "error",
+        "useBiomeIgnoreFolder": "off",
+        "useErrorMessage": "error"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["services/agentflow/**/*.spec.ts", "services/agentflow/test/**/*.ts"],
+      "linter": {
+        "rules": {}
+      }
+    },
+    {
+      "assist": {
+        "actions": {
+          "source": {
+            "useSortedKeys": "off"
+          }
+        }
+      },
+      "includes": ["**/package.json"]
+    }
+  ],
+  "vcs": {
+    "clientKind": "git",
+    "enabled": true,
+    "useIgnoreFile": true
+  }
+}

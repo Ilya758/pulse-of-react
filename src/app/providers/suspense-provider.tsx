@@ -1,6 +1,6 @@
-import { useThemeColorContext } from '@/shared';
 import { Center, Loader } from '@mantine/core';
 import { Suspense } from 'react';
+import { useThemeColorContext } from '@/shared';
 
 export const SuspenseProvider = ({ children }: { children: React.ReactNode }) => {
   const { primaryColor } = useThemeColorContext();
@@ -9,7 +9,7 @@ export const SuspenseProvider = ({ children }: { children: React.ReactNode }) =>
     <Suspense
       fallback={
         <Center style={{ height: '100vh', width: '100%' }}>
-          <Loader color={primaryColor} type="bars" size="xl" />
+          <Loader color={primaryColor} size="xl" type="bars" />
         </Center>
       }
     >
@@ -17,4 +17,3 @@ export const SuspenseProvider = ({ children }: { children: React.ReactNode }) =>
     </Suspense>
   );
 };
-

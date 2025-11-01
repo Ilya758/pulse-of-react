@@ -1,20 +1,19 @@
 import {
-  Container,
-  Stack,
-  Loader,
   Alert,
-  Paper,
-  Title,
+  Container,
   List,
-  ThemeIcon,
+  Loader,
+  Paper,
   rem,
+  Stack,
   Text,
+  ThemeIcon,
+  Title,
 } from '@mantine/core';
 import { useFetch } from '@mantine/hooks';
 import { IconAlertCircle, IconCircleCheck } from '@tabler/icons-react';
+import { Choose, If, Otherwise, useThemeColorContext } from '@/shared';
 import { Post } from '../model';
-import { Choose, If, Otherwise } from '@/shared';
-import { useThemeColorContext } from '@/shared';
 
 export const Example = () => {
   const { primaryColor } = useThemeColorContext();
@@ -28,18 +27,18 @@ export const Example = () => {
     <>
       {loading && (
         <Container
-          size="sm"
           mt="xl"
+          size="sm"
           style={{
+            alignItems: 'center',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center',
             minHeight: '200px',
           }}
         >
           <Stack align="center" gap="md">
             <Loader color={primaryColor} size="xl" type="bars" />
-            <Text size="lg" c="dimmed">
+            <Text c="dimmed" size="lg">
               Loading posts...
             </Text>
           </Stack>
@@ -47,28 +46,28 @@ export const Example = () => {
       )}
 
       {error && (
-        <Container size="sm" mt="xl">
-          <Alert icon={<IconAlertCircle size="1rem" />} title="Error!" color="red" variant="light">
+        <Container mt="xl" size="sm">
+          <Alert color="red" icon={<IconAlertCircle size="1rem" />} title="Error!" variant="light">
             Failed to fetch posts: {String(error)}
           </Alert>
         </Container>
       )}
 
-      <If condition={!loading && !error}>
+      <If condition={!(loading || error)}>
         <Choose>
           <If condition={!!posts?.length}>
-            <Paper shadow="xs" p="md" withBorder>
-              <Title order={4} ta="center" mb="sm">
+            <Paper p="md" shadow="xs" withBorder>
+              <Title mb="sm" order={4} ta="center">
                 Fetched Posts:
               </Title>
               <List
-                spacing="xs"
                 center
                 icon={
-                  <ThemeIcon color="teal" size={24} radius="xl">
-                    <IconCircleCheck style={{ width: rem(16), height: rem(16) }} />
+                  <ThemeIcon color="teal" radius="xl" size={24}>
+                    <IconCircleCheck style={{ height: rem(16), width: rem(16) }} />
                   </ThemeIcon>
                 }
+                spacing="xs"
               >
                 {posts?.map((post) => (
                   <List.Item key={post.id}>{post.title}</List.Item>
@@ -77,7 +76,7 @@ export const Example = () => {
             </Paper>
           </If>
           <Otherwise>
-            <Container size="sm" mt="xl">
+            <Container mt="xl" size="sm">
               <Text c="dimmed" ta="center">
                 No posts found for the example.
               </Text>
@@ -88,4 +87,3 @@ export const Example = () => {
     </>
   );
 };
-

@@ -1,38 +1,37 @@
-import { FC, useEffect } from 'react';
-import { Title, Text, List, Space, Code, Alert, Table, Anchor } from '@mantine/core';
-import { IconFileTypeTs, IconInfoCircle } from '@tabler/icons-react';
 import { CodeHighlightTabs } from '@mantine/code-highlight';
+import { Alert, Anchor, Code, List, Space, Table, Text, Title } from '@mantine/core';
+import { IconFileTypeTs, IconInfoCircle } from '@tabler/icons-react';
+import { FC, useEffect } from 'react';
 
 import { SectionBlock } from '@/shared';
 import { useTocContent } from '@/widgets/layout';
-
-import { Example } from './example';
 import {
-  DOM_XSS_CODE,
-  REFLECTED_XSS_CODE,
-  SAFE_DOM_MANIPULATION_CODE,
-  STORED_XSS_CODE,
+  CSS_CONTEXT_ENCODING_CODE,
   DOM_PURIFY_EXAMPLE_CODE,
+  DOM_XSS_CODE,
   ENCODE_URI_COMPONENT_EXAMPLE_CODE,
-  SERVER_SIDE_HANDLING_CODE,
   HTML_ATTRIBUTE_ENCODING_CODE,
   JAVASCRIPT_CONTEXT_ENCODING_CODE,
-  CSS_CONTEXT_ENCODING_CODE,
+  REFLECTED_XSS_CODE,
+  SAFE_DOM_MANIPULATION_CODE,
+  SERVER_SIDE_HANDLING_CODE,
+  STORED_XSS_CODE,
 } from '../model';
+import { Example } from './example';
 
 export const CrossSiteScriptingPage: FC = () => {
   const { signalContentLoaded } = useTocContent();
 
-  useEffect(signalContentLoaded, [signalContentLoaded]);
+  useEffect(signalContentLoaded, []);
 
   return (
     <>
       <Space h={4} />
-      <Title order={1} mb="lg">
+      <Title mb="lg" order={1}>
         Cross-Site Scripting (XSS)
       </Title>
 
-      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core Concept">
         <Text>
           Cross-Site Scripting, or XSS, represents a significant security flaw found in many web
           applications. It allows malicious actors to inject client-side scripts into web pages that
@@ -54,27 +53,27 @@ export const CrossSiteScriptingPage: FC = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="Varieties of XSS Attacks" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Varieties of XSS Attacks">
         <Text>XSS vulnerabilities are typically categorized into three main forms:</Text>
-        <List spacing="xs" mt="md" type="ordered">
+        <List mt="md" spacing="xs" type="ordered">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Reflected (Non-Persistent) XSS
             </Text>
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Stored (Persistent) XSS
             </Text>
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               DOM-based XSS
             </Text>
           </List.Item>
         </List>
 
-        <Title order={4} mt="lg" mb="sm">
+        <Title mb="sm" mt="lg" order={4}>
           Reflected XSS
         </Title>
         <Text>
@@ -84,20 +83,20 @@ export const CrossSiteScriptingPage: FC = () => {
           which the victim must be persuaded to click.
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mt="lg"
           code={[
             {
+              code: REFLECTED_XSS_CODE,
               fileName: 'vulnerable-server.ts',
               language: 'ts',
-              code: REFLECTED_XSS_CODE,
             },
           ]}
+          defaultExpanded={false}
+          mt="lg"
+          radius="md"
+          withExpandButton
         />
 
-        <Title order={4} mt="lg" mb="sm">
+        <Title mb="sm" mt="lg" order={4}>
           Stored XSS
         </Title>
         <Text>
@@ -107,20 +106,20 @@ export const CrossSiteScriptingPage: FC = () => {
           this script when they access the stored information.
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mt="lg"
           code={[
             {
+              code: STORED_XSS_CODE,
               fileName: 'vulnerable-server.ts',
               language: 'ts',
-              code: STORED_XSS_CODE,
             },
           ]}
+          defaultExpanded={false}
+          mt="lg"
+          radius="md"
+          withExpandButton
         />
 
-        <Title order={4} mt="lg" mb="sm">
+        <Title mb="sm" mt="lg" order={4}>
           DOM-based XSS
         </Title>
         <Text>
@@ -130,29 +129,29 @@ export const CrossSiteScriptingPage: FC = () => {
           Document Object Model (DOM) with unsafe user input.
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mt="lg"
           code={[
             {
-              fileName: 'vulnerable-component.tsx',
-              language: 'tsx',
               code: DOM_XSS_CODE,
+              fileName: 'vulnerable-component.tsx',
               icon: <IconFileTypeTs size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          mt="lg"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
 
-      <SectionBlock title="Key Prevention Strategies" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Key Prevention Strategies">
         <Text>
           To effectively counter XSS threats, it is essential to isolate untrusted data from the
           active content of the browser. This can be accomplished by employing a mix of output
           encoding, robust HTML sanitization, and secure coding habits.
         </Text>
 
-        <Title order={4} mt="xl" mb="sm">
+        <Title mb="sm" mt="xl" order={4}>
           Context-Aware Output Encoding
         </Title>
         <Text>
@@ -217,38 +216,38 @@ export const CrossSiteScriptingPage: FC = () => {
         </Table>
 
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mt="lg"
           code={[
             {
+              code: HTML_ATTRIBUTE_ENCODING_CODE,
               fileName: 'html-attribute-context.ts',
               language: 'ts',
-              code: HTML_ATTRIBUTE_ENCODING_CODE,
             },
             {
+              code: JAVASCRIPT_CONTEXT_ENCODING_CODE,
               fileName: 'javascript-context.ts',
               language: 'ts',
-              code: JAVASCRIPT_CONTEXT_ENCODING_CODE,
             },
             {
+              code: CSS_CONTEXT_ENCODING_CODE,
               fileName: 'css-context.ts',
               language: 'ts',
-              code: CSS_CONTEXT_ENCODING_CODE,
             },
           ]}
+          defaultExpanded={false}
+          mt="lg"
+          radius="md"
+          withExpandButton
         />
 
-        <Title order={4} mt="lg" mb="sm">
+        <Title mb="sm" mt="lg" order={4}>
           Secure DOM Updates in React
         </Title>
         <Alert
-          mt="md"
-          variant="light"
           color="blue"
-          title="Safe DOM Manipulation"
           icon={<IconInfoCircle />}
+          mt="md"
+          title="Safe DOM Manipulation"
+          variant="light"
         >
           When modifying the DOM with user-provided data, always opt for safe properties like{' '}
           <Code>textContent</Code>. Avoid dangerous methods such as <Code>innerHTML</Code> or{' '}
@@ -256,21 +255,21 @@ export const CrossSiteScriptingPage: FC = () => {
         </Alert>
 
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mt="lg"
           code={[
             {
-              fileName: 'safe-component.tsx',
-              language: 'tsx',
               code: SAFE_DOM_MANIPULATION_CODE,
+              fileName: 'safe-component.tsx',
               icon: <IconFileTypeTs size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          mt="lg"
+          radius="md"
+          withExpandButton
         />
 
-        <Title order={4} mt="lg" mb="sm">
+        <Title mb="sm" mt="lg" order={4}>
           Safe URL Parameter Handling
         </Title>
         <Text>
@@ -281,20 +280,20 @@ export const CrossSiteScriptingPage: FC = () => {
           secure string.
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mt="lg"
           code={[
             {
+              code: ENCODE_URI_COMPONENT_EXAMPLE_CODE,
               fileName: 'encode-uri-component-example.js',
               language: 'ts',
-              code: ENCODE_URI_COMPONENT_EXAMPLE_CODE,
             },
           ]}
+          defaultExpanded={false}
+          mt="lg"
+          radius="md"
+          withExpandButton
         />
 
-        <Title order={4} mt="lg" mb="sm">
+        <Title mb="sm" mt="lg" order={4}>
           Employing Security Libraries like DOMPurify
         </Title>
         <Text>
@@ -303,21 +302,21 @@ export const CrossSiteScriptingPage: FC = () => {
           HTML, MathML, and SVG, making it an excellent choice for such complex cases.
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mt="lg"
           code={[
             {
+              code: DOM_PURIFY_EXAMPLE_CODE,
               fileName: 'dompurify-example.ts',
               language: 'ts',
-              code: DOM_PURIFY_EXAMPLE_CODE,
             },
           ]}
+          defaultExpanded={false}
+          mt="lg"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
 
-      <SectionBlock title="Server-Side Considerations" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Server-Side Considerations">
         <Text>
           When a client submits a request with URL-encoded data, most modern web frameworks (such as
           Express.js) will automatically decode these parameters. While this is convenient, it's
@@ -329,28 +328,28 @@ export const CrossSiteScriptingPage: FC = () => {
           used on the backend before incorporating user input into any response.
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mt="lg"
           code={[
             {
+              code: SERVER_SIDE_HANDLING_CODE,
               fileName: 'server-side-handling.ts',
               language: 'ts',
-              code: SERVER_SIDE_HANDLING_CODE,
             },
           ]}
+          defaultExpanded={false}
+          mt="lg"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
 
-      <SectionBlock title="Practices to Avoid" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Practices to Avoid">
         <Text>
           Relying on inadequate or flawed security measures can lead to a false sense of protection.
           The OWASP guidelines highlight several common mistakes to avoid:
         </Text>
-        <List spacing="xs" mt="md" type="ordered">
+        <List mt="md" spacing="xs" type="ordered">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Over-reliance on Content Security Policy (CSP)
             </Text>
             <Text size="sm">
@@ -360,7 +359,7 @@ export const CrossSiteScriptingPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Using Generic HTTP Interceptors or Filters for Sanitization
             </Text>
             <Text size="sm">
@@ -373,7 +372,7 @@ export const CrossSiteScriptingPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Interactive XSS Simulation" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Interactive XSS Simulation">
         <Text mb="md">
           This hands-on example illustrates how user input can be exploited in an unprotected
           application, and how correct output encoding can thwart XSS attacks.
@@ -385,4 +384,3 @@ export const CrossSiteScriptingPage: FC = () => {
     </>
   );
 };
-

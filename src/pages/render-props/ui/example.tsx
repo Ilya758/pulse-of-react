@@ -1,24 +1,24 @@
-import React from 'react';
 import {
-  TextInput,
   Button,
-  Paper,
-  Title,
-  Stack,
   Checkbox,
-  Textarea,
   Group,
   List,
+  Paper,
+  Stack,
   Text,
+  Textarea,
+  TextInput,
+  Title,
 } from '@mantine/core';
-import { FormManager } from './form-manager';
+import React from 'react';
 import { MyFormValues, validate } from '../model';
+import { FormManager } from './form-manager';
 
 export const Example: React.FC = () => {
   const initialFormValues: MyFormValues = {
-    name: '',
     email: '',
     message: '',
+    name: '',
     subscribe: false,
   };
 
@@ -32,8 +32,8 @@ export const Example: React.FC = () => {
   };
 
   return (
-    <Paper shadow="xs" p="xl" radius="md">
-      <Title order={3} mb="lg" ta="center">
+    <Paper p="xl" radius="md" shadow="xs">
+      <Title mb="lg" order={3} ta="center">
         Contact Us (Render Prop Form)
       </Title>
       <FormManager<MyFormValues> initialValues={initialFormValues}>
@@ -52,124 +52,124 @@ export const Example: React.FC = () => {
             <form onSubmit={handleSubmit(handleFormSubmit)}>
               <Stack gap="md">
                 <TextInput
-                  name="name"
-                  label="Full Name"
-                  placeholder="Your name"
-                  value={getFieldValue('name') as string}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
                   error={touched.name && errors.name}
+                  label="Full Name"
+                  name="name"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  placeholder="Your name"
                   required
+                  value={getFieldValue('name') as string}
                 />
 
                 <TextInput
-                  name="email"
-                  type="email"
-                  label="Email Address"
-                  placeholder="your@email.com"
-                  value={getFieldValue('email') as string}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
                   error={touched.email && errors.email}
+                  label="Email Address"
+                  name="email"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  placeholder="your@email.com"
                   required
+                  type="email"
+                  value={getFieldValue('email') as string}
                 />
 
                 <Textarea
-                  name="message"
-                  label="Your Message"
-                  placeholder="Enter your message here..."
-                  value={getFieldValue('message') as string}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={touched.message && errors.message}
                   autosize
+                  error={touched.message && errors.message}
+                  label="Your Message"
                   minRows={3}
+                  name="message"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  placeholder="Enter your message here..."
                   required
+                  value={getFieldValue('message') as string}
                 />
 
                 <Checkbox
-                  name="subscribe"
-                  label="Subscribe to our newsletter"
                   checked={getFieldValue('subscribe') as boolean}
-                  onChange={handleChange}
+                  label="Subscribe to our newsletter"
+                  name="subscribe"
                   onBlur={handleBlur}
+                  onChange={handleChange}
                 />
 
                 <Group justify="flex-start" mt="lg">
                   <Button
-                    type="submit"
                     disabled={!!Object.keys(errors).length && Object.values(touched).some((t) => t)}
+                    type="submit"
                   >
                     Send Message
                   </Button>
                 </Group>
 
                 <Button
-                  variant="outline"
-                  size="xs"
                   mt="sm"
                   onClick={() => setFieldValue('message', 'Hello from programmatic set!')}
+                  size="xs"
+                  variant="outline"
                 >
                   Set Message Programmatically
                 </Button>
 
-                <Paper withBorder p="md" mt="lg" radius="md">
-                  <Title order={5} mb="sm">
+                <Paper mt="lg" p="md" radius="md" withBorder>
+                  <Title mb="sm" order={5}>
                     Live Form State:
                   </Title>
 
-                  <Title order={6} mt="xs" mb="xs" size="sm">
+                  <Title mb="xs" mt="xs" order={6} size="sm">
                     Values:
                   </Title>
                   {Object.entries(values).length ? (
                     <List size="xs" spacing={2} withPadding>
                       {Object.entries(values).map(([key, value]) => (
                         <List.Item key={key}>
-                          <Text span fw={500}>
+                          <Text fw={500} span>
                             {key}:
                           </Text>{' '}
-                          <Text span c="blue">
+                          <Text c="blue" span>
                             {String(value)}
                           </Text>
                         </List.Item>
                       ))}
                     </List>
                   ) : (
-                    <Text size="xs" c="dimmed">
+                    <Text c="dimmed" size="xs">
                       No values yet.
                     </Text>
                   )}
 
-                  <Title order={6} mt="sm" mb="xs" size="sm">
+                  <Title mb="xs" mt="sm" order={6} size="sm">
                     Touched Fields:
                   </Title>
                   {Object.entries(touched).length ? (
                     <List size="xs" spacing={2} withPadding>
                       {Object.entries(touched).map(([key, value]) => (
                         <List.Item key={key}>
-                          <Text span fw={500}>
+                          <Text fw={500} span>
                             {key}:
                           </Text>{' '}
-                          <Text span c="orange">
+                          <Text c="orange" span>
                             {String(value)}
                           </Text>
                         </List.Item>
                       ))}
                     </List>
                   ) : (
-                    <Text size="xs" c="dimmed">
+                    <Text c="dimmed" size="xs">
                       No fields touched yet.
                     </Text>
                   )}
 
-                  <Title order={6} mt="sm" mb="xs" size="sm">
+                  <Title mb="xs" mt="sm" order={6} size="sm">
                     Validation Errors:
                   </Title>
                   {Object.entries(errors).length ? (
-                    <List size="xs" spacing={2} withPadding c="red">
+                    <List c="red" size="xs" spacing={2} withPadding>
                       {Object.entries(errors).map(([key, errorMsg]) => (
                         <List.Item key={key}>
-                          <Text span fw={500}>
+                          <Text fw={500} span>
                             {key}:
                           </Text>{' '}
                           <Text span>{errorMsg}</Text>
@@ -177,7 +177,7 @@ export const Example: React.FC = () => {
                       ))}
                     </List>
                   ) : (
-                    <Text size="xs" c="dimmed">
+                    <Text c="dimmed" size="xs">
                       No validation errors.
                     </Text>
                   )}
@@ -190,4 +190,3 @@ export const Example: React.FC = () => {
     </Paper>
   );
 };
-

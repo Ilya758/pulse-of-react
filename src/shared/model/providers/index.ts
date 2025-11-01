@@ -1,2 +1,1 @@
-export { ThemeColorProvider, useThemeColorContext, ThemeColorContext } from './theme-color-context';
-
+export { ThemeColorContext, ThemeColorProvider, useThemeColorContext } from './theme-color-context';

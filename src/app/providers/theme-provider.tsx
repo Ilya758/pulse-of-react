@@ -1,16 +1,16 @@
-import { FC, ReactNode } from 'react';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import { FC, ReactNode } from 'react';
 import '@mantine/core/styles.css';
 import '@mantine/code-highlight/styles.css';
 import { CodeHighlightAdapterProvider, createHighlightJsAdapter } from '@mantine/code-highlight';
 import hljs from 'highlight.js/lib/core';
+import bash from 'highlight.js/lib/languages/bash';
+import json from 'highlight.js/lib/languages/json';
+import scss from 'highlight.js/lib/languages/scss';
 import typescript from 'highlight.js/lib/languages/typescript';
 import xml from 'highlight.js/lib/languages/xml';
-import scss from 'highlight.js/lib/languages/scss';
-import json from 'highlight.js/lib/languages/json';
-import bash from 'highlight.js/lib/languages/bash';
-import { useHighlightJsStyleManager } from '../model';
 import { useThemeColorContext } from '@/shared';
+import { useHighlightJsStyleManager } from '../model';
 
 hljs.registerLanguage('typescript', typescript);
 hljs.registerLanguage('tsx', typescript);
@@ -56,4 +56,3 @@ export const ThemeProvider: FC<Props> = ({ children }) => {
     </>
   );
 };
-

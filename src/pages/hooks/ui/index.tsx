@@ -1,26 +1,26 @@
-import { useEffect } from 'react';
-
-import { Title, List, Text, Paper, Code, Space } from '@mantine/core';
-import { IconFileTypeTs } from '@tabler/icons-react';
-import { SectionBlock } from '@/shared';
-import { USE_FETCH_HOOK_CODE } from '../model';
 import { CodeHighlightTabs } from '@mantine/code-highlight';
-import { Example } from './example';
+
+import { Code, List, Paper, Space, Text, Title } from '@mantine/core';
+import { IconFileTypeTs } from '@tabler/icons-react';
+import { useEffect } from 'react';
+import { SectionBlock } from '@/shared';
 import { useTocContent } from '@/widgets/layout';
+import { USE_FETCH_HOOK_CODE } from '../model';
+import { Example } from './example';
 
 export const HooksPage = () => {
   const { signalContentLoaded } = useTocContent();
 
-  useEffect(signalContentLoaded, [signalContentLoaded]);
+  useEffect(signalContentLoaded, []);
 
   return (
     <>
       <Space h={4} />
-      <Title order={1} mb="lg">
+      <Title mb="lg" order={1}>
         React Hooks
       </Title>
 
-      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core Concept">
         <Text>
           Hooks are functions that let you use state and other React features in functional
           components. They allow you to write cleaner, more reusable, and easier-to-understand React
@@ -30,13 +30,13 @@ export const HooksPage = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="Understanding React Hooks" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Understanding React Hooks">
         <Text>
           Hooks are functions that let you "hook into" React state and lifecycle features from
           function components. They were introduced in React 16.8 and allow you to use state and
           other React features without writing a class.
         </Text>
-        <Title order={4} mt="lg" mb="sm">
+        <Title mb="sm" mt="lg" order={4}>
           Why use Hooks?
         </Title>
         <List spacing="xs">
@@ -54,11 +54,11 @@ export const HooksPage = () => {
           </List.Item>
         </List>
 
-        <Title order={4} mt="lg" mb="sm">
+        <Title mb="sm" mt="lg" order={4}>
           Common Hooks
         </Title>
         <Text mb="xs">Here are a couple of the most frequently used built-in Hooks:</Text>
-        <Paper withBorder p="sm" radius="md" mb="sm">
+        <Paper mb="sm" p="sm" radius="md" withBorder>
           <Title order={5}>
             <code>useState</code>
           </Title>
@@ -68,7 +68,7 @@ export const HooksPage = () => {
             example: <Code>const [count, setCount] = useState(0);</Code>
           </Text>
         </Paper>
-        <Paper withBorder p="sm" radius="md">
+        <Paper p="sm" radius="md" withBorder>
           <Title order={5}>
             <code>useEffect</code>
           </Title>
@@ -87,7 +87,7 @@ export const HooksPage = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="When to Use Hooks" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="When to Use Hooks">
         <Text>
           Hooks should be your go-to for managing state and side effects in all new functional
           components. Consider using Hooks when:
@@ -114,14 +114,14 @@ export const HooksPage = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Rules of Hooks" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Rules of Hooks">
         <Text>
           Hooks have a few simple rules you need to follow to ensure they work correctly and to
           avoid bugs. These rules are enforced by the ESLint plugin for Hooks.
         </Text>
         <List mt="md" spacing="sm" type="ordered">
           <List.Item>
-            <Title order={5} mb={4}>
+            <Title mb={4} order={5}>
               Only Call Hooks at the Top Level
             </Title>
             <Text>
@@ -133,11 +133,11 @@ export const HooksPage = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} mb={4}>
+            <Title mb={4} order={5}>
               Only Call Hooks from React Functions
             </Title>
             <Text>Don't call Hooks from regular JavaScript functions. Instead, you can:</Text>
-            <List mt="xs" spacing="xs" listStyleType="disc" withPadding>
+            <List listStyleType="disc" mt="xs" spacing="xs" withPadding>
               <List.Item>Call Hooks from React function components.</List.Item>
               <List.Item>Call Hooks from custom Hooks (we learned about these earlier!).</List.Item>
             </List>
@@ -149,8 +149,8 @@ export const HooksPage = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Pros of Using Hooks" initialSpaceAfterDivider="xs">
-        <List spacing="xs" withPadding style={{ listStylePosition: 'inside' }}>
+      <SectionBlock initialSpaceAfterDivider="xs" title="Pros of Using Hooks">
+        <List spacing="xs" style={{ listStylePosition: 'inside' }} withPadding>
           <List.Item>
             <strong>Improved Readability & Simplicity:</strong> Hooks make components easier to read
             and understand by co-locating related logic, rather than scattering it across lifecycle
@@ -181,7 +181,7 @@ export const HooksPage = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Cons of Using Hooks" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Cons of Using Hooks">
         <List spacing="xs" withPadding>
           <List.Item>
             <strong>Learning Curve:</strong> Understanding the rules of Hooks and concepts like
@@ -206,25 +206,25 @@ export const HooksPage = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Example: Custom useFetch hook" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Example: Custom useFetch hook">
         <Text mb="md">
           This example demonstrates fetching data using a custom <code>useFetch</code> hook. The
           hook itself (shown below) utilizes <code>useState</code> and <code>useEffect</code>. The
           data it fetches is typed using the <code>Post</code> interface.
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mb="lg"
           code={[
             {
-              fileName: 'useFetch.ts',
-              language: 'ts',
               code: USE_FETCH_HOOK_CODE,
+              fileName: 'useFetch.ts',
               icon: <IconFileTypeTs size={14} />,
+              language: 'ts',
             },
           ]}
+          defaultExpanded={false}
+          mb="lg"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
 
@@ -234,4 +234,3 @@ export const HooksPage = () => {
     </>
   );
 };
-

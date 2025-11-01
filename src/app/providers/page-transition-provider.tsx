@@ -1,5 +1,5 @@
+import { lazy, Suspense } from 'react';
 import { useLocation, useRoutes } from 'react-router-dom';
-import { Suspense, lazy } from 'react';
 import { useFramerMotion } from '../model/hooks';
 
 const LazyAnimatePresence = lazy(() =>
@@ -25,7 +25,7 @@ export const PageTransitionProvider = ({ routes }: Props) => {
 
   const animatedContent = (
     <Suspense fallback={<div style={{ height: '100%' }}>{element}</div>}>
-      <LazyAnimatePresence mode="wait" initial={false}>
+      <LazyAnimatePresence initial={false} mode="wait">
         <LazyMotion
           animate={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: 6 }}
@@ -41,4 +41,3 @@ export const PageTransitionProvider = ({ routes }: Props) => {
 
   return isLoaded ? animatedContent : element;
 };
-

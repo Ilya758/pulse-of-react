@@ -1,25 +1,25 @@
-import { Code, List, Space, Text, Title, Alert } from '@mantine/core';
-import { Example } from './example';
-import { useEffect } from 'react';
 import { CodeHighlightTabs } from '@mantine/code-highlight';
-import { IconFileTypeTsx, IconInfoCircle, IconAlertTriangle } from '@tabler/icons-react';
+import { Alert, Code, List, Space, Text, Title } from '@mantine/core';
+import { IconAlertTriangle, IconFileTypeTsx, IconInfoCircle } from '@tabler/icons-react';
+import { useEffect } from 'react';
 import { SectionBlock } from '@/shared';
-import { EXAMPLE_CODE, PROVIDER_CODE, CONSUMER_CODE, CONTEXT_CODE } from '../model/constants';
 import { useTocContent } from '@/widgets/layout';
+import { CONSUMER_CODE, CONTEXT_CODE, EXAMPLE_CODE, PROVIDER_CODE } from '../model/constants';
+import { Example } from './example';
 
 export const ContextProvidersPage: React.FC = () => {
   const { signalContentLoaded } = useTocContent();
 
-  useEffect(signalContentLoaded, [signalContentLoaded]);
+  useEffect(signalContentLoaded, []);
 
   return (
     <>
       <Space h={4} />
-      <Title order={1} mb="lg">
+      <Title mb="lg" order={1}>
         Context Providers
       </Title>
 
-      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core Concept">
         <Text>
           The React Context API provides a way to pass data through the component tree without
           having to pass props down manually at every level. It's designed to share data that can be
@@ -27,7 +27,7 @@ export const ContextProvidersPage: React.FC = () => {
           user, theme, or preferred language.
         </Text>
         <Text mt="sm">The API revolves around three main parts:</Text>
-        <List spacing="xs" mt="sm" type="ordered">
+        <List mt="sm" spacing="xs" type="ordered">
           <List.Item>
             <Text>
               <Code>React.createContext()</Code>: This function creates a Context object. When React
@@ -48,7 +48,7 @@ export const ContextProvidersPage: React.FC = () => {
             <Text>
               <Code>Context.Consumer</Code> or <Code>useContext()</Code> Hook: Consuming components
               can read the context value in two ways:
-              <List listStyleType="disc" withPadding mt="xs">
+              <List listStyleType="disc" mt="xs" withPadding>
                 <List.Item>
                   <Code>Context.Consumer</Code>: A React component that subscribes to context
                   changes. It requires a function as a child (a render prop) that receives the
@@ -66,10 +66,10 @@ export const ContextProvidersPage: React.FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="When to Use Context" initialSpaceAfterDivider="md">
+      <SectionBlock initialSpaceAfterDivider="md" title="When to Use Context">
         <List spacing="xs" type="ordered">
           <List.Item>
-            <Title order={5} mb="xs">
+            <Title mb="xs" order={5}>
               Global Data Management:
             </Title>
             <Text>
@@ -78,7 +78,7 @@ export const ContextProvidersPage: React.FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} mb="xs">
+            <Title mb="xs" order={5}>
               Avoiding Prop Drilling:
             </Title>
             <Text>
@@ -87,7 +87,7 @@ export const ContextProvidersPage: React.FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} mb="xs">
+            <Title mb="xs" order={5}>
               Managing Complex State:
             </Title>
             <Text>
@@ -99,49 +99,49 @@ export const ContextProvidersPage: React.FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Pattern Signature" initialSpaceAfterDivider="md">
+      <SectionBlock initialSpaceAfterDivider="md" title="Pattern Signature">
         <Text>
           Implementing Context involves creating the context, providing a value, and consuming it.
         </Text>
         <Space h="md" />
         <CodeHighlightTabs
-          withExpandButton={true}
-          defaultExpanded={false}
-          radius="md"
           code={[
             {
-              fileName: 'MyContext.ts',
-              language: 'tsx',
               code: CONTEXT_CODE,
+              fileName: 'MyContext.ts',
               icon: <IconFileTypeTsx size={14} />,
+              language: 'tsx',
             },
             {
-              fileName: 'MyProvider.tsx',
-              language: 'tsx',
               code: PROVIDER_CODE,
+              fileName: 'MyProvider.tsx',
               icon: <IconFileTypeTsx size={14} />,
+              language: 'tsx',
             },
             {
-              fileName: 'MyComponent.tsx (Consuming)',
-              language: 'tsx',
               code: CONSUMER_CODE,
+              fileName: 'MyComponent.tsx (Consuming)',
               icon: <IconFileTypeTsx size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          radius="md"
+          withExpandButton={true}
         />
       </SectionBlock>
 
-      <SectionBlock title="Key Caveats & Best Practices" initialSpaceAfterDivider="md">
-        <List spacing="sm" icon={<IconInfoCircle size={16} />}>
+      <SectionBlock initialSpaceAfterDivider="md" title="Key Caveats & Best Practices">
+        <List icon={<IconInfoCircle size={16} />} spacing="sm">
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Performance:
             </Title>
             <Text>
               Context uses reference identity to determine when to re-render. If the value passed to
               the Provider changes (even if it's a new object/array with the same content), all
               consuming components will re-render. To optimize, you can:
-              <List listStyleType="disc" withPadding mt="xs">
+              <List listStyleType="disc" mt="xs" withPadding>
                 <List.Item>
                   Memoize the value passed to the Provider using <Code>useMemo</Code> or by ensuring
                   it's stable (e.g., state from <Code>useState</Code> or <Code>useReducer</Code>).
@@ -155,7 +155,7 @@ export const ContextProvidersPage: React.FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Default Value Importance:
             </Title>
             <Text>
@@ -166,7 +166,7 @@ export const ContextProvidersPage: React.FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Provider Placement:
             </Title>
             <Text>
@@ -176,7 +176,7 @@ export const ContextProvidersPage: React.FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Readability and Alternatives:
             </Title>
             <Text>
@@ -186,7 +186,7 @@ export const ContextProvidersPage: React.FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Type Safety with TypeScript:
             </Title>
             <Text>
@@ -198,11 +198,11 @@ export const ContextProvidersPage: React.FC = () => {
           </List.Item>
         </List>
         <Alert
-          icon={<IconAlertTriangle size="1rem" />}
-          title="Common Pitfall: Object Identity in Provider Value"
           color="red"
-          radius="md"
+          icon={<IconAlertTriangle size="1rem" />}
           mt="lg"
+          radius="md"
+          title="Common Pitfall: Object Identity in Provider Value"
         >
           A common mistake is passing a new object or array directly in the <Code>value</Code> prop
           of the Provider on every render, like{' '}
@@ -214,7 +214,7 @@ export const ContextProvidersPage: React.FC = () => {
         </Alert>
       </SectionBlock>
 
-      <SectionBlock title="Example: User Preferences Context" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Example: User Preferences Context">
         <Text mb="md">
           This example demonstrates a more comprehensive use of Context API combined with{' '}
           <Code>useReducer</Code>
@@ -228,17 +228,17 @@ export const ContextProvidersPage: React.FC = () => {
           sharing across different parts of an application.
         </Text>
         <CodeHighlightTabs
-          withExpandButton={true}
-          defaultExpanded={false}
-          radius="md"
           code={[
             {
-              fileName: 'Example.tsx',
-              language: 'tsx',
               code: EXAMPLE_CODE,
+              fileName: 'Example.tsx',
               icon: <IconFileTypeTsx size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          radius="md"
+          withExpandButton={true}
         />
         <Example />
       </SectionBlock>
@@ -246,4 +246,3 @@ export const ContextProvidersPage: React.FC = () => {
     </>
   );
 };
-

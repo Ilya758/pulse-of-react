@@ -35,4 +35,3 @@ export type ModalAction =
   | { type: 'SUBMIT_ERROR'; payload: { error: string } }
   | { type: 'GO_BACK' }
   | { type: 'CLOSE' };
-

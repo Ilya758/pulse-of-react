@@ -148,7 +148,7 @@ const MockContent: React.FC = () => {
   const { state } = useUserPreferences();
 
   // Simulate content that changes based on preferences
-  const items = Array.from({ length: state.itemsPerPage }, (_, i) => Item ${'i' + 1});
+  const items = Array.from({ length: state.itemsPerPage }, (_, i) => Item ${`i${1}`});
 
   return (
     <Box
@@ -264,4 +264,3 @@ const MySimpleComponent: React.FC = () => {
 export default MySimpleComponent;`;
 
 export const ANOTHER_CODE_BLOCK = ''; // Placeholder for any other constants
-

@@ -204,4 +204,3 @@ export const Example = () => {
     </Accordion>
   );
 };`;
-

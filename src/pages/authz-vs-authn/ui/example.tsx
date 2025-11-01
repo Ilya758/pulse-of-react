@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import {
   Alert,
   Badge,
@@ -12,10 +11,11 @@ import {
   Title,
 } from '@mantine/core';
 import { IconLock, IconLockOpen, IconUserShield } from '@tabler/icons-react';
-import { useSession, SessionProvider } from './session-provider';
-import { FeatureToggle } from './feature-toggle';
-import { Role } from '../model';
+import { useMemo } from 'react';
 import { can } from '../lib';
+import { Role } from '../model';
+import { FeatureToggle } from './feature-toggle';
+import { SessionProvider, useSession } from './session-provider';
 
 const ExampleInner = () => {
   const { session, login, logout } = useSession();
@@ -28,7 +28,7 @@ const ExampleInner = () => {
     return (
       <Group>
         {items.map((r) => (
-          <Badge key={r} variant={r === roleValue ? 'filled' : 'light'} color="indigo">
+          <Badge color="indigo" key={r} variant={r === roleValue ? 'filled' : 'light'}>
             {r}
           </Badge>
         ))}
@@ -47,18 +47,18 @@ const ExampleInner = () => {
         <Stack gap="sm">
           <Text size="sm">Select current role (simulated login):</Text>
           <SegmentedControl
-            value={roleValue}
-            onChange={(value) => login('alice', value as Role)}
             data={[
               { label: 'Guest', value: 'guest' },
               { label: 'User', value: 'user' },
               { label: 'Manager', value: 'manager' },
               { label: 'Admin', value: 'admin' },
             ]}
+            onChange={(value) => login('alice', value as Role)}
+            value={roleValue}
           />
           <Group>{roleBadges}</Group>
           <Group>
-            <Button size="xs" variant="light" onClick={() => logout()}>
+            <Button onClick={() => logout()} size="xs" variant="light">
               Logout
             </Button>
           </Group>
@@ -95,7 +95,7 @@ const ExampleInner = () => {
           >
             <Group>
               <Button color="teal">Edit Report</Button>
-              <Text size="sm" c="dimmed">
+              <Text c="dimmed" size="sm">
                 Allowed for manager and admin
               </Text>
             </Group>
@@ -105,14 +105,14 @@ const ExampleInner = () => {
             allow={can(session, 'access:admin')}
             fallback={
               <Center>
-                <Text size="sm" c="dimmed">
+                <Text c="dimmed" size="sm">
                   Admin panel hidden
                 </Text>
               </Center>
             }
           >
             <Card withBorder>
-              <Title order={5} mb="xs">
+              <Title mb="xs" order={5}>
                 Admin Panel
               </Title>
               <Text size="sm">Dangerous operations and organization-wide settings.</Text>
@@ -129,4 +129,3 @@ export const Example = () => (
     <ExampleInner />
   </SessionProvider>
 );
-

@@ -1,32 +1,32 @@
-import { useEffect } from 'react';
-import { Title, List, Text, Space } from '@mantine/core';
+import { CodeHighlightTabs } from '@mantine/code-highlight';
+import { List, Space, Text, Title } from '@mantine/core';
 import { IconFileTypeTs, IconInfoCircle } from '@tabler/icons-react';
+import { useEffect } from 'react';
 import { SectionBlock } from '@/shared';
+import { useTocContent } from '@/widgets/layout';
 import {
   DASHBOARD_COMPONENT_CODE,
-  WITH_AUTH_HOC_CODE,
-  WITH_LOADING_HOC_CODE,
-  WITH_ANALYTICS_HOC_CODE,
   HOC_PATTERN_SIGNATURE,
   HOC_PATTERN_USAGE,
+  WITH_ANALYTICS_HOC_CODE,
+  WITH_AUTH_HOC_CODE,
+  WITH_LOADING_HOC_CODE,
 } from '../model';
-import { CodeHighlightTabs } from '@mantine/code-highlight';
 import { Example } from './example';
-import { useTocContent } from '@/widgets/layout';
 
 export const HocsPage = () => {
   const { signalContentLoaded } = useTocContent();
 
-  useEffect(signalContentLoaded, [signalContentLoaded]);
+  useEffect(signalContentLoaded, []);
 
   return (
     <>
       <Space h={4} />
-      <Title order={1} mb="lg">
+      <Title mb="lg" order={1}>
         Higher-Order Components (HOCs)
       </Title>
 
-      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core Concept">
         <Text>
           Higher-Order Components (HOCs) are a pattern in React for reusing component logic. A HOC
           is a function that takes a component and returns a new component with enhanced
@@ -41,7 +41,7 @@ export const HocsPage = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="When to Use HOCs" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="When to Use HOCs">
         <Text>HOCs are most effective in specific scenarios. Consider using them when:</Text>
         <List mt="sm" spacing="xs" withPadding={false}>
           <List.Item>
@@ -67,7 +67,7 @@ export const HocsPage = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Pattern Signature" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Pattern Signature">
         <Text mb="md">
           At its core, a HOC is a function that takes a component and returns a new component with
           enhanced functionality. Here's a simple example:
@@ -75,24 +75,24 @@ export const HocsPage = () => {
         <CodeHighlightTabs
           code={[
             {
-              fileName: 'withFeature.tsx',
               code: HOC_PATTERN_SIGNATURE,
+              fileName: 'withFeature.tsx',
               language: 'tsx',
             },
             {
-              fileName: 'usage.tsx',
               code: HOC_PATTERN_USAGE,
+              fileName: 'usage.tsx',
               language: 'tsx',
             },
           ]}
         />
       </SectionBlock>
 
-      <SectionBlock title="Key Caveats & Best Practices" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Key Caveats & Best Practices">
         <Text>When working with HOCs, it's important to be aware of these key considerations:</Text>
-        <List mt="md" spacing="sm" type="unordered" icon={<IconInfoCircle size={16} />}>
+        <List icon={<IconInfoCircle size={16} />} mt="md" spacing="sm" type="unordered">
           <List.Item>
-            <Title order={5} mb={4} c="orange">
+            <Title c="orange" mb={4} order={5}>
               Don't Modify the Original Component
             </Title>
             <Text>
@@ -102,7 +102,7 @@ export const HocsPage = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} mb={4} c="orange">
+            <Title c="orange" mb={4} order={5}>
               Pass Through Unrelated Props
             </Title>
             <Text>
@@ -112,7 +112,7 @@ export const HocsPage = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} mb={4} c="orange">
+            <Title c="orange" mb={4} order={5}>
               Use Descriptive Names
             </Title>
             <Text>
@@ -122,7 +122,7 @@ export const HocsPage = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} mb={4} c="orange">
+            <Title c="orange" mb={4} order={5}>
               Avoid Wrapper Hell
             </Title>
             <Text>
@@ -132,7 +132,7 @@ export const HocsPage = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} mb={4} c="orange">
+            <Title c="orange" mb={4} order={5}>
               Handle Prop Types Carefully
             </Title>
             <Text>
@@ -142,7 +142,7 @@ export const HocsPage = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} mb={4} c="orange">
+            <Title c="orange" mb={4} order={5}>
               Consider Performance Implications
             </Title>
             <Text>
@@ -154,7 +154,7 @@ export const HocsPage = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Example: Authentication HOC" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Example: Authentication HOC">
         <Text mb="md">
           This example demonstrates a practical implementation of an authentication HOC. The HOC
           adds authentication state and login functionality to any component it wraps, allowing for
@@ -164,36 +164,36 @@ export const HocsPage = () => {
         <Text mb="md">Here are some common HOC patterns you might encounter:</Text>
 
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mb="lg"
           code={[
             {
-              fileName: 'withAuth.ts',
-              language: 'ts',
               code: WITH_AUTH_HOC_CODE,
+              fileName: 'withAuth.ts',
               icon: <IconFileTypeTs size={14} />,
+              language: 'ts',
             },
             {
-              fileName: 'withLoading.ts',
-              language: 'ts',
               code: WITH_LOADING_HOC_CODE,
+              fileName: 'withLoading.ts',
               icon: <IconFileTypeTs size={14} />,
+              language: 'ts',
             },
             {
-              fileName: 'withAnalytics.ts',
-              language: 'ts',
               code: WITH_ANALYTICS_HOC_CODE,
+              fileName: 'withAnalytics.ts',
               icon: <IconFileTypeTs size={14} />,
+              language: 'ts',
             },
             {
-              fileName: 'dashboard.tsx',
-              language: 'ts',
               code: DASHBOARD_COMPONENT_CODE,
+              fileName: 'dashboard.tsx',
               icon: <IconFileTypeTs size={14} />,
+              language: 'ts',
             },
           ]}
+          defaultExpanded={false}
+          mb="lg"
+          radius="md"
+          withExpandButton
         />
 
         <Text mb="md">
@@ -207,4 +207,3 @@ export const HocsPage = () => {
     </>
   );
 };
-

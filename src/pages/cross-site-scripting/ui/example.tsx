@@ -1,5 +1,5 @@
+import { Button, Card, Code, Group, Space, Text, TextInput } from '@mantine/core';
 import { FC, useState } from 'react';
-import { TextInput, Button, Card, Group, Text, Code, Space } from '@mantine/core';
 
 export const Example: FC = () => {
   const [name, setName] = useState('');
@@ -10,15 +10,15 @@ export const Example: FC = () => {
   };
 
   return (
-    <Card withBorder radius="md">
+    <Card radius="md" withBorder>
       <Group>
         <TextInput
           label="Enter your name"
+          onChange={(event) => setName(event.currentTarget.value)}
           placeholder="e.g., Alex"
           value={name}
-          onChange={(event) => setName(event.currentTarget.value)}
         />
-        <Button onClick={handleSubmit} mt="xl">
+        <Button mt="xl" onClick={handleSubmit}>
           Submit
         </Button>
       </Group>
@@ -31,13 +31,14 @@ export const Example: FC = () => {
 
           <Space h="md" />
           <Text>Rendered output (vulnerable):</Text>
-          <Card withBorder p="sm" mt="xs">
+          <Card mt="xs" p="sm" withBorder>
+            {/** biome-ignore lint/security/noDangerouslySetInnerHtml: exists as example */}
             <div dangerouslySetInnerHTML={{ __html: `Hello, ${submittedName}!` }} />
           </Card>
 
           <Space h="md" />
           <Text>Rendered output (safe):</Text>
-          <Card withBorder p="sm" mt="xs">
+          <Card mt="xs" p="sm" withBorder>
             <div>Hello, {submittedName}!</div>
           </Card>
         </>
@@ -52,4 +53,3 @@ export const Example: FC = () => {
     </Card>
   );
 };
-

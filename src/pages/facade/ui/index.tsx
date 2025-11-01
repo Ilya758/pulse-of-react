@@ -1,25 +1,25 @@
-import { FC, useEffect } from 'react';
-import { Title, Text, Space, List } from '@mantine/core';
+import { CodeHighlightTabs } from '@mantine/code-highlight';
+import { List, Space, Text, Title } from '@mantine/core';
 import { IconInfoCircle } from '@tabler/icons-react';
+import { FC, useEffect } from 'react';
 import { SectionBlock } from '@/shared';
 import { useTocContent } from '@/widgets/layout';
-import { Example } from './example';
-import { CodeHighlightTabs } from '@mantine/code-highlight';
 import { FACADE_SIGNATURE_CODE } from '../model';
+import { Example } from './example';
 
 export const FacadePage: FC = () => {
   const { signalContentLoaded } = useTocContent();
 
-  useEffect(signalContentLoaded, [signalContentLoaded]);
+  useEffect(signalContentLoaded, []);
 
   return (
     <>
       <Space h={4} />
-      <Title order={1} mb="lg">
+      <Title mb="lg" order={1}>
         Facade Pattern
       </Title>
 
-      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core Concept">
         <Text>
           In React, the Facade pattern is about providing a simple, unified interface to a set of
           complex logic, APIs, or third-party libraries. A Facade in React is often a custom hook,
@@ -28,31 +28,31 @@ export const FacadePage: FC = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="When to Use This Pattern" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="When to Use This Pattern">
         <List spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Abstracting third-party libraries:
             </Text>{' '}
             Use a Facade to wrap libraries like Mantine, date-fns, or analytics, so your app code
             doesn’t depend on their APIs directly.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Centralizing complex logic:
             </Text>{' '}
             Move API calls, theming, or other intricate logic into a Facade to keep components
             simple.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Decoupling from external APIs:
             </Text>{' '}
             Hide implementation details and dependencies behind a Facade, making future migrations
             or refactors easier.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Providing a stable, testable API:
             </Text>{' '}
             Expose a clean, app-specific API for your business logic, making it easier to test and
@@ -61,25 +61,25 @@ export const FacadePage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Pattern Signature" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Pattern Signature">
         <Text mb="md">
           The minimal Facade in React is a function, hook, or component that wraps complexity:
         </Text>
         <CodeHighlightTabs
           code={[
             {
+              code: FACADE_SIGNATURE_CODE,
               fileName: 'ThemeControllerFacade.tsx',
               language: 'tsx',
-              code: FACADE_SIGNATURE_CODE,
             },
           ]}
         />
       </SectionBlock>
 
-      <SectionBlock title="Key Caveats & Best Practices" initialSpaceAfterDivider="xs">
-        <List spacing="sm" icon={<IconInfoCircle size={16} />}>
+      <SectionBlock initialSpaceAfterDivider="xs" title="Key Caveats & Best Practices">
+        <List icon={<IconInfoCircle size={16} />} spacing="sm">
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Decouple from External APIs
             </Title>
             <Text>
@@ -88,7 +88,7 @@ export const FacadePage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Centralize Logic
             </Title>
             <Text>
@@ -97,7 +97,7 @@ export const FacadePage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Keep Facades Focused
             </Title>
             <Text>
@@ -106,7 +106,7 @@ export const FacadePage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Document the API
             </Title>
             <Text>
@@ -115,7 +115,7 @@ export const FacadePage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Stable Interface
             </Title>
             <Text>
@@ -124,7 +124,7 @@ export const FacadePage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Handle Errors Internally
             </Title>
             <Text>
@@ -135,7 +135,7 @@ export const FacadePage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Comparison with Other Patterns" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Comparison with Other Patterns">
         <List spacing="xs">
           <List.Item>
             <b>Facade vs Adapter:</b> Facade simplifies and unifies, Adapter reshapes one API to
@@ -151,7 +151,7 @@ export const FacadePage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="FAQ" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="FAQ">
         <List spacing="xs">
           <List.Item>
             <b>Can a Facade be a hook?</b> Yes, in React, a custom hook is a common form of Facade.
@@ -167,10 +167,9 @@ export const FacadePage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Example: Theme Controller Facade" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Example: Theme Controller Facade">
         <Example />
       </SectionBlock>
     </>
   );
 };
-

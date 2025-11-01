@@ -1,5 +1,5 @@
 import { ActionIcon, ActionIconProps } from '@mantine/core';
-import { IconSun, IconMoon } from '@tabler/icons-react';
+import { IconMoon, IconSun } from '@tabler/icons-react';
 import { useThemeToggle } from '..';
 
 type Props = {
@@ -14,14 +14,13 @@ export const ThemeToggle = ({ iconSize = 20, variant = 'default', size = 'lg' }:
 
   return (
     <ActionIcon
-      onClick={toggleTheme}
-      variant={variant}
-      size={size}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
+      onClick={toggleTheme}
+      size={size}
       title={`Switch to ${isDark ? 'light' : 'dark'} theme`}
+      variant={variant}
     >
-      <Component width={iconSize} height={iconSize} />
+      <Component height={iconSize} width={iconSize} />
     </ActionIcon>
   );
 };
-

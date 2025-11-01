@@ -1,9 +1,12 @@
-import { Checkbox, Switch } from '@mantine/core';
-import { TextInput } from '@mantine/core';
-import { PasswordInput } from '@mantine/core';
-import { Textarea } from '@mantine/core';
-import { NumberInput } from '@mantine/core';
-import { Select } from '@mantine/core';
+import {
+  Checkbox,
+  NumberInput,
+  PasswordInput,
+  Select,
+  Switch,
+  Textarea,
+  TextInput,
+} from '@mantine/core';
 import { InputConfig, InputValue, NumberConfig } from '../model';
 
 type Props = {
@@ -18,8 +21,8 @@ export const InputFactory = ({ config, value, onChange }: Props) => {
       return (
         <TextInput
           {...config}
-          value={typeof value === 'string' ? value : ''}
           onChange={(e) => onChange(e.target.value)}
+          value={typeof value === 'string' ? value : ''}
         />
       );
     }
@@ -28,8 +31,8 @@ export const InputFactory = ({ config, value, onChange }: Props) => {
       return (
         <PasswordInput
           {...config}
-          value={typeof value === 'string' ? value : ''}
           onChange={(e) => onChange(e.target.value)}
+          value={typeof value === 'string' ? value : ''}
         />
       );
     }
@@ -38,21 +41,20 @@ export const InputFactory = ({ config, value, onChange }: Props) => {
       return (
         <Textarea
           {...config}
-          value={typeof value === 'string' ? value : ''}
           onChange={(e) => onChange(e.target.value)}
+          value={typeof value === 'string' ? value : ''}
         />
       );
     }
     case 'number': {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { type: _, ...rest } = config;
       const numberProps: Omit<NumberConfig, 'type'> = rest;
 
       return (
         <NumberInput
           {...numberProps}
-          value={typeof value === 'number' ? value : undefined}
           onChange={(val) => onChange(typeof val === 'number' ? val : 0)}
+          value={typeof value === 'number' ? value : undefined}
         />
       );
     }
@@ -61,9 +63,9 @@ export const InputFactory = ({ config, value, onChange }: Props) => {
       return (
         <Select
           {...config}
-          value={typeof value === 'string' ? value : ''}
-          onChange={(val) => onChange(val || '')}
           data={config.options}
+          onChange={(val) => onChange(val || '')}
+          value={typeof value === 'string' ? value : ''}
         />
       );
     }
@@ -90,4 +92,3 @@ export const InputFactory = ({ config, value, onChange }: Props) => {
     }
   }
 };
-

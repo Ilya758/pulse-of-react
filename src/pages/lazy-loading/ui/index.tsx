@@ -1,26 +1,25 @@
-import { FC, useEffect } from 'react';
-import { Title, Text, List, Space, Code, Alert } from '@mantine/core';
-import { IconInfoCircle, IconFileTypeTsx, IconAlertTriangle } from '@tabler/icons-react';
 import { CodeHighlightTabs } from '@mantine/code-highlight';
+import { Alert, Code, List, Space, Text, Title } from '@mantine/core';
+import { IconAlertTriangle, IconFileTypeTsx, IconInfoCircle } from '@tabler/icons-react';
+import { FC, useEffect } from 'react';
 import { SectionBlock } from '@/shared';
 import { useTocContent } from '@/widgets/layout';
-
-import { LazyWithErrorBoundaryExample } from './example';
 import { LAZY_ERROR_BOUNDARY_CODE, LAZY_LOADING_SIGNATURE_CODE } from '../model/constants';
+import { LazyWithErrorBoundaryExample } from './example';
 
 export const LazyLoadingPage: FC = () => {
   const { signalContentLoaded } = useTocContent();
 
-  useEffect(signalContentLoaded, [signalContentLoaded]);
+  useEffect(signalContentLoaded, []);
 
   return (
     <>
       <Space h={4} />
-      <Title order={1} mb="lg">
+      <Title mb="lg" order={1}>
         Lazy Loading
       </Title>
 
-      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core Concept">
         <Text>
           Lazy loading is a technique that defers loading parts of your application until they are
           needed. In React, this is commonly achieved using <Code>React.lazy</Code> and{' '}
@@ -29,30 +28,30 @@ export const LazyLoadingPage: FC = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="When to Use Lazy Loading" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="When to Use Lazy Loading">
         <List spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Large Applications:
             </Text>{' '}
             When your app has many routes or features that aren't needed immediately.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Rarely Used Features:
             </Text>{' '}
             For admin panels, settings, or advanced tools that most users won't access on every
             visit.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Heavy Dependencies:
             </Text>{' '}
             When a feature imports large libraries (charts, editors, etc.) that aren't needed on
             initial load.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Route-based Code Splitting:
             </Text>{' '}
             To load page components only when the user navigates to them.
@@ -60,23 +59,23 @@ export const LazyLoadingPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="When NOT to Use Lazy Loading" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="When NOT to Use Lazy Loading">
         <List spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Critical UI:
             </Text>{' '}
             Don't lazy load components that are essential for the first paint (e.g., navigation,
             hero section).
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Small Apps:
             </Text>{' '}
             If your app is small, lazy loading adds complexity with little benefit.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Above-the-Fold Content:
             </Text>{' '}
             Content visible on initial load should not be lazy loaded.
@@ -84,7 +83,7 @@ export const LazyLoadingPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="How Bundlers Enable Lazy Loading" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="How Bundlers Enable Lazy Loading">
         <Text>
           Modern bundlers like Vite and Webpack support code splitting out of the box. When you use
           dynamic <Code>import()</Code> or <Code>React.lazy</Code>, the bundler creates separate
@@ -93,28 +92,28 @@ export const LazyLoadingPage: FC = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="Pattern Signature" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Pattern Signature">
         <Text>The minimal pattern for lazy loading a component in React:</Text>
         <CodeHighlightTabs
-          mt="md"
-          withExpandButton={false}
-          defaultExpanded={false}
-          radius="md"
           code={[
             {
-              fileName: 'signature.tsx',
-              language: 'tsx',
               code: LAZY_LOADING_SIGNATURE_CODE,
+              fileName: 'signature.tsx',
               icon: <IconFileTypeTsx size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          mt="md"
+          radius="md"
+          withExpandButton={false}
         />
       </SectionBlock>
 
-      <SectionBlock title="Key Caveats & Best Practices" initialSpaceAfterDivider="xs">
-        <List spacing="sm" icon={<IconInfoCircle size={16} />}>
+      <SectionBlock initialSpaceAfterDivider="xs" title="Key Caveats & Best Practices">
+        <List icon={<IconInfoCircle size={16} />} spacing="sm">
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Show a Good Fallback
             </Title>
             <Text>
@@ -123,13 +122,13 @@ export const LazyLoadingPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Bundle Size Awareness
             </Title>
             <Text>Check your bundle analyzer to ensure code splitting is working as expected.</Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Preload for UX
             </Title>
             <Text>
@@ -138,7 +137,7 @@ export const LazyLoadingPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Error Boundaries
             </Title>
             <Text>
@@ -146,7 +145,7 @@ export const LazyLoadingPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Avoid Over-Splitting
             </Title>
             <Text>
@@ -157,21 +156,21 @@ export const LazyLoadingPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Handling Errors in Lazy Loading" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Handling Errors in Lazy Loading">
         <Text mb="md">
           Handling errors in lazy-loaded React components is crucial for a robust user experience.
           There are two main approaches:
         </Text>
-        <List spacing="xs" mb="md">
+        <List mb="md" spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Using <Code>.catch</Code> on the dynamic import:
             </Text>{' '}
             You can provide a fallback component if the import fails, instead of throwing an error.
             This is useful for non-critical features.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Using an Error Boundary:
             </Text>{' '}
             For critical features, use an ErrorBoundary to catch errors and show a user-friendly
@@ -179,14 +178,14 @@ export const LazyLoadingPage: FC = () => {
           </List.Item>
         </List>
         <Alert
-          icon={<IconAlertTriangle size="1rem" />}
           color="red"
-          mt="md"
+          icon={<IconAlertTriangle size="1rem" />}
           mb="md"
+          mt="md"
           title="Common Pitfall: Promise Limitation"
         >
           The Promise returned by <Code>React.lazy</Code> can only be resolved or rejected{' '}
-          <Text span fw={700}>
+          <Text fw={700} span>
             once
           </Text>{' '}
           for a given module path. If the import fails, the fallback will always be shown for that
@@ -194,10 +193,10 @@ export const LazyLoadingPage: FC = () => {
         </Alert>
       </SectionBlock>
 
-      <SectionBlock title="Analyzing Bundle Coverage in DevTools" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Analyzing Bundle Coverage in DevTools">
         <Text>
           Chrome DevTools provides a{' '}
-          <Text span fw={700}>
+          <Text fw={700} span>
             Coverage
           </Text>{' '}
           tab that helps you analyze which parts of your JavaScript and CSS are actually used. This
@@ -207,7 +206,7 @@ export const LazyLoadingPage: FC = () => {
         <Text fw={700} mb="xs">
           To use the Coverage tab in Chrome DevTools, follow these steps:
         </Text>
-        <List type="ordered" spacing="xs" mt={16} mb={16}>
+        <List mb={16} mt={16} spacing="xs" type="ordered">
           <List.Item>Open DevTools (F12 or Cmd+Opt+I)</List.Item>
           <List.Item>Press Ctrl+Shift+P (Cmd+Shift+P on Mac) and type "Coverage"</List.Item>
           <List.Item>Click "Show Coverage"</List.Item>
@@ -220,29 +219,28 @@ export const LazyLoadingPage: FC = () => {
         <Text>This helps you verify that lazy loading is working and identify unused code.</Text>
       </SectionBlock>
 
-      <SectionBlock title="Example: Lazy Feature with React.lazy" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Example: Lazy Feature with React.lazy">
         <Text mb="md">
           Here is a practical example that demonstrates both the <Code>.catch</Code> fallback
           pattern and the ErrorBoundary approach for handling errors in lazy-loaded components. You
           can view the code and interact with the live demo below.
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mb="lg"
           code={[
             {
-              fileName: 'LazyWithErrorBoundaryExample.tsx',
-              language: 'tsx',
               code: LAZY_ERROR_BOUNDARY_CODE,
+              fileName: 'LazyWithErrorBoundaryExample.tsx',
               icon: <IconFileTypeTsx size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          mb="lg"
+          radius="md"
+          withExpandButton
         />
         <LazyWithErrorBoundaryExample />
       </SectionBlock>
     </>
   );
 };
-

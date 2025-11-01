@@ -1,26 +1,25 @@
-import { FC, useEffect } from 'react';
-import { Title, Text, List, Space, Code, Alert } from '@mantine/core';
-import { IconInfoCircle, IconFileTypeTsx, IconAlertTriangle } from '@tabler/icons-react';
 import { CodeHighlightTabs } from '@mantine/code-highlight';
+import { Alert, Code, List, Space, Text, Title } from '@mantine/core';
+import { IconAlertTriangle, IconFileTypeTsx, IconInfoCircle } from '@tabler/icons-react';
+import { FC, useEffect } from 'react';
 import { SectionBlock } from '@/shared';
 import { useTocContent } from '@/widgets/layout';
-
+import { FCP_MEASUREMENT_CODE, FCP_OPTIMIZATION_CODE, FCP_SIGNATURE_CODE } from '../model';
 import { FCPMeasurementExample } from './example';
-import { FCP_SIGNATURE_CODE, FCP_OPTIMIZATION_CODE, FCP_MEASUREMENT_CODE } from '../model';
 
 export const FirstContentfulPaintPage: FC = () => {
   const { signalContentLoaded } = useTocContent();
 
-  useEffect(signalContentLoaded, [signalContentLoaded]);
+  useEffect(signalContentLoaded, []);
 
   return (
     <>
       <Space h={4} />
-      <Title order={1} mb="lg">
+      <Title mb="lg" order={1}>
         First Contentful Paint (FCP)
       </Title>
 
-      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core Concept">
         <Text>
           First Contentful Paint (FCP) is a Core Web Vital that measures the time from when the page
           starts loading to when any part of the page's content is rendered on the screen. Content
@@ -30,31 +29,31 @@ export const FirstContentfulPaintPage: FC = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="Why FCP Matters" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Why FCP Matters">
         <List spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               User Perception:
             </Text>{' '}
             FCP directly impacts how fast users perceive your site to be. A fast FCP creates the
             impression of a responsive, fast-loading site.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Engagement:
             </Text>{' '}
             Users are more likely to stay engaged when they see content quickly rather than staring
             at a blank screen.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               SEO Impact:
             </Text>{' '}
             FCP is a Google ranking factor as part of the Core Web Vitals, affecting search
             rankings.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Conversion Rates:
             </Text>{' '}
             Faster FCP correlates with higher conversion rates and better business outcomes.
@@ -62,20 +61,20 @@ export const FirstContentfulPaintPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="FCP Thresholds & Targets" initialSpaceAfterDivider="xs">
-        <List spacing="xs" mb="md">
+      <SectionBlock initialSpaceAfterDivider="xs" title="FCP Thresholds & Targets">
+        <List mb="md" spacing="xs">
           <List.Item>
-            <Text span fw={700} c="green">
+            <Text c="green" fw={700} span>
               Good: ≤ 1.8 seconds
             </Text>
           </List.Item>
           <List.Item>
-            <Text span fw={700} c="yellow">
+            <Text c="yellow" fw={700} span>
               Needs Improvement: 1.8 - 3.0 seconds
             </Text>
           </List.Item>
           <List.Item>
-            <Text span fw={700} c="red">
+            <Text c="red" fw={700} span>
               Poor: {'> '} 3.0 seconds
             </Text>
           </List.Item>
@@ -85,36 +84,36 @@ export const FirstContentfulPaintPage: FC = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="What Counts as Contentful Paint?" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="What Counts as Contentful Paint?">
         <List spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Text content:
             </Text>{' '}
             Any rendered text
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Images:
             </Text>{' '}
             Including <Code>{'<img>'}</Code> elements and CSS background-images
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               SVG elements:
             </Text>{' '}
             Non-white SVG content
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Canvas:
             </Text>{' '}
             Non-white <Code>{'<canvas>'}</Code> elements
           </List.Item>
         </List>
-        <Alert icon={<IconAlertTriangle size="1rem" />} color="orange" mt="md">
+        <Alert color="orange" icon={<IconAlertTriangle size="1rem" />} mt="md">
           <Text>
-            <Text span fw={700}>
+            <Text fw={700} span>
               What doesn't count:
             </Text>{' '}
             White background, iframe content, or content that's initially invisible (opacity: 0 or
@@ -123,50 +122,50 @@ export const FirstContentfulPaintPage: FC = () => {
         </Alert>
       </SectionBlock>
 
-      <SectionBlock title="Measuring FCP" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Measuring FCP">
         <Text mb="md">
           You can measure FCP using the Performance Observer API or through browser developer tools:
         </Text>
-        <List spacing="xs" mb="md">
+        <List mb="md" spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Chrome DevTools:
             </Text>{' '}
             Lighthouse panel, Performance tab, or Web Vitals extension
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               PerformanceObserver API:
             </Text>{' '}
             Programmatic measurement in your application
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               web-vitals library:
             </Text>{' '}
             Easy-to-use library for measuring all Core Web Vitals
           </List.Item>
         </List>
         <CodeHighlightTabs
-          mt="md"
-          withExpandButton={false}
-          defaultExpanded={false}
-          radius="md"
           code={[
             {
-              fileName: 'fcp-measurement.ts',
-              language: 'typescript',
               code: FCP_SIGNATURE_CODE,
+              fileName: 'fcp-measurement.ts',
               icon: <IconFileTypeTsx size={14} />,
+              language: 'typescript',
             },
           ]}
+          defaultExpanded={false}
+          mt="md"
+          radius="md"
+          withExpandButton={false}
         />
       </SectionBlock>
 
-      <SectionBlock title="Common FCP Optimizations" initialSpaceAfterDivider="xs">
-        <List spacing="sm" icon={<IconInfoCircle size={16} />}>
+      <SectionBlock initialSpaceAfterDivider="xs" title="Common FCP Optimizations">
+        <List icon={<IconInfoCircle size={16} />} spacing="sm">
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Server Response Time
             </Title>
             <Text>
@@ -175,7 +174,7 @@ export const FirstContentfulPaintPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Render-Blocking Resources
             </Title>
             <Text>
@@ -184,7 +183,7 @@ export const FirstContentfulPaintPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Resource Loading
             </Title>
             <Text>
@@ -193,7 +192,7 @@ export const FirstContentfulPaintPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               JavaScript Execution
             </Title>
             <Text>
@@ -202,7 +201,7 @@ export const FirstContentfulPaintPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mb="xs">
+            <Title c="orange" mb="xs" order={5}>
               Client-Side Rendering
             </Title>
             <Text>
@@ -213,25 +212,25 @@ export const FirstContentfulPaintPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="FCP vs Other Metrics" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="FCP vs Other Metrics">
         <Text mb="md">Understanding how FCP relates to other performance metrics:</Text>
         <List spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               FCP vs LCP (Largest Contentful Paint):
             </Text>{' '}
             FCP measures when any content appears, while LCP measures when the largest content
             element becomes visible.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               FCP vs FID (First Input Delay):
             </Text>{' '}
             FCP measures visual loading, FID measures interactivity. Users expect fast FCP before
             they can interact.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               FCP vs TTFB (Time to First Byte):
             </Text>{' '}
             TTFB measures server response time, which directly impacts FCP. Poor TTFB inevitably
@@ -240,30 +239,30 @@ export const FirstContentfulPaintPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Monitoring FCP in Production" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Monitoring FCP in Production">
         <Text mb="md">To effectively monitor FCP in production:</Text>
         <List spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Use Real User Monitoring (RUM):
             </Text>{' '}
             Collect FCP data from actual users, not just lab tests
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Segment by Device/Network:
             </Text>{' '}
             Analyze FCP performance across different devices, connection speeds, and geographic
             locations
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Set Performance Budgets:
             </Text>{' '}
             Establish FCP thresholds and alert when they're exceeded
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Correlate with Business Metrics:
             </Text>{' '}
             Track how FCP changes impact conversion rates, bounce rates, and user engagement
@@ -271,49 +270,48 @@ export const FirstContentfulPaintPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="FCP Optimization Example" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="FCP Optimization Example">
         <Text mb="md">
           Here's a comprehensive example showing various FCP optimization techniques in a React
           application:
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mb="lg"
           code={[
             {
-              fileName: 'fcp-optimizations.tsx',
-              language: 'typescript',
               code: FCP_OPTIMIZATION_CODE,
+              fileName: 'fcp-optimizations.tsx',
               icon: <IconFileTypeTsx size={14} />,
+              language: 'typescript',
             },
           ]}
+          defaultExpanded={false}
+          mb="lg"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
 
-      <SectionBlock title="Example: Live FCP Measurement" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Example: Live FCP Measurement">
         <Text mb="md">
           This interactive example measures the current page's First Contentful Paint in real-time.
           It demonstrates how to implement FCP monitoring in your application:
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mb="lg"
           code={[
             {
-              fileName: 'useFCPMeasurement.ts',
-              language: 'typescript',
               code: FCP_MEASUREMENT_CODE,
+              fileName: 'useFCPMeasurement.ts',
               icon: <IconFileTypeTsx size={14} />,
+              language: 'typescript',
             },
           ]}
+          defaultExpanded={false}
+          mb="lg"
+          radius="md"
+          withExpandButton
         />
         <FCPMeasurementExample />
       </SectionBlock>
     </>
   );
 };
-

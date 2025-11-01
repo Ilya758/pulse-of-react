@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useFramerMotion = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    let mounted = true;
+    let mounted: boolean = true;
 
     const loadFramerMotion = () => {
       import('framer-motion')
@@ -32,4 +32,3 @@ export const useFramerMotion = () => {
     isLoaded,
   };
 };
-

@@ -1,4 +1,4 @@
-import { TextInput, Textarea, Button, Paper, Title, Group } from '@mantine/core';
+import { Button, Group, Paper, Textarea, TextInput, Title } from '@mantine/core';
 import { User } from '../../model';
 
 type Props = {
@@ -8,44 +8,41 @@ type Props = {
   onSave: () => void;
 };
 
-export const UserProfileForm = ({ user, isSaving, onInputChange, onSave }: Props) => {
-  return (
-    <Paper withBorder shadow="md" p="lg" radius="md">
-      <Title order={4} mb="md">
-        Edit Profile
-      </Title>
-      <TextInput
-        label="Name"
-        name="name"
-        value={user.name}
-        onChange={onInputChange}
-        disabled={isSaving}
-        mb="sm"
-      />
-      <TextInput
-        label="Email"
-        name="email"
-        type="email"
-        value={user.email}
-        onChange={onInputChange}
-        disabled={isSaving}
-        mb="sm"
-      />
-      <Textarea
-        label="Bio"
-        name="bio"
-        value={user.bio}
-        onChange={onInputChange}
-        disabled={isSaving}
-        minRows={4}
-        mb="lg"
-      />
-      <Group justify="flex-end">
-        <Button onClick={onSave} loading={isSaving}>
-          Save Profile
-        </Button>
-      </Group>
-    </Paper>
-  );
-};
-
+export const UserProfileForm = ({ user, isSaving, onInputChange, onSave }: Props) => (
+  <Paper p="lg" radius="md" shadow="md" withBorder>
+    <Title mb="md" order={4}>
+      Edit Profile
+    </Title>
+    <TextInput
+      disabled={isSaving}
+      label="Name"
+      mb="sm"
+      name="name"
+      onChange={onInputChange}
+      value={user.name}
+    />
+    <TextInput
+      disabled={isSaving}
+      label="Email"
+      mb="sm"
+      name="email"
+      onChange={onInputChange}
+      type="email"
+      value={user.email}
+    />
+    <Textarea
+      disabled={isSaving}
+      label="Bio"
+      mb="lg"
+      minRows={4}
+      name="bio"
+      onChange={onInputChange}
+      value={user.bio}
+    />
+    <Group justify="flex-end">
+      <Button loading={isSaving} onClick={onSave}>
+        Save Profile
+      </Button>
+    </Group>
+  </Paper>
+);

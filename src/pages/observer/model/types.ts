@@ -35,4 +35,3 @@ export interface User {
     notifications: boolean;
   };
 }
-

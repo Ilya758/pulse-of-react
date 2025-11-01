@@ -348,30 +348,29 @@ export const NewsSystemExample = () => {
 };`;
 
 export const CATEGORIES: { value: NewsCategory; label: string }[] = [
-  { value: 'technology', label: 'Technology' },
-  { value: 'sports', label: 'Sports' },
-  { value: 'politics', label: 'Politics' },
-  { value: 'entertainment', label: 'Entertainment' },
+  { label: 'Technology', value: 'technology' },
+  { label: 'Sports', value: 'sports' },
+  { label: 'Politics', value: 'politics' },
+  { label: 'Entertainment', value: 'entertainment' },
 ];
 
 export const USERS: User[] = [
   {
+    email: 'john@example.com',
     id: '1',
     name: 'John Doe',
-    email: 'john@example.com',
     preferences: {
       categories: new Set(['technology', 'sports']),
       notifications: true,
     },
   },
   {
+    email: 'jane@example.com',
     id: '2',
     name: 'Jane Smith',
-    email: 'jane@example.com',
     preferences: {
       categories: new Set(['politics', 'entertainment']),
       notifications: false,
     },
   },
 ];
-

@@ -1,7 +1,7 @@
 import { JSX, useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { InnerLayout } from './inner-layout';
 import { TocContentProvider } from '../model';
+import { InnerLayout } from './inner-layout';
 
 type Props = {
   children: JSX.Element;
@@ -13,6 +13,7 @@ export const Layout = ({ children }: Props) => {
   const [isMounted, setIsMounted] = useState(true);
   const contextValue = useMemo(
     () => ({
+      isContentLoaded,
       signalContentLoaded: () => {
         if (isMounted)
           setTimeout(() => {
@@ -22,16 +23,17 @@ export const Layout = ({ children }: Props) => {
           setIsContentLoaded(true);
         }
       },
-      isContentLoaded,
     }),
     [isContentLoaded, isMounted],
   );
 
-  useEffect(() => {
-    return () => {
+  // biome-ignore lint/correctness/useExhaustiveDependencies: required to update TOC
+  useEffect(
+    () => () => {
       setIsContentLoaded(false);
-    };
-  }, [isMounted, pathname]);
+    },
+    [isMounted, pathname],
+  );
 
   return (
     <TocContentProvider value={contextValue}>
@@ -39,4 +41,3 @@ export const Layout = ({ children }: Props) => {
     </TocContentProvider>
   );
 };
-

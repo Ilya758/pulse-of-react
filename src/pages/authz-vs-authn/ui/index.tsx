@@ -1,31 +1,31 @@
-import { FC, useEffect } from 'react';
-import { Title, Text, List, Space, Alert } from '@mantine/core';
+import { CodeHighlightTabs } from '@mantine/code-highlight';
+import { Alert, List, Space, Text, Title } from '@mantine/core';
 import { IconFileTypeTsx, IconInfoCircle } from '@tabler/icons-react';
+import { FC, useEffect } from 'react';
 import { SectionBlock } from '@/shared';
 import { useTocContent } from '@/widgets/layout';
-import { Example } from './example';
-import { CodeHighlightTabs } from '@mantine/code-highlight';
 import {
+  GUARD_USAGE_CODE,
   SESSION_GUARDS_CODE,
   SESSION_IDLE_TIMEOUT_CODE,
   SESSION_PROVIDER_CODE,
   SESSION_STORAGE_STRATEGIES_CODE,
-  GUARD_USAGE_CODE,
 } from '../model/constants';
+import { Example } from './example';
 
 export const AuthZvsAuthNPage: FC = () => {
   const { signalContentLoaded } = useTocContent();
 
-  useEffect(signalContentLoaded, [signalContentLoaded]);
+  useEffect(signalContentLoaded, []);
 
   return (
     <>
       <Space h={4} />
-      <Title order={1} mb="lg">
+      <Title mb="lg" order={1}>
         AuthZ vs AuthN & Session Management
       </Title>
 
-      <SectionBlock title="Core Concept" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Core Concept">
         <Text>
           Authentication (AuthN) verifies identity — confirming who the user is. Authorization
           (AuthZ) governs permissions — what the authenticated user is allowed to do. In React apps,
@@ -35,28 +35,28 @@ export const AuthZvsAuthNPage: FC = () => {
         </Text>
       </SectionBlock>
 
-      <SectionBlock title="Key Differences" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Key Differences">
         <List spacing="xs">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Goal:
             </Text>{' '}
             AuthN answers “who are you?”, AuthZ answers “what are you allowed to do?”.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Timing:
             </Text>{' '}
             AuthN happens before AuthZ; you cannot authorize an anonymous identity.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Data:
             </Text>{' '}
             AuthN yields user identity/claims; AuthZ uses roles/claims/policies to allow/deny UI.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Placement in React:
             </Text>{' '}
             AuthN integrates with providers/hooks; AuthZ composes guards and conditional rendering.
@@ -64,7 +64,7 @@ export const AuthZvsAuthNPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Session Management" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Session Management">
         <Text mb="md">
           Session management maintains authenticated user state across navigations, tabs, and idle
           time. In SPA React apps, prefer a small, explicit session provider and keep sensitive
@@ -74,13 +74,13 @@ export const AuthZvsAuthNPage: FC = () => {
 
         <List spacing="sm">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Core responsibilities:
             </Text>{' '}
             persist/rehydrate session, cross-tab sync, idle timeout, refresh/extend.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Security notes:
             </Text>{' '}
             avoid storing raw tokens in localStorage; prefer server cookies, rotate/shorten TTLs.
@@ -88,41 +88,41 @@ export const AuthZvsAuthNPage: FC = () => {
         </List>
 
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mt="md"
           code={[
             {
-              fileName: 'session-provider.tsx',
-              language: 'tsx',
               code: SESSION_PROVIDER_CODE,
-              icon: <IconFileTypeTsx size={14} color="#2596be" />,
+              fileName: 'session-provider.tsx',
+              icon: <IconFileTypeTsx color="#2596be" size={14} />,
+              language: 'tsx',
             },
             {
-              fileName: 'session-guards.tsx',
-              language: 'tsx',
               code: SESSION_GUARDS_CODE,
-              icon: <IconFileTypeTsx size={14} color="#2596be" />,
+              fileName: 'session-guards.tsx',
+              icon: <IconFileTypeTsx color="#2596be" size={14} />,
+              language: 'tsx',
             },
             {
-              fileName: 'use-idle-session.ts',
-              language: 'tsx',
               code: SESSION_IDLE_TIMEOUT_CODE,
-              icon: <IconFileTypeTsx size={14} color="#2596be" />,
+              fileName: 'use-idle-session.ts',
+              icon: <IconFileTypeTsx color="#2596be" size={14} />,
+              language: 'tsx',
             },
             {
-              fileName: 'storage-strategies.ts',
-              language: 'tsx',
               code: SESSION_STORAGE_STRATEGIES_CODE,
-              icon: <IconFileTypeTsx size={14} color="#2596be" />,
+              fileName: 'storage-strategies.ts',
+              icon: <IconFileTypeTsx color="#2596be" size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          mt="md"
+          radius="md"
+          withExpandButton
         />
       </SectionBlock>
 
-      <SectionBlock title="OWASP Guidance: Authorization" initialSpaceAfterDivider="xs">
-        <Alert color="yellow" variant="light" mb="md">
+      <SectionBlock initialSpaceAfterDivider="xs" title="OWASP Guidance: Authorization">
+        <Alert color="yellow" mb="md" variant="light">
           <Text size="sm">
             Client-side authorization improves UX but is not a security boundary. Enforce
             authorization on the server/gateway for every request.
@@ -130,43 +130,43 @@ export const AuthZvsAuthNPage: FC = () => {
         </Alert>
         <List spacing="sm">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Least privilege:
             </Text>{' '}
             grant only necessary permissions; keep roles/policies minimal.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Deny by default:
             </Text>{' '}
             explicitly allow only what is intended; treat unknowns as denied.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Validate on every request:
             </Text>{' '}
             object-level checks to prevent IDOR and horizontal privilege escalation.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Prefer ABAC/ReBAC where suitable:
             </Text>{' '}
             use attributes/relationships for complex, contextual policies; combine with RBAC.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Right location:
             </Text>{' '}
             enforce server-side; treat UI checks as hints only.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Static assets:
             </Text>{' '}
             include in policies if not public; configure storage ACLs appropriately.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Logging and testing:
             </Text>{' '}
             log access decisions and create unit/integration tests for authorization flows.
@@ -174,8 +174,8 @@ export const AuthZvsAuthNPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="OWASP Guidance: Authentication" initialSpaceAfterDivider="xs">
-        <Alert color="yellow" variant="light" mb="md">
+      <SectionBlock initialSpaceAfterDivider="xs" title="OWASP Guidance: Authentication">
+        <Alert color="yellow" mb="md" variant="light">
           <Text size="sm">
             Authentication is typically handled by your backend/IdP. In React, avoid handling
             secrets directly; rely on redirects/tokens via secure cookies and render-only UX state.
@@ -183,31 +183,31 @@ export const AuthZvsAuthNPage: FC = () => {
         </Alert>
         <List spacing="sm">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               MFA and strong credentials:
             </Text>{' '}
             encourage multi-factor auth; do not weaken flows with client-only checks.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Generic errors:
             </Text>{' '}
             avoid revealing whether username or password is incorrect; show generic messages.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Brute-force defense:
             </Text>{' '}
             implement server-side throttling/lockouts; client can add incremental delays.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Transport security:
             </Text>{' '}
             require HTTPS; avoid exposing tokens to JavaScript via non-httpOnly cookies.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Password hygiene (server-side):
             </Text>{' '}
             hashing with modern algorithms, rotation policies, and credential lifecycle.
@@ -215,40 +215,40 @@ export const AuthZvsAuthNPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="OWASP Guidance: Session Management" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="OWASP Guidance: Session Management">
         <List spacing="sm">
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Use secure cookies for tokens:
             </Text>{' '}
             httpOnly, Secure, SameSite; prefer server-managed sessions over localStorage tokens.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Regenerate identifiers:
             </Text>{' '}
             on login/privilege change to prevent session fixation.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Idle and absolute timeouts:
             </Text>{' '}
             sign out on inactivity and cap maximum session lifetime.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Logout invalidation:
             </Text>{' '}
             server-side revoke; on the client, clear state and broadcast logout to other tabs.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               CSRF protection:
             </Text>{' '}
             for cookie-based sessions, use SameSite and CSRF tokens/Double Submit patterns.
           </List.Item>
           <List.Item>
-            <Text span fw={700}>
+            <Text fw={700} span>
               Cross-tab sync:
             </Text>{' '}
             use storage events/BroadcastChannel to reflect session changes across tabs.
@@ -256,10 +256,10 @@ export const AuthZvsAuthNPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Key Caveats & Best Practices" initialSpaceAfterDivider="xs">
-        <List spacing="sm" icon={<IconInfoCircle size={16} />}>
+      <SectionBlock initialSpaceAfterDivider="xs" title="Key Caveats & Best Practices">
+        <List icon={<IconInfoCircle size={16} />} spacing="sm">
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Separate concerns
             </Title>
             <Text>
@@ -267,19 +267,19 @@ export const AuthZvsAuthNPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Guard at the edges
             </Title>
             <Text>Protect routes and feature entry points; keep leaf components simple.</Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Prefer declarative UI
             </Title>
             <Text>Render-only what the user can access with composable guard components.</Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Client checks are hints, not security
             </Title>
             <Text>
@@ -288,7 +288,7 @@ export const AuthZvsAuthNPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Avoid CLS (Cumulative Layout Shift)
             </Title>
             <Text>
@@ -297,7 +297,7 @@ export const AuthZvsAuthNPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Handle async races
             </Title>
             <Text>
@@ -306,7 +306,7 @@ export const AuthZvsAuthNPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Cache with invalidation
             </Title>
             <Text>
@@ -315,7 +315,7 @@ export const AuthZvsAuthNPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               SSR/CSR hydration safety
             </Title>
             <Text>
@@ -324,7 +324,7 @@ export const AuthZvsAuthNPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Test critical paths
             </Title>
             <Text>
@@ -333,7 +333,7 @@ export const AuthZvsAuthNPage: FC = () => {
             </Text>
           </List.Item>
           <List.Item>
-            <Title order={5} c="orange" mt="sm" mb="xs">
+            <Title c="orange" mb="xs" mt="sm" order={5}>
               Optimize re-renders
             </Title>
             <Text>
@@ -344,24 +344,24 @@ export const AuthZvsAuthNPage: FC = () => {
         </List>
       </SectionBlock>
 
-      <SectionBlock title="Example: Route and Component Guards" initialSpaceAfterDivider="xs">
+      <SectionBlock initialSpaceAfterDivider="xs" title="Example: Route and Component Guards">
         <Text mb="md">
           Below is an interactive example showing a minimal AuthN provider and simple AuthZ helpers
           to guard routes, sections, and buttons purely on the client.
         </Text>
         <CodeHighlightTabs
-          withExpandButton
-          defaultExpanded={false}
-          radius="md"
-          mb="lg"
           code={[
             {
-              fileName: 'guard-usage.tsx',
-              language: 'tsx',
               code: GUARD_USAGE_CODE,
-              icon: <IconFileTypeTsx size={14} color="#2596be" />,
+              fileName: 'guard-usage.tsx',
+              icon: <IconFileTypeTsx color="#2596be" size={14} />,
+              language: 'tsx',
             },
           ]}
+          defaultExpanded={false}
+          mb="lg"
+          radius="md"
+          withExpandButton
         />
         <Example />
       </SectionBlock>
@@ -370,4 +370,3 @@ export const AuthZvsAuthNPage: FC = () => {
     </>
   );
 };
-

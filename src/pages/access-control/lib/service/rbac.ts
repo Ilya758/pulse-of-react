@@ -1,4 +1,4 @@
-import { Permission, Role, User, ROLE_DEFINITIONS } from '../../model';
+import { Permission, ROLE_DEFINITIONS, Role, User } from '../../model';
 
 export class SimpleRBACService {
   private roles: Map<string, Role> = new Map();
@@ -51,7 +51,7 @@ export class SimpleRBACService {
     const user = this.users.get(userId);
     const role = this.roles.get(roleId);
 
-    if (!user || !role) return false;
+    if (!(user && role)) return false;
 
     if (!user.roles.includes(roleId)) {
       user.roles.push(roleId);

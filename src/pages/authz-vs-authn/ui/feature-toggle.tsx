@@ -8,7 +8,4 @@ export const FeatureToggle = ({
   allow: boolean;
   fallback?: ReactNode;
   children: ReactNode;
-}) => {
-  return <>{allow ? children : fallback}</>;
-};
-
+}) => <>{allow ? children : fallback}</>;

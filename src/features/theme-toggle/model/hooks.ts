@@ -1,5 +1,5 @@
+import { useComputedColorScheme, useMantineColorScheme } from '@mantine/core';
 import { useCallback } from 'react';
-import { useMantineColorScheme, useComputedColorScheme } from '@mantine/core';
 import { useThemeColorContext } from '@/shared';
 
 export const useThemeToggle = () => {
@@ -17,4 +17,3 @@ export const useThemeToggle = () => {
     toggleTheme,
   };
 };
-

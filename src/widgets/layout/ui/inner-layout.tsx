@@ -1,11 +1,11 @@
 import { AppShell } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
-import { useLocation } from 'react-router';
-import { Header } from './header';
 import { JSX } from 'react';
+import { useLocation } from 'react-router';
+import { allowTOC } from '../lib';
 import { AppMenu } from './app-menu';
 import { AsideTOC } from './aside-toc';
-import { allowTOC } from '../lib';
+import { Header } from './header';
 
 type Props = {
   children: JSX.Element;
@@ -20,30 +20,30 @@ export const InnerLayout = ({ children }: Props) => {
 
   return (
     <AppShell
-      header={{ height: 60, collapsed: false }}
-      navbar={{
-        width: 250,
-        breakpoint: 'sm',
-        collapsed: { mobile: !opened, desktop: false },
-      }}
       aside={{
-        width: showAside ? 280 : 0,
         breakpoint: 'md',
-        collapsed: { mobile: true, desktop: !showAside },
+        collapsed: { desktop: !showAside, mobile: true },
+        width: showAside ? 280 : 0,
+      }}
+      header={{ collapsed: false, height: 60 }}
+      navbar={{
+        breakpoint: 'sm',
+        collapsed: { desktop: false, mobile: !opened },
+        width: 250,
       }}
       padding="md"
     >
       <AppShell.Header zIndex={200}>
-        <Header opened={opened} toggle={toggle} isTablet={isTablet} isMobile={isMobile} />
+        <Header isMobile={isMobile} isTablet={isTablet} opened={opened} toggle={toggle} />
       </AppShell.Header>
 
       <AppShell.Navbar
+        px={0}
         style={{
           overflow: 'auto',
         }}
-        px={0}
       >
-        <AppMenu opened={opened} pathname={pathname} toggle={toggle} isTablet={isTablet} />
+        <AppMenu isTablet={isTablet} opened={opened} pathname={pathname} toggle={toggle} />
       </AppShell.Navbar>
 
       <AppShell.Main>{children}</AppShell.Main>
@@ -56,4 +56,3 @@ export const InnerLayout = ({ children }: Props) => {
     </AppShell>
   );
 };
-

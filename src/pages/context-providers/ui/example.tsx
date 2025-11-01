@@ -1,15 +1,15 @@
-import React, { createContext, useContext, useReducer, useMemo } from 'react';
 import {
-  Text,
-  Paper,
-  Title,
-  Stack,
-  Group,
-  Select,
-  Switch,
-  SegmentedControl,
   Box,
+  Group,
+  Paper,
+  SegmentedControl,
+  Select,
+  Stack,
+  Switch,
+  Text,
+  Title,
 } from '@mantine/core';
+import React, { createContext, useContext, useMemo, useReducer } from 'react';
 
 type Theme = 'light' | 'dark' | 'system';
 
@@ -30,9 +30,9 @@ interface UserPreferencesContextType {
 }
 
 const initialState: UserPreferencesState = {
-  theme: 'system',
-  notificationsEnabled: true,
   itemsPerPage: 10,
+  notificationsEnabled: true,
+  theme: 'system',
 };
 
 const userPreferencesReducer = (
@@ -71,7 +71,7 @@ const useUserPreferences = () => {
 
 export const UserPreferencesProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(userPreferencesReducer, initialState);
-  const contextValue = useMemo(() => ({ state, dispatch }), [state, dispatch]);
+  const contextValue = useMemo(() => ({ dispatch, state }), [state]);
 
   return (
     <UserPreferencesContext.Provider value={contextValue}>
@@ -84,30 +84,30 @@ const SettingsPanel: React.FC = () => {
   const { state, dispatch } = useUserPreferences();
 
   return (
-    <Paper shadow="xs" p="md" withBorder>
-      <Title order={5} mb="sm">
+    <Paper p="md" shadow="xs" withBorder>
+      <Title mb="sm" order={5}>
         Settings Panel
       </Title>
       <Stack>
         <SegmentedControl
-          value={state.theme}
-          onChange={(value) => dispatch({ type: 'SET_THEME', payload: value as Theme })}
           data={[
             { label: 'Light', value: 'light' },
             { label: 'Dark', value: 'dark' },
             { label: 'System', value: 'system' },
           ]}
+          onChange={(value) => dispatch({ payload: value as Theme, type: 'SET_THEME' })}
+          value={state.theme}
         />
         <Switch
-          label="Enable Notifications"
           checked={state.notificationsEnabled}
+          label="Enable Notifications"
           onChange={() => dispatch({ type: 'TOGGLE_NOTIFICATIONS' })}
         />
         <Select
-          label="Items per page"
-          value={String(state.itemsPerPage)}
-          onChange={(value) => dispatch({ type: 'SET_ITEMS_PER_PAGE', payload: Number(value) })}
           data={['5', '10', '20', '50']}
+          label="Items per page"
+          onChange={(value) => dispatch({ payload: Number(value), type: 'SET_ITEMS_PER_PAGE' })}
+          value={String(state.itemsPerPage)}
         />
       </Stack>
     </Paper>
@@ -118,8 +118,8 @@ const DisplayPreferences: React.FC = () => {
   const { state } = useUserPreferences();
 
   return (
-    <Paper shadow="xs" p="md" withBorder>
-      <Title order={5} mb="sm">
+    <Paper p="md" shadow="xs" withBorder>
+      <Title mb="sm" order={5}>
         Current Preferences
       </Title>
       <Text>Theme: {state.theme}</Text>
@@ -140,13 +140,13 @@ const MockContent: React.FC = () => {
       style={{
         backgroundColor:
           state.theme === 'dark' ? 'var(--mantine-color-dark-6)' : 'var(--mantine-color-gray-0)',
-        color:
-          state.theme === 'dark' ? 'var(--mantine-color-gray-0)' : 'var(--mantine-color-dark-6)',
         border: '1px solid var(--mantine-color-gray-3)',
         borderRadius: 'var(--mantine-radius-sm)',
+        color:
+          state.theme === 'dark' ? 'var(--mantine-color-gray-0)' : 'var(--mantine-color-dark-6)',
       }}
     >
-      <Title order={6} mb="xs">
+      <Title mb="xs" order={6}>
         Mock Content (displaying {state.itemsPerPage} items)
       </Title>
       <Text>Current theme for this box: {state.theme}</Text>
@@ -166,22 +166,19 @@ const MockContent: React.FC = () => {
   );
 };
 
-export const Example: React.FC = () => {
-  return (
-    <UserPreferencesProvider>
-      <Title order={4} mt="lg" mb="lg">
-        User Preferences Context Example
-      </Title>
-      <Group align="flex-start">
-        <Stack style={{ flex: 1 }}>
-          <SettingsPanel />
-        </Stack>
-        <Stack style={{ flex: 2 }}>
-          <DisplayPreferences />
-          <MockContent />
-        </Stack>
-      </Group>
-    </UserPreferencesProvider>
-  );
-};
-
+export const Example: React.FC = () => (
+  <UserPreferencesProvider>
+    <Title mb="lg" mt="lg" order={4}>
+      User Preferences Context Example
+    </Title>
+    <Group align="flex-start">
+      <Stack style={{ flex: 1 }}>
+        <SettingsPanel />
+      </Stack>
+      <Stack style={{ flex: 2 }}>
+        <DisplayPreferences />
+        <MockContent />
+      </Stack>
+    </Group>
+  </UserPreferencesProvider>
+);

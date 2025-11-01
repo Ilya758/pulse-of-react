@@ -1,5 +1,5 @@
-import type { ReactElement } from 'react';
 import { IconAlertTriangle, IconCheck, IconX } from '@tabler/icons-react';
+import type { ReactElement } from 'react';
 
 export const LCP_RATINGS = ['good', 'needs-improvement', 'poor'] as const;
 
@@ -303,4 +303,3 @@ export const ResourceHints = () => {
     </>
   );
 };`;
-

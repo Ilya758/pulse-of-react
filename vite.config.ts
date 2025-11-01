@@ -1,32 +1,49 @@
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
-import svgr from 'vite-plugin-svgr';
 import { visualizer } from 'rollup-plugin-visualizer';
+import { defineConfig } from 'vite';
+import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
   base: '/',
   build: {
     outDir: 'dist',
-    target: 'esnext',
 
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          router: ['react-router-dom'],
-          'mantine-core': ['@mantine/core'],
-          'mantine-hooks': ['@mantine/hooks'],
-          'mantine-components': ['@mantine/notifications', '@mantine/code-highlight'],
-          icons: ['@tabler/icons-react'],
-          'framer-motion-core': ['framer-motion'],
-          highlight: ['highlight.js'],
-          'mantine-styles': ['@mantine/core/styles.css', '@mantine/code-highlight/styles.css'],
-        },
+        assetFileNames: 'assets/[name]-[hash].[ext]',
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]',
+        manualChunks: {
+          'framer-motion-core': ['framer-motion'],
+          highlight: ['highlight.js'],
+          icons: ['@tabler/icons-react'],
+          'mantine-components': ['@mantine/notifications', '@mantine/code-highlight'],
+          'mantine-core': ['@mantine/core'],
+          'mantine-hooks': ['@mantine/hooks'],
+          'mantine-styles': ['@mantine/core/styles.css', '@mantine/code-highlight/styles.css'],
+          'react-vendor': ['react', 'react-dom'],
+          router: ['react-router-dom'],
+        },
       },
     },
+    target: 'esnext',
+  },
+
+  optimizeDeps: {
+    exclude: [],
+    force: true,
+    include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      '@mantine/core',
+      '@mantine/hooks',
+      '@mantine/notifications',
+      '@mantine/code-highlight',
+      '@tabler/icons-react',
+      'framer-motion',
+      'highlight.js',
+    ],
   },
 
   plugins: [
@@ -50,10 +67,10 @@ export default defineConfig({
       },
     }),
     visualizer({
-      open: true,
-      gzipSize: true,
       brotliSize: true,
       filename: 'dist/stats.html',
+      gzipSize: true,
+      open: true,
     }),
   ],
 
@@ -64,22 +81,4 @@ export default defineConfig({
       '@components': '/src/components',
     },
   },
-
-  optimizeDeps: {
-    include: [
-      'react',
-      'react-dom',
-      'react-router-dom',
-      '@mantine/core',
-      '@mantine/hooks',
-      '@mantine/notifications',
-      '@mantine/code-highlight',
-      '@tabler/icons-react',
-      'framer-motion',
-      'highlight.js',
-    ],
-    exclude: [],
-    force: true,
-  },
 });
-

@@ -1,9 +1,9 @@
 import { Accordion, Text, ThemeIcon, useMantineTheme } from '@mantine/core';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useThemeColorContext } from '@/shared';
 import { ROUTES } from '../model';
 import styles from './styles.module.css';
-import { useMemo, useState, useEffect, useCallback } from 'react';
-import { useThemeColorContext } from '@/shared';
 
 type Props = {
   isTablet?: boolean;
@@ -17,9 +17,10 @@ export const AppMenu = ({ isTablet, pathname, toggle }: Props) => {
   const { colors, white: textColor } = useMantineTheme();
   const { primaryColor: colorKey } = useThemeColorContext();
   const bgColor = colors[colorKey]?.[6];
-  const activeGroup = useMemo(() => {
-    return ROUTES.find(({ items }) => items.some(({ href }) => pathname === href))?.group;
-  }, [pathname]);
+  const activeGroup = useMemo(
+    () => ROUTES.find(({ items }) => items.some(({ href }) => pathname === href))?.group,
+    [pathname],
+  );
 
   const [openedGroup, setOpenedGroup] = useState<string | null>(activeGroup || null);
 
@@ -31,19 +32,19 @@ export const AppMenu = ({ isTablet, pathname, toggle }: Props) => {
     if (!activeGroup) setOpenedGroup(null);
   }, [activeGroup]);
 
-  const links = useMemo(() => {
-    return (
+  const links = useMemo(
+    () => (
       <Accordion
-        multiple={false}
-        value={openedGroup}
         className={styles.accordionMenu}
+        multiple={false}
         onChange={handleChangeActiveGroup}
+        value={openedGroup}
       >
         {ROUTES.map(({ group, icon: GroupIcon, items }) => (
-          <Accordion.Item value={group} key={group} className={styles.accordionItem}>
+          <Accordion.Item className={styles.accordionItem} key={group} value={group}>
             <Accordion.Control
               icon={
-                <ThemeIcon color={colorKey} variant="light" size="lg" radius="md">
+                <ThemeIcon color={colorKey} radius="md" size="lg" variant="light">
                   <GroupIcon size={18} />
                 </ThemeIcon>
               }
@@ -55,17 +56,9 @@ export const AppMenu = ({ isTablet, pathname, toggle }: Props) => {
                 const isActive = pathname === href;
                 return (
                   <div
-                    key={href}
                     className={styles.link}
                     data-active={isActive || undefined}
-                    style={
-                      isActive
-                        ? {
-                            backgroundColor: bgColor,
-                            color: textColor,
-                          }
-                        : undefined
-                    }
+                    key={href}
                     onClick={(event) => {
                       event.preventDefault?.();
                       if (pathname !== href) {
@@ -75,6 +68,14 @@ export const AppMenu = ({ isTablet, pathname, toggle }: Props) => {
                         toggle();
                       }
                     }}
+                    style={
+                      isActive
+                        ? {
+                            backgroundColor: bgColor,
+                            color: textColor,
+                          }
+                        : undefined
+                    }
                   >
                     <span className={styles.menuText}>{name}</span>
                   </div>
@@ -84,9 +85,19 @@ export const AppMenu = ({ isTablet, pathname, toggle }: Props) => {
           </Accordion.Item>
         ))}
       </Accordion>
-    );
-  }, [isTablet, navigate, pathname, toggle, colorKey, openedGroup]);
+    ),
+    [
+      isTablet,
+      navigate,
+      toggle,
+      pathname,
+      colorKey,
+      openedGroup,
+      bgColor,
+      handleChangeActiveGroup,
+      textColor,
+    ],
+  );
 
   return <div className={styles.scrollableMenu}>{links}</div>;
 };
-

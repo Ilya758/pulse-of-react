@@ -40,4 +40,3 @@ export type CorsExampleAction =
       payload: Partial<MockServerConfig>;
     }
   | { type: 'SET_ERROR'; payload: string | null };
-

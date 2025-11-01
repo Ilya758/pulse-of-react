@@ -10,56 +10,56 @@ export class SimpleFeatureToggleService {
 
   private initializeFeatures() {
     this.features.set('new-analytics', {
+      enabled: true,
       id: 'new-analytics',
       name: 'New Analytics Dashboard',
-      enabled: true,
       targetAudience: {
-        roles: ['admin', 'manager'],
-        percentage: 95,
         guaranteedUsers: ['alice', 'bob', 'charlie', 'diana'],
+        percentage: 95,
+        roles: ['admin', 'manager'],
       },
     });
 
     this.features.set('beta-features', {
+      enabled: true,
       id: 'beta-features',
       name: 'Beta Features',
-      enabled: true,
       targetAudience: {
-        roles: ['admin', 'manager', 'user'],
-        percentage: 90,
         guaranteedUsers: ['alice', 'bob', 'charlie', 'diana', 'grace', 'henry'],
+        percentage: 90,
+        roles: ['admin', 'manager', 'user'],
       },
     });
 
     this.features.set('premium-tools', {
+      enabled: true,
       id: 'premium-tools',
       name: 'Premium Tools',
-      enabled: true,
       targetAudience: {
-        roles: ['admin'],
         percentage: 100,
+        roles: ['admin'],
       },
     });
 
     this.features.set('early-access', {
+      enabled: true,
       id: 'early-access',
       name: 'Early Access Features',
-      enabled: true,
       targetAudience: {
-        roles: ['admin', 'manager'],
-        percentage: 90,
         guaranteedUsers: ['eve', 'frank', 'grace', 'henry'],
+        percentage: 90,
+        roles: ['admin', 'manager'],
       },
     });
 
     this.features.set('guest-features', {
+      enabled: true,
       id: 'guest-features',
       name: 'Guest Access Features',
-      enabled: true,
       targetAudience: {
-        roles: ['guest', 'user', 'admin'],
-        percentage: 100,
         guaranteedUsers: ['frank'],
+        percentage: 100,
+        roles: ['guest', 'user', 'admin'],
       },
     });
   }
@@ -67,7 +67,7 @@ export class SimpleFeatureToggleService {
   public isFeatureEnabled(featureId: string, user: User): boolean {
     const feature = this.features.get(featureId);
 
-    if (!feature || !feature.enabled) return false;
+    if (!feature?.enabled) return false;
 
     if (feature.targetAudience?.guaranteedUsers?.includes(user.id)) {
       return true;
@@ -95,4 +95,3 @@ export class SimpleFeatureToggleService {
     );
   }
 }
-
