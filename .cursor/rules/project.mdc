@@ -1,0 +1,74 @@
+---
+alwaysApply: true
+---
+
+# Project Persona: Pulse of React
+
+This document outlines the technical implementation, architecture, and core features of the "Pulse of React" project. It serves as a technical guide for developers.
+
+## 1. Project Overview
+
+"Pulse of React" is a curated, interactive catalog of modern React design patterns, performance optimization techniques, and web security best practices. Each concept is presented as a distinct, isolated "page" containing a live demonstration, code snippets, and a brief explanation.
+
+## 2. Technology Stack
+
+The project is built on a modern, performant, and type-safe frontend stack.
+
+*   **Core Framework:** React 19
+*   **Build Tool & Dev Server:** Vite
+*   **Language:** TypeScript
+*   **UI Component Library:** Mantine UI
+*   **Routing:** React Router DOM v6
+*   **Animation:** Framer Motion
+*   **Code Linting & Formatting:** Biome
+*   **Syntax Highlighting:** highlight.js for code blocks.
+
+## 3. Architecture: Feature-Sliced Design (FSD)
+
+The codebase strictly adheres to the **Feature-Sliced Design (FSD)** methodology. This architectural pattern organizes code by business domain and scope, enhancing modularity, scalability, and maintainability.
+
+The directory structure reflects the FSD layers:
+
+*   `src/app`: The application's entry point, containing global styles, providers, and routing.
+*   `src/pages`: Each page represents a specific design pattern or concept (e.g., `state-machine`, `compound-components`).
+*   `src/widgets`: Composite UI components assembled from features and entities (e.g., the main `Layout`).
+*   `src/features`: Business-logic-heavy components (e.g., `theme-toggle`).
+*   `src/entities`: (Currently unused, reserved for business entities).
+*   `src/shared`: Reusable, business-agnostic code, including UI kits, libraries, and utilities.
+
+This layered structure enforces a one-way dependency flow (from upper layers like `pages` to lower layers like `shared`), preventing circular dependencies and promoting code reuse.
+
+### Slice Internal Structure
+
+Within a given page or feature slice, the code is further organized into a standardized directory structure:
+
+*   `ui/`: Contains the React components and presentational logic.
+*   `model/`: Holds business logic, state management (hooks, reducers), types, and constants.
+*   `lib/`: Includes utility functions and helpers specific to the slice.
+*   `api/`: (If applicable) Contains services and functions for interacting with external APIs.
+*   `index.ts`: The public API of the slice, exporting only what is needed by other layers.
+
+## 4. State Management
+
+The project follows a pragmatic approach to state management, leveraging React's built-in hooks:
+
+*   **Local & Simple State:** `useState` is the default choice for managing component-level state that is simple and does not have complex transitions.
+*   **Complex & Interdependent State:** For state that involves multiple sub-values or follows a predictable lifecycle (e.g., `idle`, `loading`, `success`, `error`), `useReducer` is required. This aligns with the state machine pattern, ensuring predictable and type-safe state transitions.
+*   **Global State:** Global state is managed via React Context, used sparingly for application-wide concerns like theming.
+
+## 5. Styling
+
+The project follows a pragmatic styling hierarchy:
+
+*   **Primary Method: Mantine UI Props:** The preferred method for all styling is through the props of Mantine components (`size`, `variant`, `color`, `p`, `m`, etc.). This should cover the vast majority of use cases.
+*   **Secondary Method (Escape Hatch): CSS Modules:** For component-specific styles that are complex, involve pseudo-selectors (`:hover`, `[data-active]`), or are difficult to express via props, using a `styles.module.css` file is permissible. This is considered an exception, not the rule.
+*   **Theming:** Global styles and the light/dark theme are configured in `src/app/providers/theme-provider.tsx` and consumed by Mantine components.
+
+## 6. Key Features & Intricacies
+
+Beyond the pattern demonstrations, the application shell includes several key features:
+
+*   **Dynamic Table of Contents (TOC):** For pages with multiple sections (identified by `<h2>` tags), a right-hand-side Table of Contents is automatically generated. The logic for this can be found in `src/widgets/layout/ui/aside-toc.tsx`.
+*   **Theming:** A light/dark mode theme toggle is available, managed via Mantine's theme provider (`src/app/providers/theme-provider.tsx`).
+*   **Animated Page Transitions:** `framer-motion` is used to provide smooth, animated transitions between page navigations, configured in `src/app/providers/page-transition-provider.tsx`.
+*   **Suspense & Lazy Loading:** Page components are lazily loaded using `React.lazy` and wrapped in a global `Suspense` boundary (`src/app/providers/suspense-provider.tsx`) to optimize initial load times.
