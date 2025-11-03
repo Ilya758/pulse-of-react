@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.19.3](https://github.com/Ilya758/react-design-patterns/compare/v1.19.2...v1.19.3) (2025-11-03)
+
+
+### Bug Fixes
+
+* **toc:** missed flag ([171905b](https://github.com/Ilya758/react-design-patterns/commit/171905b3ae28c58d52395d7efc9d697bd0771f99))
+
 ### [1.19.2](https://github.com/Ilya758/react-design-patterns/compare/v1.19.1...v1.19.2) (2025-11-01)
 
 ### [1.19.1](https://github.com/Ilya758/react-design-patterns/compare/v1.19.0...v1.19.1) (2025-10-22)
