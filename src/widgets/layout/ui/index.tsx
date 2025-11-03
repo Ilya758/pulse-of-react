@@ -18,6 +18,7 @@ export const Layout = ({ children }: Props) => {
         if (isMounted)
           setTimeout(() => {
             setIsMounted(false);
+            setIsContentLoaded(true);
           }, 500);
         else {
           setIsContentLoaded(true);
@@ -32,7 +33,7 @@ export const Layout = ({ children }: Props) => {
     () => () => {
       setIsContentLoaded(false);
     },
-    [isMounted, pathname],
+    [pathname],
   );
 
   return (
