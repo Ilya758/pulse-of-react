@@ -3,7 +3,7 @@ module.exports = {
     {
       rules: {
         'custom-regex': ({ header }) => [
-          /^(feat|fix|chore|docs|style|refactor|test|build)\((\*|[a-z]{3,})\): [a-z](?:[a-z-]*[a-z])+(?:\s+[a-z](?:[a-z-]*[a-z])+)*$/.test(
+          /^(feat|fix|chore|docs|style|refactor|test|build)\((\*|[a-z]{2,})\): [a-z](?:[a-z-]*[a-z])+(?:\s+[a-z](?:[a-z-]*[a-z])+)*$/.test(
             header,
           ),
           `Invalid format! Use:\n`
