@@ -1,0 +1,260 @@
+# Architecture: Feature-Sliced Design (FSD)
+
+This document outlines the Feature-Sliced Design (FSD) architecture used in this project. It serves as a canonical guide for all developers to ensure consistency, scalability, and maintainability.
+
+## 1. Core Principles
+
+FSD is a layered architecture where higher layers can use lower layers, but not vice-versa, enforcing a strict one-way dependency flow. This minimizes coupling and segregates responsibilities.
+
+### Key Terminology
+
+-   **Layer**: The top-level module of the application. It contains slices.
+-   **Slice**: A functional module grouped by business domain. It contains segments.
+-   **Segment**: The lowest-level module, grouping code by its technical nature (e.g., `ui`, `model`).
+
+---
+
+## 2. Layers
+
+The application is divided into the following layers, ordered from top to bottom:
+
+### 2.1. `app`
+
+The top-most layer, responsible for application entry points, global providers, routing, and global styles. It can access all layers below it. This layer does not contain slices.
+
+```tree
+src/app/
+├── routes/              # Routing configuration
+│   ├── index.ts
+│   ├── routes.tsx
+│   └── types.ts
+├── store/               # Global state management
+│   ├── index.ts
+│   ├── root-reducer.ts  # Root reducer
+│   └── store.ts         # Application store setup
+├── global.css           # Global styles
+└── index.tsx            # Application entry point
+```
+
+### 2.2. `pages`
+
+Each page is a placeholder that composes widgets, features, and entities to build a complete view. It represents a specific route in the application.
+
+-   **Dependencies**: `widgets`, `features`, `entities`, `shared`.
+-   **Content**: Composes UI blocks from lower layers. Minimal business logic.
+
+```tree
+src/pages/
+└── banners-page/
+    ├── model/
+    │   ├── constants.ts
+    │   ├── hooks.ts
+    │   └── types.ts
+    ├── ui/
+    │   ├── banners-info/                     # UI sub-segment
+    │   │   ├── index.tsx
+    │   │   └── modal-content-resolver.tsx    # Local component for the sub-segment
+    │   └── referral-links/                   # UI sub-segment
+    │       └── index.tsx
+    └── index.ts                              # Public API of the slice
+```
+
+### 2.3. `widgets`
+
+An optional layer for composite UI blocks that group features and entities into a single, meaningful component (e.g., sidebars, complex dashboards). Widgets are essentially "slots" for features.
+
+-   **Dependencies**: `features`, `entities`, `shared`.
+-   **Content**: Assembles features and entities into larger, reusable UI blocks.
+
+```tree
+src/widgets/
+└── banner-side-panel/
+    ├── lib/
+    │   └── utils.ts
+    ├── model/
+    │   └── types.ts
+    ├── ui/
+    │   ├── index.tsx                        # Slot for features/entities
+    │   ├── save-banner-result-factory.tsx   # Helper component
+    │   └── save-banner-success.tsx          # UI for success state
+    └── index.ts                             # Public API of the slice
+```
+
+### 2.4. `features`
+
+Contains interactive elements and business logic that provide value to the user (e.g., forms, toggles, API key generators).
+
+-   **Dependencies**: `entities`, `shared`.
+-   **Content**: User interaction logic, forms, and handlers.
+
+```tree
+src/features/
+└── banner-form/
+    ├── model/
+    │   ├── types.ts
+    │   └── validation-schema.ts   # Form validation schema
+    ├── ui/
+    │   └── index.tsx              # The form UI component
+    └── index.ts                   # Public API of the slice
+```
+
+### 2.5. `entities`
+
+Represents core business entities of the application (e.g., `User`, `Order`, `Product`). This layer includes data models, API services, and passive UI components for displaying the entity.
+
+-   **Dependencies**: `shared`.
+-   **Distinction from `features`**: An entity is the data model and its display representation. A feature is an interactive component that *operates on* an entity.
+
+```tree
+src/entities/
+├── banner/                      # Banner entity
+│   ├── api/
+│   │   └── service.ts           # Service for DB interaction
+│   ├── lib/
+│   │   └── utils.ts             # Helper functions for the entity
+│   ├── model/
+│   │   ├── slice.ts             # State management slice
+│   │   ├── thunks.ts            # Async actions
+│   │   └── types.ts             # DTOs and interfaces
+│   ├── ui/
+│   │   ├── banner.tsx           # Main entity component
+│   │   ├── banner-interactive.tsx
+│   │   └── simple-banner.tsx
+│   └── index.ts                 # Public API of the slice
+└── statistics/                  # Statistics entity
+    └── ui/
+        └── statistics-card/     # Nested UI sub-segment
+            └── index.tsx
+```
+
+### 2.6. `shared`
+
+The lowest layer, containing reusable, business-agnostic code, such as a UI kit, utility functions, and shared configuration. It has no dependencies on other layers.
+
+-   **Content**: UI components (buttons, inputs), helper functions, type definitions, API clients.
+
+```tree
+src/shared/
+├── model/
+│   └── store/
+│       └── utils.ts       # Hooks and helpers for the store
+└── ui/
+    ├── confirm-modal/
+    │   └── index.tsx
+    └── tooltip/
+        └── index.tsx
+```
+
+
+> **Critical Exception: Dependency on `app` for State Management Types**
+>
+> While the FSD methodology strictly prohibits lower layers from depending on upper layers, a pragmatic exception is made for global state management typings. The `shared` layer, particularly its `model` segment, **is permitted** to import types like `RootState` and `AppDispatch` directly from the `app` layer.
+>
+> This is a necessary trade-off to enable the creation of typed hooks and utilities (e.g., `useAppSelector`, `useAppDispatch`) that can be used throughout the entire application without causing circular dependencies at runtime.
+>
+> ```typescript
+> // Example: src/shared/model/store/utils.ts
+> import { useDispatch, useSelector } from 'react-redux';
+> import { createAsyncThunk, createDraftSafeSelector } from '@reduxjs/toolkit';
+>
+> // Trade-off: Importing types from the `app` layer is allowed here
+> // because it's impossible to extract them otherwise.
+> import { AppDispatch, RootState } from '@/app';
+>
+> export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
+> export const useAppSelector = useSelector.withTypes<RootState>();
+>
+> /** A typed `createSelector` from `reselect`. */
+> export const createAppSelector = createDraftSafeSelector.withTypes<RootState>();
+>
+> /** A typed wrapper for `createAsyncThunk`. */
+> export const reduxThunk = (() =>
+>     createAsyncThunk.withTypes<{
+>         dispatch: AppDispatch;
+>         state: RootState;
+>     }>())();
+> ```
+
+---
+
+## 3. Slice Structure & Public API
+
+Slices are the building blocks within layers (`pages`, `widgets`, `features`, `entities`). They encapsulate business logic and are isolated from each other.
+
+### Public API
+
+A slice must expose a public API via its `index.ts` file. This is the only module that should be imported by other layers or slices. This enforces encapsulation and clear contracts between modules.
+
+**Example: Exporting from a slice**
+
+```typescript
+// src/entities/user/index.ts
+export * from './api';
+export * from './model';
+export * from './ui';
+```
+
+**Example: Renaming exports for clarity**
+
+To avoid naming collisions, especially with state management artifacts, it is best practice to rename exports to be more descriptive.
+
+```typescript
+// src/entities/api/model/slice.ts
+const apiSlice = createSlice({...});
+
+export const actions = {
+    ...apiSlice.actions,
+    loadKeys,
+    deleteApiKey,
+    generateApiKey,
+};
+
+export const { reducer } = apiSlice;
+
+// src/entities/api/model/index.ts
+export { reducer as apiReducer, actions as apiActions } from './slice';
+```
+
+---
+
+## 4. Segments
+
+Segments are the final level of nesting inside a slice. They group code by its technical purpose.
+
+### Standard Segments
+
+-   `api`: Services and functions for interacting with external APIs.
+-   `lib`: Utility functions and helpers specific to the slice.
+-   `model`: Business logic, state management (hooks, reducers), types, and constants.
+-   `ui`: React components and presentation logic.
+
+The `app` and `shared` layers do not require slices and can be composed directly of segments.
+
+### Detailed Segment Structure
+
+The following provides a canonical structure and naming convention for the files within each segment of a slice. This ensures predictability and ease of navigation.
+
+```tree
+.
+├── api/
+│   ├── index.ts
+│   └── service.ts           # Service for backend communication
+├── lib/
+│   ├── index.ts
+│   └── utils.ts             # Helpers, can be further segmented
+├── model/
+│   ├── constants.ts         # Constants and enums
+│   ├── index.ts             # Re-exports for the model segment
+│   ├── selectors.ts         # State management selectors
+│   ├── slice.ts             # State management slice
+│   ├── thunks.ts            # Asynchronous actions
+│   ├── types.ts             # DTOs, interfaces, and complex types
+│   └── validation-schema.ts # Schemas for form validation
+├── ui/
+│   ├── sub-user/            # Example of a UI sub-segment
+│   │   ├── index.tsx
+│   │   └── styles.module.css
+│   ├── user-card.tsx        # A simple component without its own styles
+│   └── index.ts             # Re-exports for the UI segment
+└── index.ts                 # Public API: Re-exports from all segments
+```
