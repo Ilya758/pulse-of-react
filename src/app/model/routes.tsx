@@ -109,6 +109,12 @@ const FirstContentfulPaintPage = lazy(() =>
 
 const LcpPage = lazy(() => import('@/pages/lcp').then(({ LcpPage }) => ({ default: LcpPage })));
 
+const InteractionToNextPaintPage = lazy(() =>
+  import('@/pages/interaction-to-next-paint').then(({ InteractionToNextPaintPage }) => ({
+    default: InteractionToNextPaintPage,
+  })),
+);
+
 export const ROUTES = [
   { element: <HomePage />, path: '/' },
   { element: <HooksPage />, path: 'hooks' },
@@ -132,5 +138,6 @@ export const ROUTES = [
   { element: <PrototypePollutionPage />, path: '/prototype-pollution' },
   { element: <FirstContentfulPaintPage />, path: '/first-contentful-paint' },
   { element: <LcpPage />, path: '/lcp' },
+  { element: <InteractionToNextPaintPage />, path: '/inp' },
   { element: <NotFoundPage />, path: '*' },
 ];

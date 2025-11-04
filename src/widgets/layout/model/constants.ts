@@ -64,6 +64,10 @@ export const ROUTES = [
         href: '/lcp',
         name: 'Largest Contentful Paint',
       },
+      {
+        href: '/inp',
+        name: 'Interaction to Next Paint',
+      },
     ],
   },
 ];
