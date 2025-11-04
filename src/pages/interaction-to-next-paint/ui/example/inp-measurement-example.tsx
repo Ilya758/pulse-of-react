@@ -10,39 +10,8 @@ import {
   Text,
 } from '@mantine/core';
 import { IconClock, IconHandClick, IconInfoCircle, IconRefresh } from '@tabler/icons-react';
-import {
-  INP_RATING_COLORS,
-  INP_RATING_TEXT,
-  INP_STATUS_COLORS,
-  INP_STATUS_TEXT,
-  useINPMeasurement,
-} from '../../model';
-
-const getProgress = (value: number) => {
-  const percentage = Math.min((value / 1000) * 100, 100);
-
-  return percentage;
-};
-
-const formatTime = (timestamp: number | null) => {
-  if (!timestamp) {
-    return 'N/A';
-  }
-
-  const date = new Date(timestamp);
-
-  return date.toLocaleTimeString();
-};
-
-const getStatusColor = (isMeasuring: boolean, inp: number | null) => {
-  if (isMeasuring) {
-    return INP_STATUS_COLORS.listening;
-  }
-  if (inp !== null) {
-    return INP_STATUS_COLORS.complete;
-  }
-  return INP_STATUS_COLORS.waiting;
-};
+import { formatTime, getProgress, getRatingColor, getRatingText, getStatusColor } from '../../lib';
+import { INP_STATUS_TEXT, useINPMeasurement } from '../../model';
 
 export const INPMeasurementExample = () => {
   const { inp, interactionCount, isMeasuring, lastInteractionTime, rating, simulateInteraction } =
@@ -93,8 +62,8 @@ export const INPMeasurementExample = () => {
                     {inp}ms
                   </Text>
                   {rating && (
-                    <Badge color={INP_RATING_COLORS[rating]} variant="light">
-                      {INP_RATING_TEXT[rating]}
+                    <Badge color={getRatingColor(rating)} variant="light">
+                      {getRatingText(rating)}
                     </Badge>
                   )}
                 </Group>
@@ -108,7 +77,7 @@ export const INPMeasurementExample = () => {
 
               {inp !== null && (
                 <Progress
-                  color={rating ? INP_RATING_COLORS[rating] : 'gray'}
+                  color={rating ? getRatingColor(rating) : 'gray'}
                   mt="xs"
                   size="sm"
                   value={getProgress(inp)}
