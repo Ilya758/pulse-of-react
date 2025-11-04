@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.20.0](https://github.com/Ilya758/react-design-patterns/compare/v1.19.3...v1.20.0) (2025-11-04)
+
+
+### Features
+
+* **page:** new inp page ([64e7c3c](https://github.com/Ilya758/react-design-patterns/commit/64e7c3c722fa845145486c2d5ed8216f1a947ef3))
+
 ### [1.19.3](https://github.com/Ilya758/react-design-patterns/compare/v1.19.2...v1.19.3) (2025-11-03)
 
 
