@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.20.1](https://github.com/Ilya758/react-design-patterns/compare/v1.20.0...v1.20.1) (2025-11-04)
+
+
+### Bug Fixes
+
+* **page:** removed duplicates ([616d6b1](https://github.com/Ilya758/react-design-patterns/commit/616d6b166b668bd880913daf594333be6a040be5))
+
 ## [1.20.0](https://github.com/Ilya758/react-design-patterns/compare/v1.19.3...v1.20.0) (2025-11-04)
 
 
