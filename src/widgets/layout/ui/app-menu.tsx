@@ -1,6 +1,6 @@
 import { Accordion, Text, ThemeIcon, useMantineTheme } from '@mantine/core';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { useThemeColorContext } from '@/shared';
 import { ROUTES } from '../model';
 import styles from './styles.module.css';

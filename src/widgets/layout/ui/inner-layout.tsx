@@ -1,7 +1,7 @@
 import { AppShell } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { JSX } from 'react';
-import { useLocation } from 'react-router';
+import { useLocation } from 'react-router-dom';
 import { allowTOC } from '../lib';
 import { AppMenu } from './app-menu';
 import { AsideTOC } from './aside-toc';
