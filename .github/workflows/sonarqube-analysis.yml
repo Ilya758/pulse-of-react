@@ -2,8 +2,8 @@ name: SonarQube Analysis
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - master
 
 jobs:
   sonarqube:
