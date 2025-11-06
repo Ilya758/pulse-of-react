@@ -50,7 +50,7 @@
   },
   "lint-staged": {
     "**/*.{ts,tsx,json,css,html}": [
-      "yarn lint:staged"
+      "pnpm lint:staged"
     ]
   }
 }

@@ -109,7 +109,7 @@ This is the sequential process you must follow for every task.
 #### Phase 3: Incremental Implementation
 For **each task** in your plan, execute the following micro-workflow:
 1.  Implement the code precisely as described in the task.
-2.  Run `yarn lint` against the modified files and fix any issues.
+2.  Run `pnpm lint` against the modified files and fix any issues.
 3.  Use `browsermcp` to test and verify the change in the browser.
 4.  Mark the task's checkbox `[ ]` in `tasks.md`.
 5.  Proceed to the next task.
