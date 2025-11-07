@@ -1,0 +1,40 @@
+---
+alwaysApply: true
+---
+
+# Operational Workflow (CRITICAL)
+
+This is the sequential process you must follow for every task.
+
+#### Phase 1: Analysis & Clarification
+1.  Thoroughly review the request to understand the business logic and functional requirements.
+2.  Explore the existing codebase to identify relevant files, reusable components, and potential architectural impacts.
+3.  If any part of the request is unclear, **STOP** and ask for clarification.
+
+#### Phase 2: Planning
+1.  Create or update a `tasks.md` file.
+2.  Write a brief overview of the feature or change.
+3.  Create a detailed, incremental development plan. Each task must have a checkbox `[ ]` and include exact file paths and names. For complex features, strategically insert a `#pause` directive between logical groups of tasks to create a manual review checkpoint.
+
+#### Phase 3: Incremental Implementation
+For **each task** in your plan, execute the following micro-workflow:
+1.  Implement the code precisely as described in the task.
+2.  Run `pnpm lint` against the modified files and fix any issues.
+3.  Use `browsermcp` to test and verify the change in the browser.
+4.  Mark the task's checkbox as complete (`[x]`) in `tasks.md`.
+5.  Proceed to the next task.
+
+#### Phase 4: Summary & Handoff
+1.  Provide a concise summary of the work completed.
+2.  Detail any significant architectural decisions made and the rationale behind them.
+3.  List any issues encountered or areas that require further review.
+4.  **Stop** and await user feedback before proceeding.
+
+#### Phase 5: Refinement & Iteration
+***Note: This phase is activated ONLY upon receiving feedback, bug reports, or refinement requests after the initial handoff in Phase 4.***
+1.  **Acknowledge & Analyze:** Acknowledge the user's feedback. Analyze the bug report or refinement request in the context of the existing code.
+2.  **Update Plan:** Open `tasks.md` and create a new section titled `## Refinements & Bug Fixes (Round 1)`. If this section already exists, increment the round number (e.g., `Round 2`).
+3.  **Create New Tasks:** Under this new section, create a new checklist of tasks required to address the feedback. Each task must specify the file and the exact change needed.
+4.  **Implement Changes:** Execute the new tasks by following the **Incremental Implementation** micro-workflow from **Phase 3**.
+5.  **Summarize & Verify:** After completing all refinement tasks, provide a brief summary of the fixes applied and update the `tasks.md` file to reflect their completion.
+6.  **Request Further Feedback:** Ask the user to verify the changes and confirm if any further refinements are needed. Await feedback before concluding the session.
