@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/Ilya758/react-design-patterns/compare/v2.0.0...v2.1.0) (2025-11-11)
+
+
+### Features
+
+* **page:** new cls page ([51c116e](https://github.com/Ilya758/react-design-patterns/commit/51c116ee9a81bd58573df7a577cd171a65a011a3))
+
+
+### Bug Fixes
+
+* **packages:** removed postcss plugin ([f736eab](https://github.com/Ilya758/react-design-patterns/commit/f736eab7676f6f17f011c2535bea8068d47cfe15))
+
 ## [2.0.0](https://github.com/Ilya758/react-design-patterns/compare/v1.21.1...v2.0.0) (2025-11-06)
 
 ### [1.21.1](https://github.com/Ilya758/react-design-patterns/compare/v1.21.0...v1.21.1) (2025-11-06)
