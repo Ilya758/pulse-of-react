@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/Ilya758/react-design-patterns/compare/v2.1.0...v2.1.1) (2025-11-11)
+
+
+### Bug Fixes
+
+* **sonar:** temporal suppressed coverage ([2024da9](https://github.com/Ilya758/react-design-patterns/commit/2024da999fa6e03a174e9cc8c6b37ab79280c52c))
+
 ## [2.1.0](https://github.com/Ilya758/react-design-patterns/compare/v2.0.0...v2.1.0) (2025-11-11)
 
 
