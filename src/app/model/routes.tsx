@@ -115,6 +115,12 @@ const InteractionToNextPaintPage = lazy(() =>
   })),
 );
 
+const CumulativeLayoutShiftPage = lazy(() =>
+  import('@/pages/cumulative-layout-shift').then(({ CumulativeLayoutShiftPage }) => ({
+    default: CumulativeLayoutShiftPage,
+  })),
+);
+
 export const ROUTES = [
   { element: <HomePage />, path: '/' },
   { element: <HooksPage />, path: 'hooks' },
@@ -139,5 +145,6 @@ export const ROUTES = [
   { element: <FirstContentfulPaintPage />, path: '/first-contentful-paint' },
   { element: <LcpPage />, path: '/lcp' },
   { element: <InteractionToNextPaintPage />, path: '/inp' },
+  { element: <CumulativeLayoutShiftPage />, path: '/cls' },
   { element: <NotFoundPage />, path: '*' },
 ];

@@ -68,6 +68,10 @@ export const ROUTES = [
         href: '/inp',
         name: 'Interaction to Next Paint',
       },
+      {
+        href: '/cls',
+        name: 'Cumulative Layout Shift',
+      },
     ],
   },
 ];

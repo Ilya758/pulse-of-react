@@ -1,0 +1,1 @@
+export { CumulativeLayoutShiftPage } from './ui';
