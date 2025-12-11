@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.2](https://github.com/Ilya758/react-design-patterns/compare/v2.1.1...v2.1.2) (2025-12-11)
+
+
+### Features
+
+* **mcp:** mcp servers ([bdbd2dd](https://github.com/Ilya758/react-design-patterns/commit/bdbd2dd0d013f9947159c4dd41d3f5d30044e032))
+* **scripts:** ensure ts typecheck ([6dc11ef](https://github.com/Ilya758/react-design-patterns/commit/6dc11ef928d2684ece2cc33c643c45cb622fedf0))
+
 ### [2.1.1](https://github.com/Ilya758/react-design-patterns/compare/v2.1.0...v2.1.1) (2025-11-11)
 
 
