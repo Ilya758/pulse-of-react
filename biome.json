@@ -39,6 +39,7 @@
       "complexity": {
         "noEmptyTypeParameters": "error",
         "noImplicitCoercions": "off",
+        "useLiteralKeys": "error",
         "useOptionalChain": "error",
         "useRegexLiterals": "warn",
         "useSimplifiedLogicExpression": "error"
